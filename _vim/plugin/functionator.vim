@@ -65,10 +65,10 @@ fun s:GetFuncName(ft)
 			let funEnd = line('$') + 1
 		endif
 	elseif a:ft == 'vim'
-		let funBegin = search('^\s*\<fu\%[nction]\>', 'bW')
+		let funBegin = search('^\s*\<fu\%[nction!]\>', 'bW')
 		let funEnd = searchpair('^\s*\<fu\%[nction]\>', '', '^\s*\<endf\%[unction]\>')
 		let funName = substitute(getline(funBegin), '^\s*', '', '')
-		let funName = substitute(funName, "fu[nction]\(*\)*", ": ", "" )
+		let funName = substitute(funName, "fu[nction!]\(*\)*", ":", "" )
 	endif
 	call cursor(line, col)
 	if funBegin && funEnd && funEnd > line
