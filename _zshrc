@@ -576,8 +576,7 @@ zstyle ':completion:*' completer _complete _list _oldlist _expand _ignored _matc
 ## allow one error
 #zstyle ':completion:*:approximate:*' max-errors 1 numeric
 ## allow one error for every three characters typed in approximate completer
-zstyle -e ':completion:*:approximate:*' max-errors \                        
-'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'                            
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'                            
 
 ## formatting and messages
 zstyle ':completion:*' verbose yes
@@ -770,13 +769,6 @@ compctl -x 'n[0,:]' -f - 'n[0,@],s[]' -K c_ssh_knownhosts -S: + -f --  scp
 
 
 compctl -j -P '%' + -s '`ps -x | tail +2 | cut -c1-5`' + -x 's[-] p[1]' -k "($signals[1,-3])" -- kill
-
-compctl -g '*.gz *.Z *.bz2' \
-   + -g '*.web *.docbook' \  
-   + -g '*.c *.cc *.C *.cxx *.cpp *.h *.tex *.txt *.html' \
-   + -g '^*.(o|a|so|aux|dvi|log|swp|fig|bbl|blg|bst|idx|ind|out|toc)' \
-   + -g '.*' \                                                         
-   + -g '*(/)' vi vim gvim less grep zgrep                             
 
 compctl -g ':completion:*:complete:ssh:*:hosts' hosts $hosts
 
