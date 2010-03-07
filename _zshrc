@@ -61,7 +61,7 @@ if [[ `uname` == "FreeBSD" && $UID == 0 ]]
 fi;                                                  
 
 # }}}
-for pager ('more' 'most' 'vimpager' 'less');
+for pager ('more' 'most' 'less' 'vimpager');
     do [[ -x $(whence -p $pager) ]] && export PAGER=$pager;
 done;                                                      
 for browser ('links' 'lynx' 'w3m' 'elinks');               
