@@ -639,7 +639,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 ###############################                                                 
 ## custom widgets & keybindings                                                 
 
-bindkey -e
+bindkey -v
 
 transpose-words () {
     ## definately   
@@ -800,6 +800,9 @@ bindkey "\e[F" end-of-line
 #bindkey '^i' expand-or-complete-prefix
 bindkey "^u" backward-kill-line
 bindkey "^b" beginning-of-line
+bindkey "^w" backward-kill-word
+bindkey -M viins '^r' history-incremental-search-backward
+bindkey -M vicmd '^r' history-incremental-search-backward
 
 # Add some to run on login
 if [[ -x $(whence -p fortune) ]]; then
