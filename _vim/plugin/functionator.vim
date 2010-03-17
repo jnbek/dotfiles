@@ -59,16 +59,16 @@ fun s:GetFuncName(ft)
 		let funBegin = search(indent.'def.*:$', 'nbW')
 		let funEnd = search(indent.'\S', 'ncW')
 		let funName = matchstr(getline(funBegin), '\w\+(.*)')
-		let funName = substitute(funName, "def.*", ": ", "" )
+		let funName = substitute(funName, "def.*", "", "" )
 		if funEnd == 0 " If no more non-indented text is found the function
 		               " must go to the EOF.
 			let funEnd = line('$') + 1
 		endif
 	elseif a:ft == 'vim'
 		let funBegin = search('^\s*\<fu\%[nction!]\>', 'bW')
-		let funEnd = searchpair('^\s*\<fu\%[nction]\>', '', '^\s*\<endf\%[unction]\>')
+		let funEnd = searchpair('^\s*\<fu\%[nction!]\>', '', '^\s*\<endf\%[unction]\>')
 		let funName = substitute(getline(funBegin), '^\s*', '', '')
-		let funName = substitute(funName, "fu[nction!]\(*\)*", ":", "" )
+		let funName = substitute(funName, "fu[nction!]\*\(*\)*", "", "" )
 	endif
 	call cursor(line, col)
 	if funBegin && funEnd && funEnd > line

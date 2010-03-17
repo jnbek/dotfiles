@@ -21,6 +21,7 @@ set wildmenu
 set cpo-=<
 set pastetoggle=<C-p><C-p>
 set wcm=<C-Z>
+set sc!
 set autoindent
 set smartindent
 set nu!
@@ -96,6 +97,10 @@ au! BufRead,BufNewFile *.json setfiletype json
   let perl_include_pod=1
 
 " Keymappings
+map _? :tabnew<Enter>
+map _?? :tabnew<Enter>:e .<cr>
+map _> :tabnext<Enter>
+map _< :tabprev<Enter>
 map <C-T> :tabnew<Enter>
 map <C-T><C-E> :tabnew<Enter>:e .<cr>
 map <C-T><C-N> :tabnext<Enter>
@@ -136,6 +141,7 @@ nmap _VA :VCSAnn<Enter>
 nmap _VS :VCSStat<Enter>
 nmap _VL :VCSLog<Enter>
 nmap _VD :VCSDiff<Enter>
+nmap _VU :VCSUpdate<Enter>
 " Shortcuts
 imap _self <ESC>^i    my $self = shift;<cr>
 imap _new <ESC>^isub new {<cr><ESC>^i    my $proto = shift;<cr><ESC>^i    my $class = ref($proto) \|\| $proto;<cr><ESC>^i    my $self = {};<cr><ESC>^i    bless $self, $class;<cr><ESC>^i    return $self;<cr><ESC>^i}<cr>
@@ -143,7 +149,7 @@ imap _{ {<cr><cr><ESC>^i}<ESC><ESC>k<ESC>i
 nmap _AR <ESC>:!sudo apachectl restart<cr>
 nmap _MR <ESC>:!sudo service memcached restart<cr>
 " Misc Mappings
-inoremap <c-r>:call TabOrCompletion()<cr>
+inoremap _TC :call MyCompletion()<cr>
 inoremap <INS> <ESC>a
 nnoremap :Q :q
 nnoremap :W :w
@@ -157,7 +163,8 @@ function! CallPDB()
     :mode
 endfunction
 
-function! TextMode()             " Stolen from David Hand
+function! TextMode()
+" Stolen from David Hand
     set nocindent               " nocin:  don't use C-indenting
     set nosmartindent           " nosi:  don't "smart" indent, either
     set autoindent              " ai:  indent to match previous line
@@ -169,7 +176,8 @@ function! TextMode()             " Stolen from David Hand
     set complete=.,w,b,u,t,i,k  " cpt:  complete words
 endfunction
 
-function! PerlMode()             " Stolen from David Hand
+function! PerlMode()
+" Stolen from David Hand
     set shiftwidth=4            " sw:  a healthy tab stop
     set textwidth=72            " tw:  wrap at 72 characters
     set autoindent              " ai:  indent to match previous line
@@ -272,7 +280,8 @@ function OnlineDoc()
     let s:url = substitute(s:urlTemplate, '<name>', s:wordUnderCursor, 'g')
     call Run(Browser() . " " . s:url)
 endfunction
-function! TabOrCompletion()
+
+function! MyCompletion()
     let col = col('.') - 1
     if col==0 || getline('.')[col - 1] !~ '\k'
         return "\<TAB>"
