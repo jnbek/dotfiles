@@ -4,32 +4,28 @@
 #         USAGE:  ./wrapper.sh executable [cmd-line-args] 
 #   DESCRIPTION:  Wraps the execution of a programm or script.
 #                 Use with xterm: xterm -e wrapper.sh executable cmd-line-args
-#                 This script is used by several plugins:
-#                  bash-support.vim, c.vim and perl-support.vim
+#                 This script is used by the plugin perl-support.vim.
 #       OPTIONS:  ---
-#  REQUIREMENTS:  which(1) - shows the full path of (shell) commands.
+#  REQUIREMENTS:  ---
 #          BUGS:  ---
 #         NOTES:  ---
 #        AUTHOR:  Dr.-Ing. Fritz Mehner (Mn), mehner@fh-swf.de
 #       COMPANY:  Fachhochschule Südwestfalen, Iserlohn
-#       VERSION:  1.2
 #       CREATED:  23.11.2004 18:04:01 CET
-#      REVISION:  $Id: wrapper.sh,v 1.1.1.1 2009/04/11 21:14:01 jnbek Exp $
+#      REVISION:  $Id: wrapper.sh,v 1.5 2009/06/04 18:21:55 mehner Exp $
 #===============================================================================
 
-command=${@}                             # the complete command line
-executable=${1}                          # name of the executable; may be quoted
+perlexe="${0}"                                  # the perl executable
+returncode=0                                    # default return code
 
-fullname=$(which $executable)
-[ $? -eq 0 ] && executable=$fullname
-
-if [ ${#} -ge 1 ] && [ -x "$executable" ]
-then
-  shift
-  "$executable" ${@}
-  echo -e "\n\n\"${command}\" returned ${?}"
+if [ ${#} -ge 2 ] && [ -x "$perlexe" ]
+then 
+	"${@}"
+	returncode=$?
+	[ $returncode -ne 0 ] && printf "'${@}' returned ${returncode}\n"
 else
-  echo -e "\n  !! file \"${executable}\" does not exist or is not executable !!"
+  printf "\n!! ${0} : too few argument(s) !!\n"
 fi
-echo -e "  ... press return key ... "
-read dummy
+
+read -p "... press return key ... " dummy
+exit $returncode
