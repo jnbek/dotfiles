@@ -144,6 +144,9 @@ nmap _VL :VCSLog<Enter>
 nmap _VD :VCSDiff<Enter>
 nmap _VU :VCSUpdate<Enter>
 " Shortcuts
+imap _sub <ESC>:call Perl_InsertTemplate("idioms.subroutine")<CR>
+nmap _sub :call Perl_InsertTemplate("idioms.subroutine")<CR>
+vmap _sub <C-C>:call Perl_InsertTemplate("idioms.subroutine", "v")<CR>
 imap _self <ESC>^i    my $self = shift;<cr>
 imap _new <ESC>^isub new {<cr><ESC>^i    my $proto = shift;<cr><ESC>^i    my $class = ref($proto) \|\| $proto;<cr><ESC>^i    my $self = {};<cr><ESC>^i    bless $self, $class;<cr><ESC>^i    return $self;<cr><ESC>^i}<cr>
 imap _{ {<cr><cr><ESC>^i}<ESC><ESC>k<ESC>i

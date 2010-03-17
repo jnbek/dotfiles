@@ -41,7 +41,8 @@ $<CURSOR> =~ tr/<+searchlist+>/<+replacementlist+>/
 §%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.subroutine ==
 sub |?FUNCTION_NAME| {
-	my	( $par1<CURSOR> )	= @_;
+	my	$self = shift;
+<SPLIT> <CURSOR>
 <SPLIT>	return ;
 }	# ----------  end of subroutine |FUNCTION_NAME|  ----------
 §%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
