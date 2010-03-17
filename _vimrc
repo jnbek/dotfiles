@@ -38,7 +38,7 @@ let g:VCSCommandEnableBufferSetup = 1
 "Status Line
 "set statusline=%<%f%h%m%r%=%{&ff}\ %l,%c%V\ %P
 set laststatus=2        " ls:  always put a status line
-set statusline=%([%-n]%y\ [%f%M%R]%)\ [%{CurrSubName()}]\ [%{VCSCommandGetStatusLine()}]\ %=\ %(%l/%L,%c%V\ %P\ [0x%02.2B]%)
+set statusline=%([%-n]%y\ [%f%M%R]%)\ [%{CurrSubName()}]\ [%{VCSCommandGetStatusLine()}]\ %=\ %(%l/%L,%c%V\ %P\ [0x%02.2B]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%)
 set maxfuncdepth=1000   " Need more depth for sub names
 set showmatch  " show matches on parens, bracketc, etc.
 set showmode
