@@ -28,6 +28,7 @@ set nu!
 set ls=2
 syn on
 filetype on
+filetype plugin on
 set tabstop=4
 set expandtab
 set shiftwidth=4
