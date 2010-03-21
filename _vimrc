@@ -1,7 +1,7 @@
 " Initial Settings
 if has('gui_running')
     colorscheme habiLight
-    if has("win32") || has("win16")
+    if has("win32") || has("win16") || has("win64")
         behave mswin
         set guifont=DejaVu_Sans_Mono:h8:cANSI
     else
@@ -40,12 +40,13 @@ let g:VCSCommandEnableBufferSetup = 1
 set laststatus=2        " ls:  always put a status line
 set statusline=%([%-n]%y\ [%f%M%R]%)\ [%{CurrSubName()}]\ [%{VCSCommandGetStatusLine()}]\ %=\ %(%l/%L,%c%V\ %P\ [0x%02.2B]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%)
 set maxfuncdepth=1000   " Need more depth for sub names
-set showmatch  " show matches on parens, bracketc, etc.
 set showmode
 set matchpairs+=<:>
 set backspace=2
 set incsearch
 set hlsearch
+set showmatch  " show matches on parens, bracketc, etc.
+hi MatchParen cterm=NONE ctermbg=brown ctermfg=yellow
 let s:opt_preserve=1
 " Buf Settings
 
