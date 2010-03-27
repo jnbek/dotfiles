@@ -103,10 +103,6 @@ map _? :tabnew<Enter>
 map _?? :tabnew<Enter>:e .<cr>
 map _> :tabnext<Enter>
 map _< :tabprev<Enter>
-map <C-T> :tabnew<Enter>
-map <C-T><C-E> :tabnew<Enter>:e .<cr>
-map <C-T><C-N> :tabnext<Enter>
-map <C-T><C-P> :tabprev<Enter>
 map <C-W><C-W> <C-W>w
 map <C-W><C-H> :help<Enter>
 map <C-W><C-F> <Esc>:TlistToggle<Enter>
@@ -217,7 +213,7 @@ function! GetSubName(line)
 
     if l:str =~ '^sub'
         let l:str = substitute( l:str, " *{.*", "", "" )
-        let l:str = substitute( l:str, "sub *", ": ", "" )
+        let l:str = substitute( l:str, "sub *", "", "" )
         let g:subname = l:str
         return 1
     elseif ( l:str =~ '^}' || l:str =~ '^}P@ *#' ) && g:subrecurssion == 1
