@@ -10,6 +10,9 @@ if has('gui_running')
 else
     colorscheme jnbeks
 endif
+if filereadable($HOME."/.vim_aliases")
+    source $HOME/.vim_aliases
+endif
 source $VIMRUNTIME/menu.vim
 set mouse=a
 set dir=$HOME/tmp/vim
