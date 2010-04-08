@@ -5,7 +5,7 @@ if has('gui_running')
         behave mswin
         set guifont=DejaVu_Sans_Mono:h8:cANSI
     else
-        set guifont=Monospace\ 9
+        set guifont=Monospace\ 7
     endif
 else
     colorscheme jnbeks
