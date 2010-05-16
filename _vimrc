@@ -14,9 +14,6 @@ endif
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
 endif
-if !exists($HOME."/tmp/vim/bak")
-    call mkdir($HOME."/tmp/vim/bak", "p", 0755)
-endif
 source $VIMRUNTIME/menu.vim
 set mouse=a
 set dir=$HOME/tmp/vim
