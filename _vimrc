@@ -1,4 +1,5 @@
 " Initial Settings
+let mapleader = "|"
 if has('gui_running')
     colorscheme habiLight
     if has("win32") || has("win16") || has("win64")
@@ -12,6 +13,9 @@ else
 endif
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
+endif
+if !exists($HOME."/tmp/vim/bak")
+    call mkdir($HOME."/tmp/vim/bak", "p", 0755)
 endif
 source $VIMRUNTIME/menu.vim
 set mouse=a
