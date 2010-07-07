@@ -33,6 +33,7 @@ set ls=2
 syn on
 filetype on
 filetype plugin on
+filetype indent on
 set tabstop=4
 set expandtab
 set shiftwidth=4
