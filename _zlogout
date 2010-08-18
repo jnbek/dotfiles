@@ -1,1 +1,1 @@
-kill $SSH_AGENT_PID
+# This is a comment, I hope you like it

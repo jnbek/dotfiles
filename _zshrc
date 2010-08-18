@@ -813,3 +813,6 @@ fi
 if [ -f $HOME/.zsh_aliases ]; then
     source $HOME/.zsh_aliases
 fi
+if [ -f $HOME/.ssh-login ]; then
+    source $HOME/.ssh-login
+fi
