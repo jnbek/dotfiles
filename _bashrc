@@ -18,23 +18,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"                     
 
 # set variable identifying the chroot you work in (used in the prompt below)
-PS1='[\033[01;32m\][\d][\t][\l]\n[\u@\h]\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]]\$ '
-
-#PS1='[${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\    033[01;34m\]\w\[\033[00m\]]\$ '
-# If this is an xterm set the title to user@host:dir                                                            
-case "$TERM" in                                                                                                 
-xterm*|rxvt*)                                                                                                   
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'                                  
-    ;;                                                                                                          
-  screen)                                                                                                       
-
-    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
-    export PROMPT_COMMAND                                                        
-    ;;                                                                           
-
-*)
-    ;;
-esac  
+PS1='\[\033[01;32m\][\d][\t][\l]\n[\u@\h]\[\033[00m\]:\[\033[01;34m\][\w]\[\033[00m\]\$ '
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -85,10 +69,13 @@ case $TERM in
             bind '"\177": backward-delete-char'
             ;;
 esac
-if [ "`which fortune`" != "" ]; then
+if [ -x "`which fortune`" ]; then
   echo
-  fortune -a
+  fortune
 fi
 
 export PATH=$PATH:$HOME/bin
 export EDITOR=vim
+if [ -f $HOME/.ssh-login ]; then
+    source $HOME/.ssh-login
+fi
