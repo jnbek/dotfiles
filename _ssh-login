@@ -82,7 +82,7 @@ if [ -f "$SSH_ENV" ]; then
     ierr=0
     ps ${SSH_AGENT_PID} > /dev/null || ierr=1
 
-    if [ $ierr == "0" ]; then
+    if [[ $ierr == "0" ]]; then
     echo > /dev/null
     else
     # If not initialize new agent and 
