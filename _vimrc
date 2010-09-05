@@ -6,7 +6,7 @@ if has('gui_running')
         behave mswin
         set guifont=DejaVu_Sans_Mono:h8:cANSI
     else
-        set guifont=Monospace\ 7
+        set guifont=Monospace\ 9
     endif
 else
     colorscheme jnbeks
@@ -104,10 +104,10 @@ au! BufRead,BufNewFile *.json setfiletype json
   let perl_include_pod=1
 
 " Keymappings
-map _? :tabnew<Enter>
-map _?? :tabnew<Enter>:e .<cr>
-map _> :tabnext<Enter>
-map _< :tabprev<Enter>
+map // :tabnew<Enter>
+map ?? :tabnew<Enter>:e .<cr>
+map ]] :tabnext<Enter>
+map [[ :tabprev<Enter>
 map <C-W><C-W> <C-W>w
 map <C-W><C-H> :help<Enter>
 map <C-W><C-F> <Esc>:TlistToggle<Enter>
