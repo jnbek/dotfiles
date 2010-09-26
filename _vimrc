@@ -162,7 +162,7 @@ nnoremap :W :w
 "Highlights
 highlight StatusLine ctermfg=8 ctermbg=3
 highlight Title       term=bold cterm=bold ctermbg=7 ctermfg=4 gui=bold guifg=Blue
-
+set tw=0
 "Functions
 function! CallPDB()
     :!perl -d:PDB %
@@ -176,7 +176,7 @@ function! TextMode()
     set autoindent              " ai:  indent to match previous line
     set noshowmatch             " nosm:  don't show matches on parens, brackets, etc.
     set comments=n:>,n:#,fn:-   " com: list of things to be treated as comments
-    set textwidth=72            " tw:  wrap at 72 characters
+    "set textwidth=72            " tw:  wrap at 72 characters
     set formatoptions=tcrq      " fo:  word wrap, format comments
     set dictionary+=/usr/local/dict/*  " dict:  dict for word completion
     set complete=.,w,b,u,t,i,k  " cpt:  complete words
@@ -185,7 +185,7 @@ endfunction
 function! PerlMode()
 " Stolen from David Hand
     set shiftwidth=4            " sw:  a healthy tab stop
-    set textwidth=72            " tw:  wrap at 72 characters
+"    set textwidth=72            " tw:  wrap at 72 characters
     set autoindent              " ai:  indent to match previous line
     set cindent                 " cin:  Use C-indenting
     set cinkeys=0{,0},!^F,o,O,e " cink:  Perl-friendly reindent keys
