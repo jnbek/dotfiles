@@ -8,6 +8,12 @@ if has('gui_running')
     else
         set guifont=Monospace\ 9
     endif
+    map <C-S-A> ggVG
+    map <C-S-C> "+y 
+    map <C-S-V> "+gP
+    imap <C-S-A> ggVG
+    imap <C-S-C> "+y 
+    imap <C-S-V> "+gP
 else
     colorscheme jnbeks
 endif
