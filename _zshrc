@@ -702,7 +702,7 @@ else
 fi                                                                                                                                                    
 
 #export RPROMPT=' %B%*%b%)'  # right side prompt string
-export RPROMPT=' ${YELLOW}[%W][%*]${NORM}%)'  # right side prompt string
+export RPROMPT=' [%W][%*][J:%j][L:%L]%)'  # right side prompt string
 
 export PS2='%_>' 
 # RPS1 not used - it got in the way of copy-n-paste,
