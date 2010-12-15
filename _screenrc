@@ -165,6 +165,6 @@ hardstatus alwayslastline
 #hardstatus string '%{gk}[%= %{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}]%{W}'
 #hardstatus off
 #caption always           "%?%F%{= Kk}%:%{=u kR}%?  %h %-024=%{+b} %C%a %D %d %M %Y%{= db}"
-hardstatus alwayslastline "%{= kR} %-Lw%{=b kM} %n%f %t %{-}%+Lw %=%{= dd}%{W}"
+hardstatus alwayslastline "%{= kR} %-Lw%{=b kM} %n%f %t %{-}%+Lw %=[%H][%l]%{= dd}%{W}"
 termcapinfo xterm ti@:te@
 termcapinfo xterm* kN=\E[6~:kP=\E[5~
