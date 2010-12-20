@@ -148,12 +148,12 @@ if v:version >= 700
     hi SpellRare        cterm=none    ctermfg=16        ctermbg=196
     
     " No need for GUI colors
-    "hi TabLine         cterm=none  ctermfg=252     ctermbg=17
-    "hi TabLineSel      cterm=none  ctermfg=255     ctermbg=21
-    "hi TabLineFill cterm=none  ctermfg=17      ctermbg=17
-    hi TabLine          cterm=none  ctermfg=233     ctermbg=110
-    hi TabLineSel       cterm=none  ctermfg=110     ctermbg=233
-    hi TabLineFill  cterm=none  ctermfg=233     ctermbg=110
+    hi TabLine         cterm=none  ctermfg=252     ctermbg=17
+    hi TabLineSel      cterm=none  ctermfg=255     ctermbg=21
+    hi TabLineFill cterm=none  ctermfg=17      ctermbg=17
+"    hi TabLine          cterm=none  ctermfg=234     ctermbg=110
+"    hi TabLineSel       cterm=none  ctermfg=110     ctermbg=233
+"    hi TabLineFill  cterm=none  ctermfg=233     ctermbg=110
 
 endif
 
