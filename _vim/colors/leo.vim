@@ -93,13 +93,13 @@ endif
 " ### Normal should come first
 
 " console-gui different
-hi Normal               cterm=none      ctermfg=255 guifg=#ffffff   guibg=#121212
+hi Normal               cterm=none      ctermfg=255     ctermbg=232 guifg=#ffffff   guibg=#121212
 hi CursorLine       cterm=none      ctermbg=16      guibg=#050505
 hi SpecialKey       cterm=none      ctermfg=245     ctermbg=233     guifg=#8a8a8a   guibg=#090909
 hi Folded               cterm=none      ctermfg=110     ctermbg=233     guifg=#87afd7   guibg=#000000
 
 
-"hi Cursor              cterm=none      ctermfg=bg          guibg=fg    guifg=bg
+hi Cursor               cterm=none      ctermfg=bg      ctermbg=fg  guibg=fg    guifg=bg
 hi DiffAdd          cterm=none      ctermbg=235     guibg=#262626
 hi DiffChange       cterm=none      ctermbg=235     guibg=#262626
 hi DiffDelete       cterm=none      ctermfg=238     ctermbg=244     guifg=#444444   guibg=#808080
@@ -148,12 +148,12 @@ if v:version >= 700
     hi SpellRare        cterm=none    ctermfg=16        ctermbg=196
     
     " No need for GUI colors
-    hi TabLine         cterm=none  ctermfg=252     ctermbg=17
-    hi TabLineSel      cterm=none  ctermfg=255     ctermbg=21
-    hi TabLineFill cterm=none  ctermfg=17      ctermbg=17
-"    hi TabLine          cterm=none  ctermfg=234     ctermbg=110
-"    hi TabLineSel       cterm=none  ctermfg=110     ctermbg=233
-"    hi TabLineFill  cterm=none  ctermfg=233     ctermbg=110
+    "hi TabLine         cterm=none  ctermfg=252     ctermbg=17
+    "hi TabLineSel      cterm=none  ctermfg=255     ctermbg=21
+    "hi TabLineFill cterm=none  ctermfg=17      ctermbg=17
+    hi TabLine          cterm=none  ctermfg=233     ctermbg=110
+    hi TabLineSel       cterm=none  ctermfg=110     ctermbg=233
+    hi TabLineFill  cterm=none  ctermfg=233     ctermbg=110
 
 endif
 
@@ -188,3 +188,5 @@ hi Underlined       cterm=underline ctermfg=39  gui=underline   guifg=#00afff
 
 " ADDITIONNAL
 hi Repeat       cterm=none      ctermfg=99              guifg=#875fff
+
+
