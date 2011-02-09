@@ -16,7 +16,7 @@ if has('gui_running')
     imap <C-S-C> "+y 
     imap <C-S-V> "+gP
 else
-    "colorscheme leo
+    colorscheme nightshade
 endif
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
@@ -167,8 +167,8 @@ inoremap <INS> <ESC>a
 nnoremap :Q :q
 nnoremap :W :w
 "Highlights
-highlight StatusLine ctermfg=8 ctermbg=3
-highlight Title       term=bold cterm=bold ctermbg=7 ctermfg=4 gui=bold guifg=Blue
+"highlight StatusLine ctermfg=8 ctermbg=3
+"highlight Title       term=bold cterm=bold ctermbg=7 ctermfg=4 gui=bold guifg=Blue
 set tw=0
 "Functions
 function! CallPDB()
