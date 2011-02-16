@@ -1,5 +1,4 @@
 " Initial Settings
-let mapleader = "|"
 if has('gui_running')
     "colorscheme habiLight
     colorscheme leo
@@ -16,7 +15,7 @@ if has('gui_running')
     imap <C-S-C> "+y 
     imap <C-S-V> "+gP
 else
-    colorscheme nightshade
+    "colorscheme nightshade
 endif
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
