@@ -64,19 +64,23 @@ function start_agent {
     . ${SSH_ENV} > /dev/null
 
     # Add authentication to this and only this daemon
-    for i in $HOME/.ssh/id_dsa*;
-    do 
-      if ! echo $i | grep -E '\.(pub|keystore)' &>/dev/null;
-      then 
-        ssh-add $i
-      fi;
-    done
+    if [[ -f $HOME/.ssh/id_dsa ]];
+        then
+        for i in `ls $HOME/.ssh/id_dsa*`;
+        do 
+            if ! echo $i | grep -E '\.(pub|keystore)' &>/dev/null;
+                then 
+                ssh-add $i;
+            fi;
+        done;
+        fi;
 }
 
 
-if [ -f "$SSH_ENV" ]; then
+if [[ -f "$SSH_ENV" ]]; 
+    then
     # Find SSH_AUTH_SOCK and SSH_AGENT_PID of the available daemon
-    . ${SSH_ENV} > /dev/null
+    source ${SSH_ENV} > /dev/null
 
     # Check if the agent is still running
     ierr=0
