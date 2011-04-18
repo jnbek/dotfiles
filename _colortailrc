@@ -9,7 +9,7 @@ Groupings = {
       { :match => /DEBUG/i,        :color => :green },
       { :match => /ERROR/i,        :color => :green },
       { :match => /INFO/i,         :color => :none },
-      { :match => /WARN/i,         :color => :yellow }
+      { :match => /WARN/i,         :color => :yellow },
       { :match => /NOTICE/i,       :color => :blue }
   ]
 }
