@@ -1,0 +1,15 @@
+# See: http://developwithstyle.com/articles/2010/04/20/tail-your-logs-with-a-touch-of-color.html
+Groupings = {
+  # This default matching scheme
+  'default' => [
+      { :match => /Completed in/,    :color => :red,     :attribute => :reverse },
+      { :match => /EMERGENCY/i,    :color => :red,     :attribute => :reverse },
+      { :match => /FATAL/i,        :color => :red,     :attribute => :bright },
+      { :match => /CRITICAL/i,     :color => :red },
+      { :match => /DEBUG/i,        :color => :green },
+      { :match => /ERROR/i,        :color => :green },
+      { :match => /INFO/i,         :color => :none },
+      { :match => /WARN/i,         :color => :yellow }
+      { :match => /NOTICE/i,       :color => :blue }
+  ]
+}
