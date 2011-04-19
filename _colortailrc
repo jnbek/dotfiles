@@ -2,14 +2,22 @@
 Groupings = {
   # This default matching scheme
   'default' => [
-      { :match => /Completed in/,    :color => :red,     :attribute => :reverse },
-      { :match => /EMERGENCY/i,    :color => :red,     :attribute => :reverse },
-      { :match => /FATAL/i,        :color => :red,     :attribute => :bright },
-      { :match => /CRITICAL/i,     :color => :red },
-      { :match => /DEBUG/i,        :color => :green },
-      { :match => /ERROR/i,        :color => :green },
+      { :match => /Completed in/,  :color => :yellow, :attribute => :bright },
+      { :match => /FATAL/i,        :attribute => :blink },
+      { :match => /DEBUG/i,        :attribute => :underscore },
+      { :match => /ERROR/i,        :color => :red, :attribute => :reverse },
       { :match => /INFO/i,         :color => :none },
-      { :match => /WARN/i,         :color => :yellow },
-      { :match => /NOTICE/i,       :color => :blue }
+      { :match => /WARN/i,         :color => :yellow, :attribute => :reverse },
+      { :match => /NOTICE/i,       :color => :blue },
+      { :match => /[0-9]+:[0-9]+:[0-9]+\d0/,       :color => :cyan, :attribute => :bright },
+      { :match => /[0-9]+:[0-9]+:[0-9]+\d1/,       :color => :red },
+      { :match => /[0-9]+:[0-9]+:[0-9]+\d2/,       :color => :blue },
+      { :match => /[0-9]+:[0-9]+:[0-9]+\d3/,       :color => :yellow },
+      { :match => /[0-9]+:[0-9]+:[0-9]+\d4/,       :color => :green },
+      { :match => /[0-9]+:[0-9]+:[0-9]+\d5/,       :color => :magenta },
+      { :match => /[0-9]+:[0-9]+:[0-9]+\d6/,       :color => :cyan },
+      { :match => /[0-9]+:[0-9]+:[0-9]+\d7/,       :color => :black, :attribute => :bright },
+      { :match => /[0-9]+:[0-9]+:[0-9]+\d8/,       :color => :green, :attribute => :bright },
+      { :match => /[0-9]+:[0-9]+:[0-9]+\d9/,       :color => :blue,  :attribute => :bright }
   ]
 }
