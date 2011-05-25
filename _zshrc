@@ -696,13 +696,13 @@ TRAPALRM () {
 ## prompts
 # {{{ Prompt #################################################################### Different prompts depending on if screen is running (checks $WINDOW)
 if [[ "$WINDOW" == "" ]]; then                                                                                                                        
-        export PS1='(%n@%m[%~]%# '           # prompt string                                                                                          
+        export PS1='([J:%j]%n@%m[%~]%# '           # prompt string                                                                                          
 else                                                                                                                                                  
-        export PS1="(%n($WINDOW)@%m[%~]%# "  # prompt string showing screen window                                                                    
+        export PS1="([J:%j]%n($WINDOW)@%m[%~]%# "  # prompt string showing screen window                                                                    
 fi                                                                                                                                                    
 
 #export RPROMPT=' %B%*%b%)'  # right side prompt string
-export RPROMPT=' [%W][%*][J:%j]%)'  # right side prompt string
+export RPROMPT=' [%W][%*]%)'  # right side prompt string
 
 export PS2='%_>' 
 # RPS1 not used - it got in the way of copy-n-paste,
