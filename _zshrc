@@ -698,7 +698,7 @@ TRAPALRM () {
 if [[ "$WINDOW" == "" ]]; then                                                                                                                        
         export PS1='([J:%j]%n@%m[%~]%# '           # prompt string                                                                                          
 else                                                                                                                                                  
-        export PS1="([J:%j]%n($WINDOW)@%m[%~]%# "  # prompt string showing screen window                                                                    
+        export PS1='([J:%j]%n($WINDOW)@%m[%~]%# '  # prompt string showing screen window                                                                    
 fi                                                                                                                                                    
 
 #export RPROMPT=' %B%*%b%)'  # right side prompt string
