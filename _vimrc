@@ -116,7 +116,7 @@ map ]] :tabnext<Enter>
 map [[ :tabprev<Enter>
 map <C-W><C-W> <C-W>w
 map <C-W><C-H> :help<Enter>
-map <C-W><C-F> <Esc>:TlistToggle<Enter>
+map <C-W><C-F> <Esc>:TagbarToggle<Enter>
 map <C-W><C-N> :set nu!<Enter>
 nmap <C-W><C-B> :VSBufExplorer<cr>
 map <C-W><C-M> :emenu <C-Z>
