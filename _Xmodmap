@@ -1,15 +1,16 @@
-#keycode 192 = XF86Terminal
-#keycode 193 = XF86Launch0 
-#keycode 194 = XF86Launch1
-#keycode 195 = XF86ScreenSaver
-#keycode 196 = XF86LogOff
-#keycode 148 = XF86Launch3
-#keycode 172 = XF86AudioPlay
-#
-#
-#keycode 133 = XF86MenuKB
-#keycode 135 = XF86MenuPB
-#
+
+!keycode 192 = XF86Terminal
+!keycode 193 = XF86Launch0 
+!keycode 194 = XF86Launch1
+!keycode 195 = XF86ScreenSaver
+!keycode 196 = XF86LogOff
+!keycode 148 = XF86Launch3
+!keycode 172 = XF86AudioPlay
+
+
+!keycode 133 = XF86MenuKB
+!keycode 135 = XF86MenuPB
+
 
 remove Lock = Caps_Lock
 remove Control = Control_L
