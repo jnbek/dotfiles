@@ -21,6 +21,7 @@ if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
 endif
 source $VIMRUNTIME/menu.vim
+set tpm=25
 set mouse=a
 set dir=$HOME/tmp/vim
 set backup
