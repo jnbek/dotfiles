@@ -1,7 +1,7 @@
 " Initial Settings
 if has('gui_running')
     "colorscheme habiLight
-    colorscheme leo
+    colorscheme molokai
     if has("win32") || has("win16") || has("win64")
         behave mswin
         set guifont=DejaVu_Sans_Mono:h8:cANSI
@@ -11,11 +11,11 @@ if has('gui_running')
     map <C-S-A> ggVG
     map <C-S-C> "+y 
     map <C-S-V> "+gP
-    imap <C-S-A> ggVG
-    imap <C-S-C> "+y 
-    imap <C-S-V> "+gP
+    imap <C-S-A> <ESC>ggVG
+    imap <C-S-C> <ESC>"+y<cr>i
+    imap <C-S-V> <ESC>"+gP<cr>i
 else
-    "colorscheme nightshade
+    colorscheme darkblack
 endif
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
