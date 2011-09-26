@@ -15,7 +15,7 @@ if has('gui_running')
     imap <C-S-C> <ESC>"+y<cr>i
     imap <C-S-V> <ESC>"+gP<cr>i
 else
-    colorscheme greens
+    colorscheme nightshade
 endif
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
