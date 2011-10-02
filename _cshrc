@@ -1,39 +1,85 @@
-# $FreeBSD: src/etc/root/dot.cshrc,v 1.30.10.1.6.1 2010/12/21 17:09:25 kensmith Exp $
-#
-# .cshrc - csh resource script, read at beginning of execution by each shell
-#
-# see also csh(1), environ(7).
-#
+umask 022
+cd $HOME
 
-alias h     history 25
-alias j     jobs -l
-alias la    ls -a
-alias lf    ls -FA
-alias ll    ls -lA
+alias cd.. "cd .."
+alias l "/usr/bin/last \!* | less"
+alias less "/usr/bin/less -EmrSw"
+alias g "grep --color --mmap"
+alias ssh "/usr/bin/ssh -4 -C -e none"
+alias SYNC "/bin/sync; /bin/sync; /bin/sync"
+alias HEAD "/usr/local/bin/lwp-request"
+alias POST "/usr/local/bin/lwp-request"
+alias GET "/usr/local/bin/lwp-request"
 
-# A righteous umask
-umask 22
+complete sudo       p/1/c/
+complete which      p/1/c/
+complete set        'c/*=/f/' 'p/1/s/=' 'n/=/f/'
+complete unset      n/\*/s/
+complete alias      p/1/a/          # only aliases are valid
+complete unalias    n/\*/a/
+complete cd         p/1/d/          # Directories only
+complete chdir      p/1/d/
+complete pushd      p/1/d/
+complete popd       p/1/d/
+complete man        p/1/c/
+complete svn        'p/1/(add blame cat checkout co cleanup commit ci copy cp \
+        delete rm diff di export help import list ls log \
+        merge mkdir move mv revert status st update up)/'
+complete hg 'p/1/(add addremove annotate blame archive backout bisect branch branches bundle \
+        cat clone commit ci copy cp diff export glog grep heads help identify id import patch incoming in \
+        init locate log history manifest merge outgoing out parents paths pull push recover \
+        remove rm rename mv revert rollback root serve showconfig status st tag tags \
+        tip unbundle update up checkout co verify version)/'
+complete git 'p/1/(add bisect branch checkout clone commit diff fetch grep init log merge mv pull push rebase reset rm show status tag cherry-pick revert)/'
+complete apachectl  'c/*/(start stop restart fullstatus status graceful configtest help)/'
 
-set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin $HOME/bin)
-
-setenv  EDITOR  vi
-setenv  PAGER   more
-setenv  BLOCKSIZE   K
-
-if ($?prompt) then
-    # An interactive shell -- set some stuff up
-    set prompt = "`/bin/hostname -s`# "
-    set filec
-    set history = 100
-    set savehist = 100
-    set mail = (/var/mail/$USER)
-    if ( $?tcsh ) then
-        bindkey "^W" backward-delete-word
-        bindkey -k up history-search-backward
-        bindkey -k down history-search-forward
-    endif
-endif
-set filec
+set autoexpand
 set autolist
-set nobeep
-set cdspell
+set dspmbyte="big5"
+set history = 5000
+set mail = (1 /var/mail/$USER)
+set manpath = (/usr/local/man /usr/X11R6/man /usr/man)
+set path = (~/bin ~)
+set path = ($path /usr/local/ruby-1.9.1/bin)
+set path = ($path /usr/local/pgsql/bin /net/account/admin/srwang/local/bin)
+set path = ($path /usr/local/bin /usr/local/sbin /usr/X11R6/bin /usr/bin)
+set path = ($path /usr/sbin /usr/games /bin /sbin /stand)
+
+
+if ( ! $?WINDOW ) then
+  set prompt = "%{^[[32m%}%n%{^[[0m%}@%{^[[36m%}%m%{^[[0m%} [%{^[[32m%}%~%{^[[0m%}] (%{^[[36m%}%T%{^[[0m%}) "
+else
+  set prompt = "%{^[[32m%}%n%{^[[0m%}@%{^[[36m%}%m%{^[[0m%} [%{^[[32m%}%~%{^[[0m%}] [%{^[[36m%}%T%{^[[0m%}/%{^[[36m%}W$WINDOW%{^[[0m%}] "
+endif
+set savehist = 5000
+
+
+
+setenv BLOCKSIZE "k"
+setenv TERM "screen"
+setenv CLICOLOR_FORCE
+setenv ENABLE_STARTUP_LOCALE "zh_TW.UTF-8"
+setenv LANG "zh_TW.UTF-8"
+setenv LC_ALL "zh_TW.UTF-8"
+setenv LESS "-EmrSw"
+setenv LESSCHARDEF "8bcccbcc18b95.."
+setenv LSCOLORS "gxfxcxdxbxegedabagacad"
+setenv PAGER "/usr/bin/less"
+
+
+if ( $OSTYPE == FreeBSD ) then
+  alias colorls "/bin/ls -FGg"
+  alias ls "ls-F -FGg"
+  alias n "/usr/sbin/nslookup"
+  alias top "/usr/bin/top -s1"
+  setenv EDITOR "/usr/local/bin/vim"
+  setenv VISUAL $EDITOR
+else
+  alias colorls "/bin/ls -aF --color=always"
+  alias ls "ls-F -F --color=always"
+  alias n "/usr/bin/nslookup"
+  alias top "/usr/bin/top -d1"
+  setenv EDITOR "/usr/bin/vim"
+  setenv VISUAL $EDITOR
+  set path = ($path /home/services/mysql/bin/ /srv/mysql/bin/)
+endif                                              
