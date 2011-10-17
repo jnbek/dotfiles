@@ -63,3 +63,17 @@ case $TERM in
         print -Pn "\e]2;%n->%m:%~\a"
      ;;
 esac
+TRAPWINCH () {
+    zle || return 0
+    zle reset-prompt
+}
+
+##################################
+## update the prompt automagically
+## update ~about~ every 30 seconds
+## this can be invoked manually with a "kill -ALRM" to the shell (from another process)
+TMOUT=$[(${RANDOM}%15)+25]
+TRAPALRM () {
+    zle || return 0
+    zle reset-prompt
+}

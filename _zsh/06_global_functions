@@ -117,17 +117,3 @@ fi
 print 'Assuming 1 CPU' 1>&2
 }
 
-TRAPWINCH () {
-    zle || return 0
-    zle reset-prompt
-}
-
-##################################
-## update the prompt automagically
-## update ~about~ every 30 seconds
-## this can be invoked manually with a "kill -ALRM" to the shell (from another process)
-TMOUT=$[(${RANDOM}%15)+25]
-TRAPALRM () {
-    zle || return 0
-    zle reset-prompt
-}
