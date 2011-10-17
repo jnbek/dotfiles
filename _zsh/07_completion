@@ -1,0 +1,68 @@
+autoload -U compinit                              
+compinit  
+autoload -U zstyle+
+## General completion technique
+## complete as much u can ..   
+zstyle ':completion:*' completer _complete _list _oldlist _expand _ignored _match _correct _approximate _prefix
+## complete less                                                                                               
+#zstyle ':completion:*' completer _expand _complete _list _ignored _approximate                                
+## complete minimal                                                                                            
+#zstyle ':completion:*' completer _complete _ignored                                                           
+
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'                            
+
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}%d%{\e[0m%}'
+zstyle ':completion:*:messages' format $'%{\e[0;31m%}%d%{\e[0m%}'    
+zstyle ':completion:*:warnings' format $'%{\e[0;31m%}No matches for: %d%{\e[0m%}'
+zstyle ':completion:*:corrections' format $'%{\e[0;31m%}%d (errors: %e)%{\e[0m%}'
+zstyle ':completion:*' group-name ''                                             
+
+zstyle ':completion:*' file-sort name                                           
+
+zstyle ':completion:*' menu select=long                         
+
+## case-insensitive (uppercase from lowercase) completion
+#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'     
+## case-insensitive (all) completion                     
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+## case-insensitive,partial-word and then substring completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+zstyle ':completion:*:expand:*' tag-order all-expansions
+
+zstyle ':completion:*:functions' ignored-patterns '_*'       
+
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path ~/.zcompcache/$HOST
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+zstyle ':completion:*:complete:-command-::commands' ignored-patterns '*\~'
+
+zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.(o|c~|old|pro|zwc)'
+
+zstyle ':completion:*:*:kill:*:processes' command 'ps -axco pid,user,command'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+
+compctl -g '*(-/)' cd pushd
+compctl -g '*(/)' rmdir dircmp
+compctl -j -P '%' -x 's[-] p[1]' -k signals -- kill
+compctl -j -P '%' fg bg wait jobs disown           
+compctl -A shift                                   
+compctl -caF type whence which                     
+compctl -F unfunction                              
+compctl -a unalias                                 
+compctl -v unset typeset declare vared readonly export integer
+compctl -e disable                                            
+compctl -d enable                                             
+compctl -K c_ssh_knownhosts ssh                               
+
+compctl -x 'n[0,:]' -f - 'n[0,@],s[]' -K c_ssh_knownhosts -S: + -f --  scp
+
+
+compctl -j -P '%' + -s '`ps -x | tail +2 | cut -c1-5`' + -x 's[-] p[1]' -k "($signals[1,-3])" -- kill
+
+compctl -g ':completion:*:complete:ssh:*:hosts' hosts $hosts

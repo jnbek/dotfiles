@@ -2,10 +2,10 @@
 # Usage: ./install.sh [--no-bak]
 # --no-bak erases the ${PWD} directory backup, if it exists as a directory.
 CURRTS=`date +%s`;
-if [ ! -d ${PWD}/backups/ ]; then
-    mkdir ${PWD}/backups/;
+if [ ! -d ${PWD}/backups/$USER ]; then
+    mkdir -p ${PWD}/backups/$USER;
 fi;
-BACKDIR=${PWD}/backups/$CURRTS;
+BACKDIR=${PWD}/backups/$USER/$CURRTS;
 mkdir ${BACKDIR};
 for d in _*;
 do

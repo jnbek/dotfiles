@@ -1,0 +1,48 @@
+bindkey -e
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+BLACK="%{"$'\033[01;30m'"%}"
+GREEN="%{"$'\033[01;32m'"%}"
+RED="%{"$'\033[01;31m'"%}"  
+YELLOW="%{"$'\033[01;33m'"%}"
+BLUE="%{"$'\033[01;34m'"%}"  
+BOLD="%{"$'\033[01;39m'"%}"  
+NORM="%{"$'\033[00m'"%}"     
+NL="%{"$'\n'"%}"  
+
+export LESS_TERMCAP_md="${terminfo[bold]}${fg_bold[white]}"     # bold/ bright
+export LESS_TERMCAP_mh="${fg[white]}"           # dim/ half                   
+export LESS_TERMCAP_me="${terminfo[sgr0]}"      # normal (turn off all attributes)
+export LESS_TERMCAP_mr="${terminfo[rev]}"       # reverse                         
+export LESS_TERMCAP_mp="${fg[white]}"           # protected                       
+export LESS_TERMCAP_mk="${fg[white]}"           # blank/ invisible                
+export LESS_TERMCAP_se="${terminfo[sgr0]}"      # standout end                    
+export LESS_TERMCAP_so="${terminfo[rev]}"       # standout                        
+export LESS_TERMCAP_ue="${terminfo[sgr0]}"      # end underline                   
+export LESS_TERMCAP_us="${fg_bold[cyan]}"       # underline                       
+export LESS='MiRJw -z-5 -j15'                                                     
+
+export TZ=America/Denver  
+
+for pager ('more' 'most' 'less' 'vimpager');
+    do [[ -x $(whence -p $pager) ]] && export PAGER=$pager;
+done;                                                      
+for browser ('links' 'lynx' 'w3m' 'elinks');               
+    do [[ -x $(whence -p $browser) ]] && export BROWSER=$browser;
+done;                                                            
+for editor ('emacs' 'pico' 'nano' 'ee' 'vi' 'vim');                           
+    do [[ -x $(whence -p $editor) ]] && export EDITOR=$editor;   
+done;                                                            
+## if there's a `manpath` command, use it                        
+[[ -x $(whence -p manpath) ]] && export MANPATH=$(manpath 2> /dev/null)
+
+## old (and/or crappy) versions of `grep` choke on this - make it safe
+grep -q --color '.' . 2> /dev/null && export GREP_OPTIONS='--color'
+
+typeset -U common_paths
+typeset -A PR_STUFF
+typeset -A altchar
+typeset -A ACS
+

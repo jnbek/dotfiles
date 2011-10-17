@@ -1,0 +1,13 @@
+setopt PROMPT_SUBST     \
+    EXTENDED_GLOB       \
+    AUTO_CD             \
+    CORRECT             \
+    CORRECT_ALL         \
+    ZLE                 \
+    INTERACTIVE_COMMENTS \
+    NOGLOBALRCS
+if [[ $ZSH_VERSION > 4.2.99 ]]
+    then                                              
+        setopt PROMPT_SP                              
+fi;
+unsetopt NULL_GLOB

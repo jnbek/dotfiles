@@ -1,0 +1,37 @@
+common_paths=(                       
+    ${path} ${=$(command -p getconf PATH)//:/ } # what the system thinks PATH should be
+    /bin /sbin /usr/bin /usr/sbin               # good places to look                  
+    /usr/local/bin /usr/local/sbin              # FreeBSD                              
+    /usr/games/bin                              # Gentoo Linux/FreeBSD                            
+    /usr/X11R6/bin                              # X11                          
+    /usr/pkg/bin /usr/pkg/sbin                  # NetBSD                               
+    /usr/ucb                                    # Solaris - BSD                
+    /usr/sfw/bin /usr/sfw/sbin                  # Solaris - sun free-ware              
+    /usr/xpg4/bin /usr/xpg6/bin                 # Solaris - X/Open Portability Guide   
+    /opt/local/bin /opt/local/sbin              # Solaris                                      
+    /opt/SUNWspro/bin                           # Solaris                                      
+    /usr/ccs/bin                                # Solaris - C Compilation System
+    /usr/platform/$(uname -i)/sbin              # Solaris - hardware dependent          
+    /var/qmail/bin                              # qmail
+    /usr/games                                  # fun stuff                     
+    ${HOME}/bin                                 # personal stuff                
+)                                                                                       
+unset PATH_tmp                                                                          
+unsetopt NOMATCH                                                                        
+for temp_path in ${common_paths}                                                        
+do                                                                                      
+  if [[ ${OSTYPE} == solaris* ]] {                                                      
+          ## solaris may has some of these directories owned by "bin:bin" (uid 2)       
+          ## observed on: SunOS 5.10 Generic_120011-14 sparc, core install              
+          test -d "${temp_path}"(u0r^IWt,u2r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
+  } else {                                                                                     
+          test -d "${temp_path}"(u0r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"        
+          ## the next line shows how to include symlinks in the PATH                           
+          #test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"   
+  }                                                                                            
+done
+# For FreeBSD Root User
+if [[ `uname` == "FreeBSD" && $UID == 0 ]]
+    then;                                 
+    export PATH=$PATH:/usr/libexec:/usr/local/libexec
+fi;

@@ -1,0 +1,133 @@
+cd () {
+    ## cd to a file (cd to the directory that a file is in)
+    ## this _might_ break some zsh specific features of 'cd', but none that i use
+    ## as of 23 oct 2007 i can't see that it breaks anything
+    if [[ 1 == "${#}" && '-' != "${1}" && ! -d "${1}" && -d "${1:h}" && "${1}" != (+|-)<-> ]]
+    then
+        print "correcting \"${1}\" to \"${1:h}\"" >&2
+        builtin cd "${1:h}"
+    else
+        [[ "${*}" == '-' ]]
+        builtin cd "${@}"
+    fi
+}
+
+cdmkdir () {
+    ## create a new directory and cd into it
+    mkdir -p "${1}"
+    cd "${1}"
+}
+
+shellname () {
+    ## a *very* simple command to set the SHELL_NAME variable.
+    ## used to explicitly set a name for the shell, as displayed in
+    ##    title bars, icons, `screen` lists, etc
+    ## with no arguments the name returns to normal (dynamic) operation
+    SHELL_NAME="${*}"
+}
+shellprefix () {
+    ## like shellname, but just a prefix
+    SHELL_PREFIX="${*}"
+}
+
+command_title () {
+    ### this function sets the current command name in title bars, tabs, and screen lists
+    ## inspired by: http://www.semicomplete.com/blog/2006/Jun/29
+    if [[ -n ${SHELL_NAME} ]]
+    then
+        # allow the $cmnd_name to be set manually and override automatic values
+        # to set the shell's title to "foo";    export SHELL_NAME=foo
+        # to return to normal operation;        unset SHELL_NAME
+        cmnd_name="${SHELL_NAME}"
+    elif [[ 'fg' == "${${(z)@}[1]}" ]]
+    then
+        # this is a poor hack to replace 'fg' with a more sensical command
+        # it really only works properly if only one job is suspended
+        cmnd_name="${(vV)jobtexts}"
+    else
+        # get the $cmnd_name from the current command being executed
+        # make nonprintables visible
+        local cmnd_name="${(V)1}"
+    fi
+    # escape '%'; get rid of pesky newlines; get rid of tabs; instruct the prompt to truncate
+    cmnd_name="%80>...>${${${cmnd_name//\%/\%\%}//'\n'/; }//'\t'/ }%<<"
+    # ^^^ in other words:
+    # ${cmnd_name//\%/\%\%} ; ${cmnd_name}//'\n'/; } ; ${cmnd_name//'\t'/ } ; %60>...>${cmnd_name}%<<
+    # if the shell is not run by the $LOGIN user, prefix the command with "$USERNAME: "
+    [[ "${USERNAME}" != "${LOGNAME}" ]] && cmnd_name="${USERNAME}: ${cmnd_name}"
+    # if the shell is running on an ssh connection, prefix the command with "$HOST: "
+    [[ -n "${SSH_CONNECTION}" ]] && cmnd_name="${HOST}: ${cmnd_name}"
+    ## add prefix, if defined
+    [[ -n "${SHELL_PREFIX}" ]] && cmnd_name="${SHELL_PREFIX}: ${cmnd_name}"
+    # don't confuse the display any more than required
+    #   we'll put this back, if required, below
+    unsetopt PROMPT_SUBST
+    case ${TERM} {
+    xterm*)
+        print -Pn "\e]0;[xterm] ${cmnd_name}\a" # plain xterm title & icon name
+        ;;
+    screen)
+        print -Pn "\e]0;[xterm] ${cmnd_name}\e\\" # screen title
+        ;;
+    rxvt*)
+        print -Pn "\e]62;[mrxvt] ${cmnd_name}\a" # rxvt title name
+        [[ -n ${MRXVT_TABTITLE} || -n ${SSH_CONNECTION} ]] && \
+        print -Pn "\e]61;${cmnd_name}\a" # mrxvt tab name
+        ## using ssh from *rxvt, we'll assume that it's mrxvt
+        ## there's no good way to know for sure
+        ## this doesn't seem to cause any harm
+        ;;
+}
+# return PROMPT_SUBST to previous state, if it was set
+setopt LOCAL_OPTIONS
+}
+
+how_many_cpu () {
+    ## try to figure out how many CPUs are in the system
+    local cpu_count=0
+    ## sysctl; freeBSD...
+    if sysctl -n hw.ncpu 2> /dev/null | read cpu_count
+    then
+        print "Found ${cpu_count} CPUs with sysctl" 1>&2
+        return 0
+    fi
+    ## or, on (linux) systems that have /proc/cpuinfo ...
+    if [[ -r /proc/cpuinfo ]]
+    then
+        local line_from_cpuinfo
+        while read line_from_cpuinfo
+        do
+            [[ -z "${line_from_cpuinfo:#*:}" ]] && cpu_count=$[${cpu_count}+1]
+        done < /proc/cpuinfo
+        print "Found ${cpu_count} CPUs with /proc/cpuinfo" 1>&2
+        return 0
+    fi
+    ## solaris...
+    if [[ -x $(whence -p psrinfo) ]]
+    then
+        local psrinfo_count
+        psrinfo | while read psrinfo_count
+    do
+        [[ -z "${psrinfo_count##*on-line*}" ]] && cpu_count=$[${cpu_count}+1]
+    done
+    print "Found ${cpu_count} \"on-line\" CPUs with psrinfo" 1>&2
+    return 0
+fi
+## if all else fails, assume 1 CPU
+print 'Assuming 1 CPU' 1>&2
+}
+
+TRAPWINCH () {
+    zle || return 0
+    zle reset-prompt
+}
+
+##################################
+## update the prompt automagically
+## update ~about~ every 30 seconds
+## this can be invoked manually with a "kill -ALRM" to the shell (from another process)
+TMOUT=$[(${RANDOM}%15)+25]
+TRAPALRM () {
+    zle || return 0
+    zle reset-prompt
+}
