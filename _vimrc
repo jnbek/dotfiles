@@ -115,7 +115,6 @@ map // :tabnew<Enter>
 map ?? :tabnew<Enter>:e .<cr>
 map ]] :tabnext<Enter>
 map [[ :tabprev<Enter>
-map <C-W><C-W> <C-W>w
 map <C-W><C-H> :help<Enter>
 map <C-W><C-F> <Esc>:TagbarToggle<Enter>
 map <C-W><C-N> :set nu!<Enter>
@@ -159,8 +158,7 @@ vmap _sub <C-C>:call Perl_InsertTemplate("idioms.subroutine", "v")<CR>
 imap _self <ESC>^i    my $self = shift;<cr>
 imap _new <ESC>^isub new {<cr><ESC>^i    my $proto = shift;<cr><ESC>^i    my $class = ref($proto) \|\| $proto;<cr><ESC>^i    my $self = {};<cr><ESC>^i    bless $self, $class;<cr><ESC>^i    return $self;<cr><ESC>^i}<cr>
 imap _{ {<cr><cr><ESC>^i}<ESC><ESC>k<ESC>i
-nmap _AR <ESC>:!sudo apachectl restart<cr>
-nmap _MR <ESC>:!sudo service memcached restart<cr>
+
 " Misc Mappings
 inoremap _TC :call MyCompletion()<cr>
 inoremap <INS> <ESC>a
