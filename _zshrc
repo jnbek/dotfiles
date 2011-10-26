@@ -22,3 +22,4 @@ if [[ -f $HOME/.ssh-login ]]; then
 #    source $HOME/.ssh-login
 fi
 how_many_cpu;
+cd $HOME;
