@@ -14,7 +14,7 @@ common_paths=(
     /usr/platform/$(uname -i)/sbin              # Solaris - hardware dependent          
     /var/qmail/bin                              # qmail
     /usr/games                                  # fun stuff                     
-    ${HOME}/bin                                 # personal stuff                
+    $HOME/bin                                   # personal stuff                
 )                                                                                       
 unset PATH_tmp                                                                          
 unsetopt NOMATCH                                                                        
