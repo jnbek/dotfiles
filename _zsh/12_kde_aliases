@@ -3,5 +3,5 @@ alias restoresingle='cp ~/.kde4/share/config/plasma-desktop-appletsrc{-singlehea
 alias savedual='cp ~/.kde4/share/config/plasma-desktop-appletsrc{,-dualhead}'
 alias restoredual='cp ~/.kde4/share/config/plasma-desktop-appletsrc{-dualhead,}'
 # These will need updating based on actual values....
-alias switchsingle='restoresingle && xrandr --output VGA1 --off && xrandr --output LVDS1 --mode 1366x768 --rate 59.6'
-alias switchdual='restoredual && xrandr --output LVDS1 --mode 1366x768 --rate 59.6 && xrandr --output VGA1 --mode 1280x1024 --rate 60.0'
+alias switchsingle='restoresingle && xrandr -v --output VGA1 --off && xrandr --output LVDS1 -v --mode 1366x768 --rate 59.6'
+alias switchdual='restoredual && xrandr -v --output LVDS1 --mode 1366x768 --rate 59.6 && xrandr -v --output VGA1 --mode 1280x1024 --rate 60.0'
