@@ -14,6 +14,7 @@ if [[ -x $(whence -p fortune) ]]; then
   echo
   fortune
 fi
+cd $HOME;
 # Personal Aliases, Functions etc.
 if [[ -f $HOME/.zsh_aliases ]]; then
     source $HOME/.zsh_aliases
@@ -22,4 +23,3 @@ if [[ -f $HOME/.ssh-login ]]; then
 #    source $HOME/.ssh-login
 fi
 how_many_cpu;
-cd $HOME;
