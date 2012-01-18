@@ -5,7 +5,6 @@ alias grep="grep --color=auto"  # color grep output
 alias du="du -h"                 # humane treatment
 alias df="df -h"                 # humane treatment again
 alias j="jobs"
-alias vim="vim -p"               # Always use tabs on multiple files...
 
 if [ "$TERM" != "dumb" ]; then
     if [ "`uname`" != "FreeBSD" ] && [ "`which dircolors`" != "" ]; then
