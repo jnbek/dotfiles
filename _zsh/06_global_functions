@@ -1,9 +1,10 @@
 vim () {
+    VIM_EXEC = `whence -p vim`
     if [[ $argv[(r)-p] == '-p' ]]
         then
-        vim $argv;
+        $VIM_EXEC $argv;
     else
-        vim -p $argv;
+        $VIM_EXEC -p $argv;
     fi  
 }
 
