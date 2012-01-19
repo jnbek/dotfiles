@@ -1,0 +1,21 @@
+URxvt.perl-ext-common: url-select,clipboard
+URxvt.keysym.M-u:     perl:url-select:select_next
+URxvt.keysym.C-M-c:   perl:clipboard:copy
+URxvt.keysym.C-M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v:   perl:clipboard:paste_escaped
+URxvt.underlineURLs: true
+URxvt.urlLauncher: xdg-open
+URxvt.tripleclickwords: true
+URxvt.geometry: 160x50
+URxvt.reverseVideo: true
+URxvt.transparent: true
+URxvt.shading: 50
+URxvt.tintColor: blue
+URxvt.scrollBar: false
+URxvt.saveLines: 60000
+URxvt.cursorBlink: true
+URxvt.font: xft:monospace:pixelsize=12, \
+            7x14, \
+            misc-fixed-medium-r-normal--14-130-75-75-C-70-iso10646-1, \
+            xft:Kochi Gothic:antialias=false, \
+            xft:Code2000:antialias=false
