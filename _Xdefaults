@@ -1,4 +1,4 @@
-URxvt.perl-ext-common: url-select,clipboard
+URxvt.perl-ext-common: url-select,clipboard,tabbedex
 URxvt.keysym.M-u:     perl:url-select:select_next
 URxvt.keysym.C-M-c:   perl:clipboard:copy
 URxvt.keysym.C-M-v:   perl:clipboard:paste
