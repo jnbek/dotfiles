@@ -19,7 +19,7 @@ URxvt.saveLines: 60000
 URxvt.cursorBlink: false
 URxvt.tabbed.autohide: false
 URxvt.tabbed.new-button: true
-URxvt.font: xft:monospace:pixelsize=12, \
+URxvt.font: xft:monospace:pixelsize=11, \
             7x14, \
             misc-fixed-medium-r-normal--14-130-75-75-C-70-iso10646-1, \
             xft:Kochi Gothic:antialias=false, \
