@@ -1,10 +1,12 @@
 URxvt.perl-ext-common: url-select,clipboard,tabbedex
-URxvt.keysym.M-u:     perl:url-select:select_next
-URxvt.keysym.M-c:   perl:clipboard:copy
-URxvt.keysym.M-v:   perl:clipboard:paste
-URxvt.keysym.M-C-v:   perl:clipboard:paste_escaped
-URxvt.keysym.M-t:     perl:tabbedex:new_tab
+URxvt.keysym.C-S-U:     perl:url-select:select_next
+URxvt.keysym.C-S-C:   perl:clipboard:copy
+URxvt.keysym.C-S-V:   perl:clipboard:paste
+URxvt.keysym.S-M-C-V:   perl:clipboard:paste_escaped
+URxvt.keysym.C-S-T:     perl:tabbedex:new_tab
 URxvt.underlineURLs: true
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 URxvt.urlLauncher: xdg-open
 URxvt.tripleclickwords: true
 URxvt.geometry: 160x50
