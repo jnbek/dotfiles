@@ -23,7 +23,7 @@ function preexec() {
       print -Pn "\ek%-3~ $a\e\\" # set screen title.  Fix vim: ".
       print -Pn "\e]2;%-3~ $a\a" # set xterm title, via screen "Operating System Command"
       ;;
-    rxvt|rxvt-unicode|xterm|xterm-color|xterm-256color)
+    rxvt*|xterm*)
       print -Pn "\ek%-3~ $a\e\\" # set screen title.  Fix vim: ".
       print -Pn "\e]2;%m:%-3~ $a\a"
       ;;
