@@ -8,61 +8,37 @@ export PS2='%_>'
 SPROMPT="${YELLOW}zsh: correct '%U%R%u' to '%U%r%u' ${NORM}\
 ${BLUE}[Nyae]?${NORM} "
 ## Window Titles
-case $TERM in
-     screen)
-      # use the current user as the prefix of the current tab title (since thats
-      # fairly important, and I change it fairly often)
-      TAB_TITLE_PREFIX='"$PROMPT_CHAR"'
-      # when at the shell prompt, show a truncated version of the current path (with
-      # standard ~ replacement) as the rest of the title.
-      #TAB_TITLE_PROMPT='`echo $PWD | sed "s/^\/Users\//~/;s/^~$USER/~/;s/\/..*\//\/...\//"`'
-      # when running a command, show the title of the command as the rest of the
-      # title (truncate to drop the path to the command)
-      TAB_TITLE_EXEC='$cmd'
+function preexec() {
+  local a=${${1## *}[(w)1]}  # get the command
+  local b=${a##*\/}   # get the command basename
+  a="${b}${1#$a}"     # add back the parameters
+  a=${a//\%/\%\%}     # escape print specials
+  a=$(print -Pn "$a" | tr -d "\t\n\v\f\r")  # remove fancy whitespace
+  a=${(V)a//\%/\%\%}  # escape non-visibles and print specials
+  a=$(echo $a | cut -c1-15)
+  case "$TERM" in
+    screen|screen.*)
+      # See screen(1) "TITLES (naming windows)".
+      # "\ek" and "\e\" are the delimiters for screen(1) window titles
+      print -Pn "\ek%-3~ $a\e\\" # set screen title.  Fix vim: ".
+      print -Pn "\e]2;%-3~ $a\a" # set xterm title, via screen "Operating System Command"
+      ;;
+    rxvt|rxvt-unicode|xterm|xterm-color|xterm-256color)
+      print -Pn "\ek%-3~ $a\e\\" # set screen title.  Fix vim: ".
+      print -Pn "\e]2;%m:%-3~ $a\a"
+      ;;
+  esac
+}
+function precmd() {
+  case "$TERM" in
+    screen|rxvt*|xterm*)
+      l=$(print -Pn %m | cut -c1-10)
+      print -Pn "\ek%n@$l\e\\" # set screen title.  Fix vim: ".
+      print -Pn "\e]1;%-3~\a" # must (re)set xterm title
+      ;;  
+  esac
+}
 
-      # use the current path (with standard ~ replacement) in square brackets as the
-      # prefix of the tab window hardstatus.
-      #TAB_HARDSTATUS_PREFIX='"[`echo $PWD | sed "s/^\/Users\//~/;s/^~$USER/~/"`] "'
-      # when at the shell prompt, use the shell name (truncated to remove the path to
-      # the shell) as the rest of the title
-      TAB_HARDSTATUS_PROMPT='$SHELL:t'
-      # when running a command, show the command name and arguments as the rest of
-      # the title
-      TAB_HARDSTATUS_EXEC='$cmd'
-
-      # tell GNU screen what the tab window title ($1) and the hardstatus($2) should be
-      function screen_set()
-      {
-        #  set the tab window title (%t) for screen
-        print -nR $'\033k'$1$'\033'\\
-        #print -nP "\e]2;%n->%m: $1\a"
-
-        # set hardstatus of tab window (%h) for screen
-        print -nR $'\033]0;'$2$'\a'
-      }
-      # called by zsh before executing a command
-      function preexec()
-      {
-        local -a cmd; cmd=(${(z)1}) # the command string
-        eval "tab_title=$TAB_TITLE_PREFIX$TAB_TITLE_EXEC"
-        eval "tab_hardstatus=$TAB_HARDSTATUS_PREFIX$TAB_HARDSTATUS_EXEC"
-        screen_set $tab_title $tab_hardstatus
-      }
-      # called by zsh before showing the prompt
-      function precmd()
-      {
-        eval "tab_title=$TAB_TITLE_PREFIX$TAB_TITLE_PROMPT"
-        eval "tab_hardstatus=$TAB_HARDSTATUS_PREFIX$TAB_HARDSTATUS_PROMPT"
-        screen_set $tab_title $tab_hardstatus
-        print -Pn "\e]2;%n->%m:%~\a"
-      }
-     ;;
-     *term*|rxvt)
-        #print -Pn "\e]2;$2 | $a:$3\a" # plain xterm title
-        #%n@%m[%~]
-        print -Pn "\e]2;%n->%m:%~\a"
-     ;;
-esac
 TRAPWINCH () {
     zle || return 0
     zle reset-prompt
