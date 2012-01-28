@@ -31,7 +31,7 @@ function preexec() {
 }
 function precmd() {
   case "$TERM" in
-    screen|rxvt*|xterm*)
+    screen*|rxvt*|xterm*)
       l=$(print -Pn %m | cut -c1-10)
       if [[ ! -z $WINDOW ]]; then
         print -Pn "\ek%n@$l\e\\" # set screen title.  Fix vim: ".
