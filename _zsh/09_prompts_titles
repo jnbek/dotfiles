@@ -15,7 +15,7 @@ function preexec() {
   a=${a//\%/\%\%}     # escape print specials
   a=$(print -Pn "$a" | tr -d "\t\n\v\f\r")  # remove fancy whitespace
   a=${(V)a//\%/\%\%}  # escape non-visibles and print specials
-  a=$(echo $a | cut -c1-15)
+  #a=$(echo $a | cut -c1-15)
   case "$TERM" in
     screen|screen.*)
       # See screen(1) "TITLES (naming windows)".
