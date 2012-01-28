@@ -33,7 +33,9 @@ function precmd() {
   case "$TERM" in
     screen|rxvt*|xterm*)
       l=$(print -Pn %m | cut -c1-10)
-      print -Pn "\ek%n@$l\e\\" # set screen title.  Fix vim: ".
+      if [[ ! -z $WINDOW ]]; then
+        print -Pn "\ek%n@$l\e\\" # set screen title.  Fix vim: ".
+      fi;
       print -Pn "\e]1;%-3~\a" # must (re)set xterm title
       ;;  
   esac
