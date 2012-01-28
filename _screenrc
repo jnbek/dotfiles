@@ -169,4 +169,4 @@ hardstatus alwayslastline "%{= kR} %-Lw%{=b kM} %n%f %t %{-}%+Lw %=[%H][%l]%{= d
 termcapinfo xterm ti@:te@
 termcapinfo xterm* kN=\E[6~:kP=\E[5~
 #Force 256 Colors
-term rxvt-256color
+term screen-256color
