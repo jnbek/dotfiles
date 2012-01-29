@@ -24,7 +24,9 @@ function preexec() {
       print -Pn "\e]2;%-3~ $a\a" # set xterm title, via screen "Operating System Command"
       ;;
     rxvt*|xterm*)
-      print -Pn "\ek%-3~ $a\e\\" # set screen title.  Fix vim: ".
+      if [[ ! -z $WINDOW ]]; then
+          print -Pn "\ek%-3~ $a\e\\" # set screen title.  Fix vim: ".
+      fi;
       print -Pn "\e]2;%m:%-3~ $a\a"
       ;;
   esac
