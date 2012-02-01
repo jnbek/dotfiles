@@ -15,11 +15,12 @@ URxvt.reverseVideo: true
 URxvt.transparent: true
 URxvt.shading: 50
 URxvt.tintColor: blue
-URxvt.scrollBar: false
+URxvt.scrollstyle: plain
 URxvt.saveLines: 60000
 URxvt.cursorBlink: false
 URxvt.tabbed.autohide: false
-URxvt.tabbed.new-button: true
+URxvt.tabbed.new-button: false
+URxvt.iconName: $HOME/.urxvt/urxvt.png
 URxvt.font: xft:monospace:pixelsize=11, \
             7x14, \
             misc-fixed-medium-r-normal--14-130-75-75-C-70-iso10646-1, \
