@@ -23,6 +23,7 @@ endif
 source $VIMRUNTIME/menu.vim
 set tpm=25
 set mouse=a
+set ttymouse=xterm2
 set dir=$HOME/tmp/vim
 set backup
 set bex=.vbak
