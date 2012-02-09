@@ -18,13 +18,13 @@ URxvt.reverseVideo: true
 !URxvt.tintColor: blue
 URxvt.scrollstyle: xterm
 URxvt.scrollBar_right: true
-URxvt.saveLines: 5000
+URxvt.saveLines: 800
 URxvt.cursorBlink: false
 URxvt.tabbed.autohide: false
 URxvt.tabbed.new-button: false
 URxvt.iconName: $HOME/.urxvt/urxvt.png
-URxvt.font: xft:monospace:pixelsize=11, \
-            7x14, \
+URxvt.font: 7x14, \
+            xft:monospace:pixelsize=11, \
             misc-fixed-medium-r-normal--14-130-75-75-C-70-iso10646-1, \
             xft:Kochi Gothic:antialias=false, \
             xft:Code2000:antialias=false
