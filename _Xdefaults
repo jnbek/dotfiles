@@ -1,6 +1,7 @@
 urxvt*termName: rxvt-256color
-URxvt.perl-ext-common: url-select,clipboard,tabbedex
-URxvt.keysym.C-S-U:     perl:url-select:select_next
+URxvt.perl-ext-common: clipboard,tabbedex
+!URxvt.perl-ext-common: url-select,clipboard,tabbedex
+!URxvt.keysym.C-S-U:     perl:url-select:select_next
 URxvt.keysym.C-S-C:   perl:clipboard:copy
 URxvt.keysym.C-S-V:   perl:clipboard:paste
 URxvt.keysym.S-M-C-V:   perl:clipboard:paste_escaped
@@ -18,11 +19,11 @@ URxvt.reverseVideo: true
 !URxvt.tintColor: blue
 URxvt.scrollstyle: xterm
 URxvt.scrollBar_right: true
-URxvt.saveLines: 800
+URxvt.saveLines: 200
 URxvt.cursorBlink: false
 URxvt.tabbed.autohide: false
 URxvt.tabbed.new-button: false
-URxvt.iconName: $HOME/.urxvt/urxvt.png
+!URxvt.iconName: $HOME/.urxvt/urxvt.png
 URxvt.font: xft:monospace:pixelsize=11, \
             7x14, \
             misc-fixed-medium-r-normal--14-130-75-75-C-70-iso10646-1, \
