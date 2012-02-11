@@ -27,8 +27,8 @@ do
 done;
 echo "bin/ directory's contents: ";
 ls ${PWD}/bin
-echo "Install the bin/ directory contents to $HOME/bin (y/n)?: "
-read -n 1 doinstbin
+#echo "Install the bin/ directory contents to $HOME/bin (y/n)?: "
+#read -n 1 doinstbin
 if [ "$doinstbin" == "y" ]; then
     for b in `ls {$PWD}/bin/`;
     do
