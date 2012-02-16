@@ -29,3 +29,4 @@ URxvt.font: xft:monospace:pixelsize=11, \
             misc-fixed-medium-r-normal--14-130-75-75-C-70-iso10646-1, \
             xft:Kochi Gothic:antialias=false, \
             xft:Code2000:antialias=false
+XTerm.reverseVideo: true
