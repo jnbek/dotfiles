@@ -1,17 +1,5 @@
 # ---------------------------------------------------------------------------- #
 #
-# For an example configuration file, you probably want to look at mrxvtrc.sample
-# (provided with the source archive), and not this file.
-#
-# This is the system wide configuration file for mrxvt (versions 0.5.0 or
-# higher). Only resources with application name 'Mrxvt' are read from this file.
-# The only resources defined in this file are default macro (formerly hotkey)
-# definitions for mrxvt.
-#
-# Preferably avoid making modifications to this file directly, but make
-# modifications to your user config file (~/.mrxvtrc) instead. Remember that
-# macros can be deleted by assigning "Dummy" to the keystroke.
-#
 # Starting mrxvt with --noSysConfig will disable reading this file completely.
 #
 # ---------------------------------------------------------------------------- #
@@ -23,6 +11,12 @@
 # ---------------------------------------------------------------------------- #
 
 Mrxvt.showMenu: true
+#Mrxvt.font          misc-fixed-medium-r-normal--14-130-75-75-C-70-iso10646-1
+Mrxvt.xft:     1
+Mrxvt.xftFont: Monospace
+Mrxvt.xftAntialias: 1
+Mrxvt.xftSize: 8
+Mrxvt.loginShell:true
 
 # Tab bar colors
 Mrxvt.itabBackground:	    #101010
@@ -68,139 +62,33 @@ Mrxvt.colorUL:       #00af00
 # Display the X selection as highlighted instead of using reverse video.
 Mrxvt.highlightColor:   #303060
 
-Mrxvt.bottomTabbar:     True
+Mrxvt.bottomTabbar:     False
 Mrxvt.scrollbarRight:   True
 
 # Default shading to use when run with -tr
-Mrxvt.shading:		80
+#Mrxvt.shading:		80
 
 # NOTE: Macros defined with class Mrxvt or XTerm will NOT replace existing
 # macros. So user macros will not be replaced.
 
 # ---------------------------------------------------------------------------- #
 #
-#			       XTERM STYLE MACROS
+#			       Keybindings
 #
 # ---------------------------------------------------------------------------- #
 #
-# These were previously hardcoded into the source in command.c.
-#
-Mrxvt.macro.Primary+Shift+Prior:	Scroll -1p
-Mrxvt.macro.Primary+Shift+Next:		Scroll +1p
 
-Mrxvt.macro.Shift+Insert:		Paste
-
-Mrxvt.macro.Shift+KP_Add:		ResizeFont +1
-Mrxvt.macro.Shift+KP_Subtract:		ResizeFont -1
-
-# Shift F1 -- F10 used to produce F11 -- F20. (This was also hardcoded into the
-# source). If desired those can be added here using the Str macro.
-
-
-# ---------------------------------------------------------------------------- #
-#
-#		      GNOME TERMINAL STYLE DEFAULT MACROS
-#
-# ---------------------------------------------------------------------------- #
 Mrxvt.macro.Ctrl+Shift+t:		NewTab
 Mrxvt.macro.Ctrl+Shift+w:		Close 0
-Mrxvt.macro.Add+Ctrl+Shift+w:		ToggleHold -6
 Mrxvt.macro.Ctrl+Shift+q:		Close
-
-Mrxvt.macro.Ctrl+Prior:			GotoTab -1
-Mrxvt.macro.Ctrl+Next:			GotoTab +1
-
-Mrxvt.macro.Alt+1:			GotoTab 1
-Mrxvt.macro.Alt+2:			GotoTab 2
-Mrxvt.macro.Alt+3:			GotoTab 3
-Mrxvt.macro.Alt+4:			GotoTab 4
-Mrxvt.macro.Alt+5:			GotoTab 5
-Mrxvt.macro.Alt+6:			GotoTab 6
-Mrxvt.macro.Alt+7:			GotoTab 7
-Mrxvt.macro.Alt+8:			GotoTab 8
-Mrxvt.macro.Alt+9:			GotoTab 9
-Mrxvt.macro.Alt+0:			GotoTab 10
-
-Mrxvt.macro.Ctrl+equal:			ResizeFont +1
-Mrxvt.macro.Ctrl+minus:			ResizeFont -1
-
-# Instead of having some 1500 macros do the same thing, resize the font in
-# increments of 2 for Ctrl+Shift.
 Mrxvt.macro.Ctrl+Shift+plus:		ResizeFont +2
 Mrxvt.macro.Ctrl+Shift+underscore:	ResizeFont -2
 
-# ---------------------------------------------------------------------------- #
-#
-#			      KONSOLE STYLE MACROS
-#
-# ---------------------------------------------------------------------------- #
 Mrxvt.macro.Ctrl+Shift+Left:		MoveTab -1
 Mrxvt.macro.Ctrl+Shift+Right:		MoveTab +1
-#
-# Vim uses Shift+Left / Shift+right, so enable these only in the primary screen
-#
-Mrxvt.macro.Primary+Shift+Left:		GotoTab -1
-Mrxvt.macro.Primary+Shift+Right:	GotoTab +1
-
-# We already have a shortcut to open a new tab. Rather make this a shortcut that
-# duplicates the current profile.
-Mrxvt.macro.Ctrl+Shift+n:		NewTab -
-
-#
-# By default we should only have Ctrl+Shift modifier keys defined. Other
-# modifier combinations are sometimes used by the window manager, or
-# applications (e.g. emacs).
-#
-# Mrxvt.macro.Ctrl+Alt+n:		NewTab
-# Mrxvt.macro.Ctrl+Alt+s:		SetTitle
-
-# ---------------------------------------------------------------------------- #
-#
-#				VIM STYLE MACROS
-#
-# ---------------------------------------------------------------------------- #
-Mrxvt.macro.Ctrl+Shift+h:		GotoTab -1
-Mrxvt.macro.Ctrl+Shift+l:		GotoTab +1
-
-# ---------------------------------------------------------------------------- #
-#
-#			      SCREEN STYLE MACROS
-#
-# ---------------------------------------------------------------------------- #
-Mrxvt.macro.Ctrl+Shift+p:		GotoTab 0
-
-# ---------------------------------------------------------------------------- #
-#
-#			       MRXVT STYLE MACROS
-#
-# ---------------------------------------------------------------------------- #
-
-# Move tab to position Alt+Shift+<digit>
-#
-# 2006-02-26 gi1242: While Alt+Shift+<digit> would be more intuitive to move
-# tabs, some terminal applications (e.g. mutt) use it. Terminal apps however
-# don't use (or recognize Ctrl+Shift+<digit>, so we can safely use them here.
-#
-Mrxvt.macro.Ctrl+Shift+exclam:		MoveTab 1
-Mrxvt.macro.Ctrl+Shift+at:		MoveTab 2
-Mrxvt.macro.Ctrl+Shift+numbersign:	MoveTab 3
-Mrxvt.macro.Ctrl+Shift+dollar:		MoveTab 4
-Mrxvt.macro.Ctrl+Shift+percent:		MoveTab 5
-Mrxvt.macro.Ctrl+Shift+asciicircum:	MoveTab 6
-Mrxvt.macro.Ctrl+Shift+ampersand:	MoveTab 7
-Mrxvt.macro.Ctrl+Shift+asterisk:	MoveTab 8
-Mrxvt.macro.Ctrl+Shift+parenleft:	MoveTab 9
-Mrxvt.macro.Ctrl+Shift+parenright:	MoveTab 10
 
 # Previous active tab
-Mrxvt.macro.Ctrl+Tab:			GotoTab 0
-
-# Alternately we can use Ctrl+Tab to switch to the left / right tab
-# Mrxvt.macro.Ctrl+Shift+ISO_Left_Tab:	GotoTab -1
-# Mrxvt.macro.Ctrl+Tab:			GotoTab +1
-
-Mrxvt.macro.Ctrl+Shift+less:		MoveTab	-1
-Mrxvt.macro.Ctrl+Shift+greater:		MoveTab +1
+        Mrxvt.macro.Ctrl+Tab:			GotoTab 0
 
 # Disable by default. When any arg is passed to PrintScreen, the entire
 # scrollback buffer is also printed.
@@ -209,15 +97,15 @@ Mrxvt.macro.Ctrl+Shift+greater:		MoveTab +1
 # Mrxvt.macro.Shift+Print:		PrintScreen Full
 
 # More / less opaque
-Mrxvt.macro.Ctrl+Shift+u:		Esc \e]70;+5\a
-Mrxvt.macro.Ctrl+Shift+o:		Esc \e]70;-5\a
+#Mrxvt.macro.Ctrl+Shift+u:		Esc \e]70;+5\a
+#Mrxvt.macro.Ctrl+Shift+o:		Esc \e]70;-5\a
 
 # More / less transparent
-Mrxvt.macro.Ctrl+Shift+j:		Esc \e]67;+5\a
-Mrxvt.macro.Ctrl+Shift+k:		Esc \e]67;-5\a
+#Mrxvt.macro.Ctrl+Shift+j:		Esc \e]67;+5\a
+#Mrxvt.macro.Ctrl+Shift+k:		Esc \e]67;-5\a
 
 # Toggle transparency
-Mrxvt.macro.Ctrl+Shift+r:		ToggleTransparency
+#Mrxvt.macro.Ctrl+Shift+r:		ToggleTransparency
 
 # Hide / show subwindows
 Mrxvt.macro.Ctrl+Shift+m:		ToggleSubwin m
@@ -231,23 +119,11 @@ Mrxvt.macro.Ctrl+Shift+f:	    	ToggleFullscreen
 Mrxvt.macro.Ctrl+Shift+e:		ToggleHold
 Mrxvt.macro.Ctrl+Shift+x:		SaveConfig
 
-# Toggle macros
-Mrxvt.macro.Ctrl+Shift+F12:		ToggleMacros
-
 # Scrolling
 Mrxvt.macro.Primary+Shift+Up:		Scroll -1
 Mrxvt.macro.Primary+Shift+Down:		Scroll +1
 Mrxvt.macro.Primary+Shift+Home:		Scroll -1000000
 Mrxvt.macro.Primary+Shift+End:		Scroll +1000000
-
-# Pasting
-#Mrxvt.macro.Ctrl+Shift+v:		Paste
-
-# Paste contents of a file to active tab (e.g. a collection of shell settings
-# like aliases, environment variables, ...). The file name can also be got from
-# the selection if you use %s.
-#Mrxvt.macro.Ctrl+Shift+w:   PasteFile ~/my-favourite-bash-settings
-#Mrxvt.macro.Ctrl+Shift+w:   PasteFile %s
 
 # A selection buffer can be added as an argument (PRIMARY,SECONDARY, CLIPBOARD)
 Mrxvt.macro.Ctrl+Shift+c:		Exec !/usr/bin/xclip -o | /usr/bin/xclip -selection clipboard
@@ -263,7 +139,7 @@ Mrxvt.macro.Ctrl+Shift+g:	    MonitorTab AUTO
 #Mrxvt.monitorCommand:          aosd_cat --fontdesc="Trebuchet 20" --ypos=50 --delay=4000 Alert on tab %n :: %t
 #Mrxvt.monitorCommand:          xmessage Alert on tab %n
 
-             
+
 #
 # Mrxvt Console: Enable the useFifo option, and then open a console in a new
 # tab. Anything typed there is executed as a macro. When done (on clean exit),
