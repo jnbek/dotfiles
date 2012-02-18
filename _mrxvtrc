@@ -15,7 +15,7 @@ Mrxvt.showMenu: true
 Mrxvt.xft:     1
 Mrxvt.xftFont: Monospace
 Mrxvt.xftAntialias: 1
-Mrxvt.xftSize: 8
+Mrxvt.xftSize: 9
 Mrxvt.loginShell:true
 
 # Tab bar colors
