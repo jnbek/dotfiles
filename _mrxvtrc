@@ -14,7 +14,7 @@ Mrxvt.showMenu: true
 #Mrxvt.font          misc-fixed-medium-r-normal--14-130-75-75-C-70-iso10646-1
 Mrxvt.xft:     1
 Mrxvt.xftFont: Monospace
-Mrxvt.xftAntialias: 1
+#Mrxvt.xftAntialias: 1
 Mrxvt.xftSize: 9
 Mrxvt.loginShell:true
 
