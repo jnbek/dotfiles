@@ -38,7 +38,8 @@ function precmd() {
       if [[ ! -z $WINDOW ]]; then
         print -Pn "\ek%n@$l\e\\" # set screen title.  Fix vim: ".
       fi;
-      print -Pn "\e]1;%-3~\a" # must (re)set xterm title
+      #print -Pn "\e]1;%-3~\a" # must (re)set xterm title
+      print -Pn "\e]0;%n@%m: %~\a"
       ;;  
   esac
 }
