@@ -15,7 +15,7 @@ if has('gui_running')
     imap <C-S-C> <ESC>"+y<cr>i
     imap <C-S-V> <ESC>"+gP<cr>i
 else
-    colorscheme desert
+    colorscheme neverland
 endif
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
@@ -51,7 +51,7 @@ let g:VCSCommandEnableBufferSetup = 1
 "Status Line
 "set statusline=%<%f%h%m%r%=%{&ff}\ %l,%c%V\ %P
 set laststatus=2        " ls:  always put a status line
-set statusline=%([%-n]%y\ [%f%M%R]%)\ [%{CurrSubName()}]\ [%{VCSCommandGetStatusLine()}]\ %=\ %(%l/%L,%c%V\ %P\ [0x%02.2B][%{&ff}]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%)
+set statusline=%([%{CurTabColor()]%y\ [%f%M%R]%)\ [%{CurrSubName()}]\ [%{VCSCommandGetStatusLine()}]\ %=\ %(%l/%L,%c%V\ %P\ [Byte: %o][0x%02.2B][%{&ff}]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%)[%{strftime(\"%c\",getftime(expand(\"%:p\")))}]
 set maxfuncdepth=1000   " Need more depth for sub names
 set showmode
 set matchpairs+=<:>
@@ -301,3 +301,10 @@ function! MyCompletion()
         return "\<C-N>"
     endif
 endfunction
+fu! CurTabColor() 
+
+  let currentTab = tabpagenr() 
+  let s_line= '(tb=' . currentTab . ')' 
+  return s_line 
+
+endf
