@@ -51,7 +51,8 @@ let g:VCSCommandEnableBufferSetup = 1
 "Status Line
 "set statusline=%<%f%h%m%r%=%{&ff}\ %l,%c%V\ %P
 set laststatus=2        " ls:  always put a status line
-set statusline=%([%{CurTabColor()]%y\ [%f%M%R]%)\ [%{CurrSubName()}]\ [%{VCSCommandGetStatusLine()}]\ %=\ %(%l/%L,%c%V\ %P\ [Byte: %o][0x%02.2B][%{&ff}]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%)[%{strftime(\"%c\",getftime(expand(\"%:p\")))}]
+set statusline=%([%{CurTabColor()}]\ %y\ [%f%M%R]\ [%{CurrSubName()}]\ [%{VCSCommandGetStatusLine()}]%)\ %=\ %(%l/%L,%c%V\ %P\ [%o][0x%02.2B][%{&ff}]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ [%{strftime(\"%c\",getftime(expand(\"%:p\")))}]\ %)
+"set statusline=%([%-n]%y\ [%f%M%R]%)\ [%{CurrSubName()}]\ [%{VCSCommandGetStatusLine()}]\ %=\ %(%l/%L,%c%V\ %P\ [0x%02.2B][%{&ff}]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%)
 set maxfuncdepth=1000   " Need more depth for sub names
 set showmode
 set matchpairs+=<:>
@@ -74,7 +75,7 @@ au BufNewFile,BufRead *.pl,*.pm,*.t             setf perl
 au BufNewFile,BufRead *.pmc,*.ops               setf c
 au BufNewFile,BufRead *.tt,*.ttml,*.email       setf tt2html
 au BufNewFile,BufRead *.phpt                    setf php
-
+au BufNewFile,BufRead *.js,*.gjs                setf javascript
 " FileType Settings
 
 au FileType perl set makeprg=perl\ -wc\ %\ $*
@@ -88,6 +89,7 @@ au FileType perl match ErrorMsg /\%>80v.\+/
 " make tabs and trailing spaces errors
 au FileType perl match ErrorMsg /[\t]\|^\s\+$\|\S\s\+$/
 
+au FileType javascript set makeprg=gjs\ %\ $*
 au FileType text call TextMode()
 au FileType mail call TextMode()
 au FileType vim  set iskeyword+=. iskeyword+=/ iskeyword+=~
@@ -153,9 +155,7 @@ nmap _VL :VCSLog<Enter>
 nmap _VD :VCSDiff<Enter>
 nmap _VU :VCSUpdate<Enter>
 " Shortcuts
-imap _sub <ESC>:call Perl_InsertTemplate("idioms.subroutine")<CR>
 nmap _sub :call Perl_InsertTemplate("idioms.subroutine")<CR>
-vmap _sub <C-C>:call Perl_InsertTemplate("idioms.subroutine", "v")<CR>
 imap _self <ESC>^i    my $self = shift;<cr>
 imap _new <ESC>^isub new {<cr><ESC>^i    my $proto = shift;<cr><ESC>^i    my $class = ref($proto) \|\| $proto;<cr><ESC>^i    my $self = {};<cr><ESC>^i    bless $self, $class;<cr><ESC>^i    return $self;<cr><ESC>^i}<cr>
 imap _{ {<cr><cr><ESC>^i}<ESC><ESC>k<ESC>i
