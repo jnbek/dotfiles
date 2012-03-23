@@ -304,7 +304,7 @@ endfunction
 fu! CurTabColor() 
 
   let currentTab = tabpagenr() 
-  let s_line= '(tb=' . currentTab . ')' 
+  let s_line= 'Tab #:' . currentTab 
   return s_line 
 
 endf
