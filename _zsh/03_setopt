@@ -1,9 +1,9 @@
-setopt PROMPT_SUBST     \   
-    EXTENDED_GLOB       \   
-    AUTO_CD             \   
-    CORRECT             \   
-    CORRECT_ALL         \   
-    ZLE                 \   
+setopt PROMPT_SUBST \   
+    EXTENDED_GLOB \
+    AUTO_CD \
+    CORRECT \
+    CORRECT_ALL \
+    ZLE \
     INTERACTIVE_COMMENTS \
     HIST_IGNORE_DUPS \
     PUSHD_IGNORE_DUPS \
