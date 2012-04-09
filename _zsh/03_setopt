@@ -1,4 +1,4 @@
-setopt PROMPT_SUBST \   
+setopt PROMPT_SUBST \
     EXTENDED_GLOB \
     AUTO_CD \
     CORRECT \
