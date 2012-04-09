@@ -15,7 +15,7 @@ if has('gui_running')
     imap <C-S-C> <ESC>"+y<cr>i
     imap <C-S-V> <ESC>"+gP<cr>i
 else
-    colorscheme neverland
+    colorscheme jnbeks
 endif
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
@@ -121,6 +121,7 @@ map [[ :tabprev<Enter>
 map <C-W><C-H> :help<Enter>
 map <C-W><C-F> <Esc>:TagbarToggle<Enter>
 map <C-W><C-N> :set nu!<Enter>
+map <C-W><C-T> :TMToggle<cr>
 nmap <C-W><C-B> :VSBufExplorer<cr>
 map <C-W><C-M> :emenu <C-Z>
 noremap <silent> _DOC :call OnlineDoc()<CR>
