@@ -6,6 +6,9 @@ URxvt.keysym.C-S-C:   perl:clipboard:copy
 URxvt.keysym.C-S-V:   perl:clipboard:paste
 URxvt.keysym.S-M-C-V:   perl:clipboard:paste_escaped
 URxvt.keysym.C-S-T:     perl:tabbedex:new_tab
+URxvt.keysym.C-S-P:     perl:tabbedex:tab_prev
+URxvt.keysym.C-S-N:     perl:tabbedex:tab_next
+URxvt.keysym.C-S-R:     perl:tabbedex:rename_tab
 URxvt.underlineURLs: true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
@@ -19,7 +22,7 @@ URxvt.reverseVideo: true
 !URxvt.tintColor: blue
 URxvt.scrollstyle: xterm
 URxvt.scrollBar_right: true
-URxvt.saveLines: 200
+URxvt.saveLines: 2000
 URxvt.cursorBlink: false
 URxvt.tabbed.autohide: false
 URxvt.tabbed.new-button: false
