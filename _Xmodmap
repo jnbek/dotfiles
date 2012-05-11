@@ -13,6 +13,5 @@
 
 remove Lock = Caps_Lock
 remove Lock = Scroll_Lock
-remove Menu = Menu
 keysym Caps_Lock = Scroll_Lock
 add Lock = Caps_Lock
