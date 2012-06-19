@@ -1,6 +1,6 @@
 urxvt*termName: rxvt-256color
 !URxvt.perl-ext-common: url-select,clipboard
-URxvt.perl-ext-common: url-select,clipboard,tabbedex
+URxvt.perl-ext-common: url-select,clipboard,tabbedex,searchable-scrollback
 !URxvt.keysym.C-S-U:     perl:url-select:select_next
 URxvt.keysym.C-S-C:   perl:clipboard:copy
 URxvt.keysym.C-S-V:   perl:clipboard:paste
