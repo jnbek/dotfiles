@@ -15,6 +15,7 @@ URxvt.iso14755_52: false
 URxvt.urlLauncher: xdg-open
 URxvt.tripleclickwords: true
 URxvt.skipScroll: false
+URxvt.urlButton: 1
 URxvt.geometry: 160x50
 URxvt.reverseVideo: true
 !URxvt.transparent: true
