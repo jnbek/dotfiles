@@ -61,6 +61,7 @@ set incsearch
 set hlsearch
 set showmatch  " show matches on parens, bracketc, etc.
 hi MatchParen cterm=NONE ctermbg=brown ctermfg=yellow
+hi Search cterm=NONE ctermbg=brown ctermfg=yellow
 let s:opt_preserve=1
 " Buf Settings
 
