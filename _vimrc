@@ -125,6 +125,7 @@ map <C-W><C-N> :set nu!<Enter>
 map <C-W><C-T> :TMToggle<cr>
 nmap <C-W><C-B> :VSBufExplorer<cr>
 map <C-W><C-M> :emenu <C-Z>
+nnoremap K i<CR><Esc>
 noremap <silent> _DOC :call OnlineDoc()<CR>
 inoremap <silent> _DOC <Esc>:call OnlineDoc()<CR>
 "Execute it
