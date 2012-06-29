@@ -95,8 +95,8 @@ au FileType text call TextMode()
 au FileType mail call TextMode()
 au FileType vim  set iskeyword+=. iskeyword+=/ iskeyword+=~
 
-au FileType html set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2|set autoindent|set smartindent
-au FileType tt2html set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2|set autoindent|set smartindent
+au FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4|set autoindent|set smartindent
+au FileType tt2html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4|set autoindent|set smartindent
 au! BufRead,BufNewFile *.json setfiletype json 
 " Lang Specific Settings
 
