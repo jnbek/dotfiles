@@ -41,7 +41,7 @@ if [[ -d "/var/www/bin" ]]
 fi;
 #Always add $HOME/bin no matter what.
 export PATH=$PATH:$HOME/bin    
-if [[ $UNAME == "FreeBSD" ]]
+if [[ $UNAME == "FreeBSD" && -d "/usr/local/libexec/ccache" ]]
     then;
     export PATH=/usr/local/libexec/ccache:$PATH
     export CCACHE_PATH=/usr/bin:/usr/local/bin
