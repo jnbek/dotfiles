@@ -15,7 +15,6 @@ common_paths=(
     /var/qmail/bin                              # qmail
     /usr/games                                  # fun stuff                     
 )           
-UNAME=`uname`
 unset PATH_tmp                                                                          
 unsetopt NOMATCH                                                                        
 for temp_path in ${common_paths}                                                        

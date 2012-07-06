@@ -7,13 +7,12 @@ alias df="df -h"                 # humane treatment again
 alias j="jobs"
 
 if [ "$TERM" != "dumb" ]; then
-    if [ "`uname`" != "FreeBSD" ] && [ "`which dircolors`" != "" ]; then
+    if [ $UNAME != "FreeBSD" ] && [ "`which dircolors`" != "" ]; then
         eval "`dircolors -b`"
         export LSCOLORS="ExGxCxDxBxDxDxCxCxExEx"
         alias ls='ls -LFGh --color=auto'
 
-    fi
-    if [ "`uname`" = "FreeBSD" ]; then
+    elif [ $UNAME = "FreeBSD" ]; then
         #LSCOLORS="Exfxcxdxbxegedabagacad"
         LSCOLORS="ExGxCxDxBxDxDxCxCxExEx"
         export LSCOLORS
