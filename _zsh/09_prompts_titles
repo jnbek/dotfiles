@@ -20,7 +20,7 @@ function preexec() {
     screen|screen*)
       # See screen(1) "TITLES (naming windows)".
       # "\ek" and "\e\" are the delimiters for screen(1) window titles
-      print -Pn "\ek%-3~ $(echo $1 | cut -c1-15)\e\\" # set screen title.  Fix vim: ".
+      print -Pn "\ek%-3~ $(echo $1 | cut -c1-25)\e\\" # set screen title.  Fix vim: ".
       print -Pn "\e]2;%-3~ $1\a" # set xterm title, via screen "Operating System Command"
       ;;
     rxvt*|xterm*)
