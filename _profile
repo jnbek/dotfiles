@@ -31,9 +31,7 @@ alias g='egrep -i'
 # alias mv='mv -i'
 # alias rm='rm -i'
 
-
-# # set prompt: ``username@hostname$ '' 
-PS1="[`echo $SHELL`][`whoami`@`hostname | sed 's/\..*//'`>"
+PS1="[`echo $SHELL`][`pwd`]\n[`whoami`@`hostname | sed 's/\..*//'`]>>"
 case `id -u` in
   0) PS1="${PS1}# ";;
   *) PS1="${PS1}$ ";;
