@@ -12,12 +12,12 @@
 #  done
 #  unset f
 #fi
-#/usr/bin/gnome-keyring-daemon --start --components=gpg
+/usr/bin/gnome-keyring-daemon --start --components=gpg
 /usr/bin/gnome-keyring-daemon --start --components=pkcs11
 /usr/bin/gnome-keyring-daemon --start --components=secrets
 /usr/bin/gnome-keyring-daemon --start --components=ssh
 
-exec ck-launch-session dbus-launch gnome-session-cinnamon
+exec ck-launch-session dbus-launch mate-session
 # exec gnome-session
 # exec startkde
 # exec startxfce4
