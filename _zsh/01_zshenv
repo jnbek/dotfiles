@@ -45,4 +45,4 @@ typeset -U common_paths
 typeset -A PR_STUFF
 typeset -A altchar
 typeset -A ACS
-export UNAME=`uname`
+export UNME=`uname`
