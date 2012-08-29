@@ -1,10 +1,12 @@
 alias mv='nocorrect mv'         # no spelling correction on mv (zsh FAQ 3.4)
 alias cp='nocorrect cp'         # no spelling correction on cp (zsh FAQ 3.4)
 alias mkdir='nocorrect mkdir'   # no spelling correction on mkdir (zsh FAQ 3.4)
-alias grep="grep --color=auto"  # color grep output
 alias du="du -h"                 # humane treatment
 alias df="df -h"                 # humane treatment again
 alias j="jobs"
+alias ls_orig="ls"              # Sometimes we want the unmessedwith ls
+alias grep_orig="grep"          # Sometimes we want the unmessedwith grep
+alias grep="grep --color=auto"  # color grep output
 
 if [ "$TERM" != "dumb" ]; then
     if [ $UNME != "FreeBSD" ] && [ "`which dircolors`" != "" ]; then
