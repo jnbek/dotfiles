@@ -21,98 +21,94 @@ if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
 endif
 source $VIMRUNTIME/menu.vim
-set tpm=25
-set mouse=v
-set ttymouse=xterm2
-;set dir=$HOME/tmp/vim
-set backup
-;set bex=.vbak
-set bdir=$HOME/tmp/vim/bak
-set backupcopy=auto
-set wildmenu
-set cpo-=<
-set pastetoggle=<C-p><C-p>
-set wcm=<C-Z>
-set sc!
-set autoindent
-set smartindent
-set nu!
-set ls=2
-syn on
+syntax on
 filetype on
 filetype plugin on
 filetype indent on
-set tabstop=4
-set expandtab
-set shiftwidth=4
-"set autowrite
-set errorformat=%m\ in\ %f\ on\ line\ %l
+let s:opt_preserve=1
 let g:VCSCommandEnableBufferSetup = 1
+let php_sql_query = 1
+let php_baselib = 1
+let php_parent_error_close = 1
+let php_parent_error_open = 1
+let php_folding = 0
+let php_sync_method = -1
+let perl_parent_error_close = 1
+let perl_parent_error_open = 1
+let perl_want_scope_in_variables=1
+let perl_extended_vars=1
+let perl_include_pod=1
+
+set tabpagemax=25
+set mouse=v
+set ttymouse=xterm2
+set dir=$HOME/tmp/vim
+set bex=.vbak
+set bdir=$HOME/tmp/vim/bak
+set backupcopy=auto
+set textwidth=0
+set cpoptions-=<
+set pastetoggle=<C-p><C-p>
+set wildcharm=<C-Z>
+set matchpairs+=<:>
+set tabstop=4
+set shiftwidth=4
+set backspace=2
+set errorformat=%m\ in\ %f\ on\ line\ %l
+set maxfuncdepth=1000   " Need more depth for sub names
 "Status Line
-"set statusline=%<%f%h%m%r%=%{&ff}\ %l,%c%V\ %P
 set laststatus=2        " ls:  always put a status line
 set statusline=%([%{CurTabColor()}]\ %y\ [%f%M%R]\ [%{CurrSubName()}]\ [%{VCSCommandGetStatusLine()}]%)\ %=\ %(%l/%L,%c%V\ %P\ [%o][0x%02.2B][%{&ff}]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ [%{strftime(\"%c\",getftime(expand(\"%:p\")))}]\ %)
 "set statusline=%([%-n]%y\ [%f%M%R]%)\ [%{CurrSubName()}]\ [%{VCSCommandGetStatusLine()}]\ %=\ %(%l/%L,%c%V\ %P\ [0x%02.2B][%{&ff}]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%)
-set maxfuncdepth=1000   " Need more depth for sub names
 set showmode
-set matchpairs+=<:>
-set backspace=2
+set backup
+set expandtab
+set wildmenu
+set showcmd!
+set autoindent
+set smartindent
+set number!
 set incsearch
 set hlsearch
-set showmatch  " show matches on parens, bracketc, etc.
-hi MatchParen cterm=NONE ctermbg=brown ctermfg=yellow
-hi Search cterm=NONE ctermbg=brown ctermfg=yellow
-let s:opt_preserve=1
+set showmatch
+highlight MatchParen cterm=NONE ctermbg=brown ctermfg=yellow
+highlight Search cterm=NONE ctermbg=brown ctermfg=yellow
+
 " Buf Settings
+
+autocmd BufNewFile,BufRead *.pl,*.pm,*.t             setf perl
+autocmd BufNewFile,BufRead *.pmc,*.ops               setf c
+autocmd BufNewFile,BufRead *.tt,*.ttml,*.email       setf tt2html
+autocmd BufNewFile,BufRead *.phpt                    setf php
+autocmd BufNewFile,BufRead *.js,*.gjs                setf javascript
+" FileType Settings
+
+autocmd FileType perl set makeprg=perl\ -wc\ %\ $*
+autocmd FileType perl set errorformat=%f:%l:%m
+"autocmd FileType perl set autowrite
+autocmd FileType perl call PerlMode()
+autocmd FileType perl :noremap _pd :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
+" make lines longer than 80 characters errors
+autocmd FileType perl match ErrorMsg /\%>80v.\+/
+
+" make tabs and trailing spaces errors
+autocmd FileType perl match ErrorMsg /[\t]\|^\s\+$\|\S\s\+$/
+
+autocmd FileType javascript set makeprg=gjs\ %\ $*
+autocmd FileType text call TextMode()
+autocmd FileType mail call TextMode()
+autocmd FileType vim  set iskeyword+=. iskeyword+=/ iskeyword+=~
+
+autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4|set autoindent|set smartindent
+autocmd FileType tt2html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4|set autoindent|set smartindent
+autocmd! BufRead,BufNewFile *.json setfiletype json 
 
 " http://vimdoc.sourceforge.net/htmldoc/vimfaq.html
 " " 5.5. How do I configure Vim to open a file at the last edited location?
-au BufReadPost *
+autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal g`\"" |
      \ endif
-
-au BufNewFile,BufRead *.pl,*.pm,*.t             setf perl
-au BufNewFile,BufRead *.pmc,*.ops               setf c
-au BufNewFile,BufRead *.tt,*.ttml,*.email       setf tt2html
-au BufNewFile,BufRead *.phpt                    setf php
-au BufNewFile,BufRead *.js,*.gjs                setf javascript
-" FileType Settings
-
-au FileType perl set makeprg=perl\ -wc\ %\ $*
-au FileType perl set errorformat=%f:%l:%m
-"au FileType perl set autowrite
-au FileType perl call PerlMode()
-au FileType perl :noremap _pd :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
-" make lines longer than 80 characters errors
-au FileType perl match ErrorMsg /\%>80v.\+/
-
-" make tabs and trailing spaces errors
-au FileType perl match ErrorMsg /[\t]\|^\s\+$\|\S\s\+$/
-
-au FileType javascript set makeprg=gjs\ %\ $*
-au FileType text call TextMode()
-au FileType mail call TextMode()
-au FileType vim  set iskeyword+=. iskeyword+=/ iskeyword+=~
-
-au FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4|set autoindent|set smartindent
-au FileType tt2html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4|set autoindent|set smartindent
-au! BufRead,BufNewFile *.json setfiletype json 
-" Lang Specific Settings
-
-"PHP Settings
-  let php_sql_query = 1
-  let php_baselib = 1
-  let php_parent_error_close = 1
-  let php_parent_error_open = 1
-  let php_folding = 0
-  let php_sync_method = -1
-"Perl Settings
-  let perl_parent_error_close = 1
-  let perl_parent_error_open = 1
-  let perl_want_scope_in_variables=1
-  let perl_extended_vars=1
-  let perl_include_pod=1
 
 " Keymappings
 map // :tabnew<Enter>
@@ -121,13 +117,11 @@ map ]] :tabnext<Enter>
 map [[ :tabprev<Enter>
 map <C-W><C-H> :help<Enter>
 map <C-W><C-F> <Esc>:TagbarToggle<Enter>
-map <C-W><C-N> :set nu!<Enter>
+map <C-W><C-N> :set number!<Enter>
 map <C-W><C-T> :TMToggle<cr>
 nmap <C-W><C-B> :VSBufExplorer<cr>
 map <C-W><C-M> :emenu <C-Z>
 nnoremap K i<CR><Esc>
-noremap <silent> _DOC :call OnlineDoc()<CR>
-inoremap <silent> _DOC <Esc>:call OnlineDoc()<CR>
 "Execute it
 nmap _e :!perl -w %<Enter>
 nmap _E :!perl -wc %<Enter>
@@ -144,12 +138,6 @@ nmap _JT :call g:Jsbeautify()<cr><Enter>
 " Criticize It !!
 nmap _pc :!perlcritic %<Enter>
 nmap _Pc :!perlcritic -brutal %<Enter>
-" Debug It
-nmap _DB :call CallPDB()<Enter>
-"Profile it
-" These require SmallProf and NYTProf and are configured for work
-nmap _SP :!export VAR=`pwd`;cd ~;perl -d:SmallProf $VAR/%;less smallprof.out;cd -<cr>|mode
-nmap _NP :!perl -d:NYTProf %;nytprofhtml -o /var/www/html/nytprof/;lynx /var/www/html/nytprof/index.html;rm nytprof.out<cr>|mode
 " CVS it
 nmap _VC :VCSCommit<Enter>
 nmap _VA :VCSAnn<Enter>
@@ -161,23 +149,15 @@ nmap _VU :VCSUpdate<Enter>
 nmap _sub :call Perl_InsertTemplate("idioms.subroutine")<CR>
 imap _self <ESC>^i    my $self = shift;<cr>
 imap _new <ESC>^isub new {<cr><ESC>^i    my $proto = shift;<cr><ESC>^i    my $class = ref($proto) \|\| $proto;<cr><ESC>^i    my $self = {};<cr><ESC>^i    bless $self, $class;<cr><ESC>^i    return $self;<cr><ESC>^i}<cr>
-imap _{ {<cr><cr><ESC>^i}<ESC><ESC>k<ESC>i
 
 " Misc Mappings
-inoremap _TC :call MyCompletion()<cr>
 inoremap <INS> <ESC>a
 nnoremap :Q :q
 nnoremap :W :w
 "Highlights
 "highlight StatusLine ctermfg=8 ctermbg=3
 "highlight Title       term=bold cterm=bold ctermbg=7 ctermfg=4 gui=bold guifg=Blue
-set tw=0
 "Functions
-function! CallPDB()
-    :!perl -d:PDB %
-    :mode
-endfunction
-
 function! TextMode()
 " Stolen from David Hand
     set nocindent               " nocin:  don't use C-indenting
@@ -206,7 +186,6 @@ function! PerlMode()
     set showmatch               " show matches on parens, bracketc, etc.
 endfunction
 
-" From http://www.perlmonks.org/?node_id=540411
 function! CurrSubName()
     let g:subname = ""
     let g:subrecurssion = 0
@@ -242,66 +221,6 @@ function! GetSubName(line)
         endif
     else
         return -1
-    endif
-endfunction
-" Add the following lines to your ~/.vimrc to enable online documentation
-" http://vim.wikia.com/wiki/Online_documentation_for_word_under_cursor
-
-function Browser()
-    if has("win32") || has("win64")
-        let s:browser = "C:\\Program Files\\Mozilla Firefox\\firefox.exe -new-tab"
-    elseif has("win32unix") " Cygwin
-        let s:browser = "'/cygdrive/c/Program\ Files/Mozilla\ Firefox/firefox.exe' -new-tab"
-    elseif has("mac") || has("macunix") || has("unix")
-        let s:browser = "lynx"
-    endif
-    return s:browser
-endfunction
-function Run(command)
-    if has("win32") || has("win64")
-        let s:startCommand = "!start"
-        let s:endCommand = ""
-    elseif has("mac") || has("macunix") " TODO Untested on Mac
-        let s:startCommand = "!open -a"
-        let s:endCommand = ""
-    elseif has("unix") || has("win32unix")
-        let s:startCommand = "!"
-        let s:endCommand = ""
-    else
-        echo "Don't know how to handle this OS!"
-        finish
-    endif
-
-    let s:cmd = "silent " . s:startCommand . " " . a:command . " " . s:endCommand
-    " echo s:cmd
-    execute s:cmd
-    :mode
-endfunction
-function OnlineDoc()
-    if &filetype == "viki"
-        " Dictionary
-        let s:urlTemplate = "http://dictionary.reference.com/browse/<name>"
-    elseif &filetype == "perl"
-        let s:urlTemplate = "http://perldoc.perl.org/functions/<name>.html"
-    elseif &filetype == "python"
-        let s:urlTemplate = "http://www.google.com/search?q=<name>&domains=docs.python.org&sitesearch=docs.python.org"
-    elseif &filetype == "ruby"
-        let s:urlTemplate = "http://www.ruby-doc.org/core/classes/<name>.html"
-    elseif &filetype == "vim"
-        let s:urlTemplate = "http://vimdoc.sourceforge.net/search.php?search=<name>&docs=help"
-    endif
-
-    let s:wordUnderCursor = expand("<cword>")
-    let s:url = substitute(s:urlTemplate, '<name>', s:wordUnderCursor, 'g')
-    call Run(Browser() . " " . s:url)
-endfunction
-
-function! MyCompletion()
-    let col = col('.') - 1
-    if col==0 || getline('.')[col - 1] !~ '\k'
-        return "\<TAB>"
-    else
-        return "\<C-N>"
     endif
 endfunction
 fu! CurTabColor() 

@@ -45,3 +45,7 @@ if [[ $UNME == "FreeBSD" && -d "/usr/local/libexec/ccache" ]]
     export PATH=/usr/local/libexec/ccache:$PATH
     export CCACHE_PATH=/usr/bin:/usr/local/bin
 fi;
+if [[ ! -e "$HOME/tmp/vim/bak" ]]
+    then;
+    mkdir -pv $HOME/tmp/vim/bak;
+fi;
