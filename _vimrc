@@ -22,11 +22,11 @@ if filereadable($HOME."/.vim_aliases")
 endif
 source $VIMRUNTIME/menu.vim
 set tpm=25
-set mouse=nv
+set mouse=v
 set ttymouse=xterm2
-set dir=$HOME/tmp/vim
+;set dir=$HOME/tmp/vim
 set backup
-set bex=.vbak
+;set bex=.vbak
 set bdir=$HOME/tmp/vim/bak
 set backupcopy=auto
 set wildmenu
