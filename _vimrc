@@ -223,7 +223,7 @@ function! GetSubName(line)
         return -1
     endif
 endfunction
-fu! CurTabColor() 
+function! CurTabColor() 
 
   let currentTab = tabpagenr() 
   let s_line= 'Tab #:' . currentTab 
