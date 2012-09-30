@@ -20,7 +20,7 @@ _ezjail () {
     (( $+functions[_ezjail_cmd_$cmd] )) && _ezjail_cmd_$cmd
 
     else
-    _values : \
+    _values -s: \
         "archive[create a backup of one or several jails]" \
         "config[manage specific jails]" \
         "console[attach your console to a running jail]" \
