@@ -77,11 +77,11 @@ highlight Search cterm=NONE ctermbg=brown ctermfg=yellow
 
 " Buf Settings
 
-autocmd BufNewFile,BufRead *.pl,*.pm,*.t             setf perl
-autocmd BufNewFile,BufRead *.pmc,*.ops               setf c
-autocmd BufNewFile,BufRead *.tt,*.ttml,*.email       setf tt2html
-autocmd BufNewFile,BufRead *.phpt                    setf php
-autocmd BufNewFile,BufRead *.js,*.gjs                setf javascript
+autocmd BufNewFile,BufRead *.pl,*.pm,*.t              setf perl
+autocmd BufNewFile,BufRead *.pmc,*.ops                setf c
+autocmd BufNewFile,BufRead *.tt,*.email,*.html        setf tt2html
+autocmd BufNewFile,BufRead *.phpt                     setf php
+autocmd BufNewFile,BufRead *.js,*.gjs                 setf javascript
 " FileType Settings
 
 autocmd FileType perl set makeprg=perl\ -wc\ %\ $*
