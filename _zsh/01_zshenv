@@ -46,3 +46,7 @@ typeset -A PR_STUFF
 typeset -A altchar
 typeset -A ACS
 export UNME=`uname`
+# For Arch Linux AUR cpan2aur stuffz
+if [[ ! -z `uname -r | grep ARCH` ]] then;
+    export PACKAGER='John D Jones III <jnbek@yahoo.com>' 
+fi;
