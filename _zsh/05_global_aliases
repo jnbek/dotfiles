@@ -2,22 +2,23 @@ alias mv='nocorrect mv'         # no spelling correction on mv (zsh FAQ 3.4)
 alias cp='nocorrect cp'         # no spelling correction on cp (zsh FAQ 3.4)
 alias mkdir='nocorrect mkdir'   # no spelling correction on mkdir (zsh FAQ 3.4)
 alias du="du -h"                 # humane treatment
-alias df="df -h"                 # humane treatment again
-alias j="jobs"
-alias ls_orig="ls"              # Sometimes we want the unmessedwith ls
-alias grep_orig="grep"          # Sometimes we want the unmessedwith grep
-alias grep="grep --color=auto"  # color grep output
+alias df="df -h";                # humane treatment again
+alias j="jobs";
+alias dir="ls";                  :w# Sometimes we want the unmessedwith ls
+alias ogrep="grep";              # Sometimes we want the unmessedwith grep
+alias grep="grep --color=auto";  # color grep output
 
 if [ "$TERM" != "dumb" ]; then
     if [ $UNME != "FreeBSD" ] && [ "`which dircolors`" != "" ]; then
-        eval "`dircolors -b`"
-        export LSCOLORS="ExGxCxDxBxDxDxCxCxExEx"
-        alias ls='ls -LFGh --color=auto'
+        eval "`dircolors -b`";
+        export LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
+        alias ls='ls -LFGh --color=auto';
 
     elif [ $UNME = "FreeBSD" ]; then
-        #LSCOLORS="Exfxcxdxbxegedabagacad"
-        LSCOLORS="ExGxCxDxBxDxDxCxCxExEx"
-        export LSCOLORS
-        alias ls='ls -FGhT'
+        #LSCOLORS="Exfxcxdxbxegedabagacad";
+        LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
+        export LSCOLORS;
+        alias ls='ls -FGhT';
+        alias console='ezjail-admin console';
     fi
 fi
