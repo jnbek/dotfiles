@@ -4,7 +4,7 @@ alias mkdir='nocorrect mkdir'   # no spelling correction on mkdir (zsh FAQ 3.4)
 alias du="du -h"                 # humane treatment
 alias df="df -h";                # humane treatment again
 alias j="jobs";
-alias dir="ls";                  :w# Sometimes we want the unmessedwith ls
+alias dir="ls";                  # Sometimes we want the unmessedwith ls
 alias ogrep="grep";              # Sometimes we want the unmessedwith grep
 alias grep="grep --color=auto";  # color grep output
 
