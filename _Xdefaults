@@ -20,7 +20,7 @@ URxvt.geometry: 160x50
 URxvt.reverseVideo: true
 URxvt.transparent: true
 URxvt.shading: 42
-URxvt.tintColor: blue
+!URxvt.tintColor: blue
 URxvt.scrollstyle: xterm
 URxvt.scrollBar_right: true
 URxvt.saveLines: 2000
