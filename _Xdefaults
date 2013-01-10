@@ -19,8 +19,8 @@ URxvt.urlButton: 1
 URxvt.geometry: 160x50
 URxvt.reverseVideo: true
 URxvt.transparent: true
-URxvt.shading: 42
-!URxvt.tintColor: blue
+URxvt.shading: 15
+!URxvt.tintColor: black
 URxvt.scrollstyle: xterm
 URxvt.scrollBar_right: true
 URxvt.saveLines: 2000

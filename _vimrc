@@ -1,6 +1,5 @@
 " Initial Settings
 if has('gui_running')
-    colorscheme molokai
     if has("win32") || has("win16") || has("win64")
         behave mswin
         set guifont=DejaVu_Sans_Mono:h8:cANSI
@@ -15,8 +14,8 @@ if has('gui_running')
     imap <C-S-V> <ESC>"+gP<cr>i
 else
     set t_Co=256
-    colorscheme leo
 endif
+colorscheme nightshade
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
 endif
