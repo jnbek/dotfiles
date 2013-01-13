@@ -1,7 +1,7 @@
 These are my dotfiles. Most are cobbled together from stuff I've found over the years on Google and various websites. I actively use these files and can not live without them. So here they are for the world to see. The following utilities are represented:
 
 -- Activly Used and Updated:
-Zsh 4           http://www.zsh.org/  
+Zsh 5           http://www.zsh.org/  
 Vim 7           http://vim.sf.net/
 Tmux 1          http://tmux.sourceforge.net/
 PerlTidy        http://perltidy.sourceforge.net/
@@ -9,3 +9,6 @@ PerlTidy        http://perltidy.sourceforge.net/
 -- For Legacy Purposes:
 Screen 4          http://www.gnu.org/software/screen/
 Bash 3 & 4        http://www.gnu.org/software/bash/
+-- Other Stuff:
+
+Colortail, Urxvt, Mrvxt, makepkg, csh, sh, ack and Xorg tweeks.
