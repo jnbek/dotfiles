@@ -6,16 +6,17 @@ if has('gui_running')
     else
         set guifont=Monospace\ 9
     endif
-    map <C-S-A> ggVG
-    map <C-S-C> "+y 
-    map <C-S-V> "+gP
-    imap <C-S-A> <ESC>ggVG
-    imap <C-S-C> <ESC>"+y<cr>i
-    imap <C-S-V> <ESC>"+gP<cr>i
+    map <C-M-A> ggVG
+    map <C-M-C> "+y 
+    map <C-M-V> "+gP
+    imap <C-M-A> <ESC>ggVG
+    imap <C-M-C> <ESC>"+y<cr>i
+    imap <C-M-V> <ESC>"+gP<cr>i
+    colorscheme nightshade
 else
     set t_Co=256
+    colorscheme leo
 endif
-colorscheme nightshade
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
 endif
