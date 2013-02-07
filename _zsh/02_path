@@ -13,7 +13,8 @@ common_paths=(
     /usr/ccs/bin                                # Solaris - C Compilation System
     /usr/platform/$(uname -i)/sbin              # Solaris - hardware dependent          
     /var/qmail/bin                              # qmail
-    /usr/games                                  # fun stuff                     
+    /usr/games                                  # fun stuff
+    /var/www/bin                                # Misc
 )           
 unset PATH_tmp                                                                          
 unsetopt NOMATCH                                                                        
@@ -34,9 +35,9 @@ if [[ $UNME == "FreeBSD" && $UID == 0 ]]
     then;                                 
     export PATH=$PATH:/usr/libexec:/usr/local/libexec
 fi;
-if [[ -d "/var/www/bin" ]]
+if [[ -d "$HOME/wrk" ]]
     then;
-    export PATH=$PATH:/var/www/bin
+    export PATH=$PATH:$HOME/wrk
 fi;
 #Always add $HOME/bin no matter what.
 export PATH=$PATH:$HOME/bin    
