@@ -23,6 +23,7 @@ Mrxvt.itabBackground:	    #101010
 Mrxvt.tabBackground:	    #900000
 Mrxvt.itabForeground:	    #909090
 Mrxvt.tabForeground:	    #9a9a9a
+mrxvt*bottomTabbar:         true
 
 # Scroll bar colors
 Mrxvt.scrollColor:      #808080
