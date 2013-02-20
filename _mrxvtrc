@@ -10,11 +10,9 @@ mrxvt.profile3.background:		#000000
 mrxvt.profile4.background:		#000000
 mrxvt.profile0.workingDirectory:	.
 mrxvt.profile0.holdExitText:		
-
-[31mProcess exited %N with status %S. Press any key to close tab.[0m
 mrxvt.profile0.holdExitTitle:		(Done) %t
 mrxvt.highlightTabOnBell:		False
-mrxvt.syncTabTitle:			False
+mrxvt.syncTabTitle:			True
 mrxvt.hideTabbar:			False
 mrxvt.autohideTabbar:			False
 mrxvt.bottomTabbar:			True
