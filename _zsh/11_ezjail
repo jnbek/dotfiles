@@ -1,11 +1,11 @@
-#compdef ezjail-admin
+compdef ezjail-admin
 
 # zsh completion for ezjail -- http://erdgeist.org/arts/software/ezjail/
 # This file is under the Beerware license, like ezjail itself
 
 # Heavily based on http://zsh.sf.net/Guide/zshguide06.html#l177
 
-# Fréric Perrin, April 2011.
+# FrÃ©dÃ©ric Perrin, April 2011.
 
 _ezjail () {
     local cmd
@@ -19,21 +19,6 @@ _ezjail () {
     # Run the completion for the subcommand
     (( $+functions[_ezjail_cmd_$cmd] )) && _ezjail_cmd_$cmd
 
-    else
-    _values -s: \
-        "archive[create a backup of one or several jails]" \
-        "config[manage specific jails]" \
-        "console[attach your console to a running jail]" \
-        "create[installs a new jail inside ezjail\'s scope]" \
-        "cryptostart[start the encrypted jails]" \
-        "delete[removes a jail from ezjail\'s config]" \
-        "install[create the basejail from binary packages]" \
-        "list[list all jails]" \
-        "restart[restart a running jail]" \
-        "restore[create new ezjails from archived versions]" \
-        "start[start a jail]" \
-        "stop[stop a running jail]" \
-        "update[create or update the basejail from source]"
     fi   
 }
 
