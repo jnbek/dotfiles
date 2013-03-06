@@ -73,6 +73,9 @@ if [ -x "`which fortune`" ]; then
   echo
   fortune
 fi
+
+[ ! -e "$HOME/tmp/vim/bak" ] && mkdir -pv $HOME/tmp/vim/bak;
+
 export PATH=$PATH:$HOME/bin
 export EDITOR=vim
 if [ -f $HOME/.ssh-login ]; then
