@@ -40,6 +40,8 @@ let perl_extended_vars=1
 let perl_include_pod=1
 
 set tabpagemax=25
+set modelines=0
+set nomodeline
 set mouse=v
 set ttymouse=xterm2
 set dir^=$HOME/tmp/vim//
