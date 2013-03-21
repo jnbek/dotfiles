@@ -49,4 +49,4 @@ export UNME=`uname`
 # For Arch Linux AUR cpan2aur stuffz
 [[ -e  "/etc/arch-release" ]] && export PACKAGER='John D Jones III <j[nospace]n[nospace]b[nospace]e[nospace]k[nospace]1972 -_AT_- the domain name google offers a mail service at ending in dot com>' 
 # Turn STDERR red if we can
-[[ -f "/usr/lib/libstderred.so" ] && export LD_PRELOAD="/usr/lib/libstderred.so"
+[[ -f "/usr/lib/libstderred.so" ]] && export LD_PRELOAD="/usr/lib/libstderred.so"
