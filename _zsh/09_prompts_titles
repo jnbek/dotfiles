@@ -67,7 +67,7 @@ rxvt*|xterm*)
 esac
 }
 TRAPWINCH () {
-    #zle || return 0
+    zle || return 0
     zle reset-prompt
 }
 
@@ -77,6 +77,6 @@ TRAPWINCH () {
 ## this can be invoked manually with a "kill -ALRM" to the shell (from another process)
 TMOUT=$[(${RANDOM}%15)+25]
 TRAPALRM () {
-    #zle || return 0
+    zle || return 0
     zle reset-prompt
 }
