@@ -50,3 +50,6 @@ export UNME=`uname`
 if [[ ! -z `uname -r | grep ARCH` ]] then;
     export PACKAGER='John D Jones III <jnbek@yahoo.com>' 
 fi;
+if [ -f "/usr/lib/stderred.so" ]; then
+    export LD_PRELOAD="/usr/lib/libstderred.so"
+fi
