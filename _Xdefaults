@@ -20,10 +20,7 @@ URxvt.geometry: 160x50
 URxvt.reverseVideo: true
 URxvt.transparent: true
 URxvt.shading: 22
-URxvt.tintColor: black
-!URxvt.depth: 32
-!URxvt.background: [85]#000000
-!URxvt.foreground: [95]#FFFFFF
+!URxvt.tintColor: black
 URxvt.scrollstyle: xterm
 URxvt.scrollBar_right: true
 URxvt.saveLines: 5000
@@ -37,3 +34,4 @@ URxvt.font: xft:monospace:pixelsize=11, \
             xft:Kochi Gothic:antialias=false, \
             xft:Code2000:antialias=false
 XTerm.reverseVideo: true
+
