@@ -39,19 +39,21 @@ hi  Folded          cterm=BOLD  ctermfg=130  ctermbg=233
 hi  FoldColumn      cterm=NONE  ctermfg=61   ctermbg=232
 
 hi  Directory       cterm=NONE  ctermfg=47   ctermbg=NONE
-hi  LineNr          cterm=BOLD  ctermfg=237  ctermbg=233
+hi  LineNr          cterm=BOLD  ctermfg=237  ctermbg=NONE 
+"ctermbg=233
 hi  NonText         cterm=NONE  ctermfg=52   ctermbg=NONE
 hi  SpecialKey      cterm=NONE  ctermfg=52   ctermbg=NONE
 hi  Title           cterm=BOLD  ctermfg=130  ctermbg=232
 hi  Visual          cterm=NONE  ctermfg=232  ctermbg=215
 
 hi  TabLine         cterm=NONE  ctermfg=237  ctermbg=233
-hi  TabLineSel      cterm=BOLD  ctermfg=7    ctermbg=235
+hi  TabLineSel      cterm=BOLD  ctermfg=7    ctermbg=NONE
+"ctermbg=235
 hi  TabLineFill     cterm=NONE  ctermfg=229  ctermbg=245
 
 hi  Comment         cterm=NONE  ctermfg=130  ctermbg=NONE
 hi  Constant        cterm=NONE  ctermfg=215  ctermbg=NONE
-hi  String          cterm=NONE  ctermfg=215  ctermbg=237
+hi  String          cterm=NONE  ctermfg=215  ctermbg=NONE
 hi  Error           cterm=NONE  ctermfg=231  ctermbg=196
 hi  Identifier      cterm=NONE  ctermfg=207  ctermbg=NONE
 hi  Ignore          cterm=NONE  ctermfg=61   ctermbg=NONE
