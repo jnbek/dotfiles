@@ -12,26 +12,24 @@
 #  done
 #  unset f
 #fi
-#-----------------------------------------------------------
-    # .xinitrc
-    #-----------------------------------------------------------
 
-    # run profile to set $PATH and other env vars correctly
-    . $HOME/.bash_profile
 
-    # setup background
-    xsetroot -solid '#056'
+# run profile to set $PATH and other env vars correctly
+. $HOME/.bash_profile
 
-    # setup mouse acceleration
-    xset m 7 2
+# setup background
+xsetroot -solid '#056'
 
-    # run initial programs
-    xterm &
+# setup mouse acceleration
+xset m 7 2
 
-    # start icewm, and run xterm if it crashes (just to be safe)
-    exec icewm || exec xterm -fg red
+# run initial programs
+#xterm &
 
-exec dbus-launch mate-session
+# start icewm, and run xterm if it crashes (just to be safe)
+exec icewm || exec xterm -fg red
+
+#exec dbus-launch mate-session
 # exec gnome-session
 # exec startkde
 # exec startxfce4
