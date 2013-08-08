@@ -6,16 +6,19 @@ if has('gui_running')
     else
         set guifont=Monospace\ 9
     endif
-    map <S-C-A> ggVG
-    map <S-C-C> "+y 
-    map <S-C-V> "+gP
-    imap <S-C-A> <ESC>ggVG
-    imap <S-C-C> <ESC>"+y<cr>i
-    imap <S-C-V> <ESC>"+gP<cr>i
+    map <S-C-a> ggVG
+    map <S-C-c> "+y 
+    map <S-C-v> "+gP
+    imap <S-C-a> <ESC>ggVG
+    imap <C-S-c> <ESC>"+ya
+    imap <S-C-v> <ESC>"+gPa
+    nnoremap <silent> <S-C-T> :%!perltidy -q<Enter>
+    vnoremap <silent> <S-C-T> :!perltidy -q<Enter>
     colorscheme nightshade
 else
     set t_Co=256
     colorscheme termpot
+    set mouse=v
 endif
 if filereadable($HOME."/.vim_aliases")
     source $HOME/.vim_aliases
@@ -42,7 +45,6 @@ let perl_include_pod=1
 set tabpagemax=25
 set modelines=0
 set nomodeline
-set mouse=v
 set ttymouse=xterm2
 set dir^=$HOME/tmp/vim//
 set bex=.vbak
@@ -80,7 +82,7 @@ highlight Search cterm=NONE ctermbg=brown ctermfg=yellow
 
 autocmd BufNewFile,BufRead *.pl,*.pm,*.t              setf perl
 autocmd BufNewFile,BufRead *.pmc,*.ops                setf c
-autocmd BufNewFile,BufRead *.tt,*.email,*.html        setf tt2html
+autocmd BufNewFile,BufRead *.tt,*.email,*.html,*.htm  setf tt2html
 autocmd BufNewFile,BufRead *.phpt                     setf php
 autocmd BufNewFile,BufRead *.js,*.gjs                 setf javascript
 " FileType Settings
@@ -145,7 +147,7 @@ nmap _VC :VCSCommit<Enter>
 nmap _VA :VCSAnn<Enter>
 nmap _VS :VCSStat<Enter>
 nmap _VL :VCSLog<Enter>
-nmap _VD :VCSDiff<Enter>
+nmap _VD :VCSDiff -r
 nmap _VU :VCSUpdate<Enter>
 " Shortcuts
 nmap _sub :call Perl_InsertTemplate("idioms.subroutine")<CR>
