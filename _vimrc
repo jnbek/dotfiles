@@ -6,12 +6,12 @@ if has('gui_running')
     else
         set guifont=Monospace\ 9
     endif
-    map <C-M-A> ggVG
-    map <C-M-C> "+y 
-    map <C-M-V> "+gP
-    imap <C-M-A> <ESC>ggVG
-    imap <C-M-C> <ESC>"+y<cr>i
-    imap <C-M-V> <ESC>"+gP<cr>i
+    map <S-C-A> ggVG
+    map <S-C-C> "+y 
+    map <S-C-V> "+gP
+    imap <S-C-A> <ESC>ggVG
+    imap <S-C-C> <ESC>"+y<cr>i
+    imap <S-C-V> <ESC>"+gP<cr>i
     colorscheme nightshade
 else
     set t_Co=256
