@@ -15,7 +15,7 @@ common_paths=(
     /var/qmail/bin                              # qmail
     /usr/games                                  # fun stuff
     /var/www/bin                                # Misc
-    /usr/lib/go/site/bin/                       # Linux Go
+    /usr/lib/go/site/bin                       # Linux Go
 )           
 unset PATH_tmp                                                                          
 unsetopt NOMATCH                                                                        
@@ -40,14 +40,18 @@ if [[ -d "$HOME/wrk" ]]
     then;
     export PATH=$PATH:$HOME/wrk
 fi;
-#Always add $HOME/bin no matter what.
-export PATH=$PATH:$HOME/bin    
-if [[ $UNME == "FreeBSD" && -d "/usr/local/libexec/ccache" ]]
+if [[ -d "/usr/lib/go/site/bin" ]]
     then;
-    export PATH=/usr/local/libexec/ccache:$PATH
-    export CCACHE_PATH=/usr/bin:/usr/local/bin
+    export PATH=$PATH:/usr/lib/go/site/bin
+fi;
+if [[ -d "/usr/local/lib/go/site/bin" ]]
+    then;
+    export PATH=$PATH:/usr/local/lib/go/site/bin
 fi;
 if [[ ! -e "$HOME/tmp/vim/bak" ]]
     then;
     mkdir -pv $HOME/tmp/vim/bak;
 fi;
+
+#Always add $HOME/bin no matter what.
+export PATH=$PATH:$HOME/bin    
