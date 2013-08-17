@@ -15,6 +15,7 @@ common_paths=(
     /var/qmail/bin                              # qmail
     /usr/games                                  # fun stuff
     /var/www/bin                                # Misc
+    /usr/lib/go/site/bin/                       # Linux Go
 )           
 unset PATH_tmp                                                                          
 unsetopt NOMATCH                                                                        
