@@ -46,7 +46,6 @@ typeset -A PR_STUFF
 typeset -A altchar
 typeset -A ACS
 export UNME=`uname`
-export GOPATH=$HOME/go
 # For Arch Linux AUR cpan2aur stuffz
 [[ -e  "/etc/arch-release" ]] && export PACKAGER='John D Jones III <j[nospace]n[nospace]b[nospace]e[nospace]k[nospace]1972 -_AT_- the domain name google offers a mail service at ending in dot com>' 
 # Turn STDERR red if we can
