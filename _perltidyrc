@@ -1,6 +1,6 @@
--pbp
+#-pbp
 -i=4    # Indent level is 4 cols
--nst     # Output to STDOUT
+#-nst     # Output to STDOUT
 -se     # Errors to STDERR
 #-vt=1   # Maximal vertical tightness
 #-cti=0  # No extra indentation for closing brackets
