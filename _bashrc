@@ -81,3 +81,6 @@ export EDITOR=vim
 if [ -f $HOME/.ssh-login ]; then
     source $HOME/.ssh-login
 fi
+if [ -f $HOME/.bash_aliases ]; then
+    source $HOME/.bash_aliases
+fi
