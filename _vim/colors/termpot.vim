@@ -46,10 +46,9 @@ hi  SpecialKey      cterm=NONE  ctermfg=52   ctermbg=NONE
 hi  Title           cterm=BOLD  ctermfg=130  ctermbg=232
 hi  Visual          cterm=NONE  ctermfg=232  ctermbg=215
 
-hi  TabLine         cterm=NONE  ctermfg=237  ctermbg=233
-hi  TabLineSel      cterm=BOLD  ctermfg=7    ctermbg=NONE
-"ctermbg=235
-hi  TabLineFill     cterm=NONE  ctermfg=229  ctermbg=245
+"hi  TabLine         cterm=NONE  ctermfg=237  ctermbg=233
+"hi  TabLineSel      cterm=BOLD  ctermfg=7    ctermbg=235
+"hi  TabLineFill     cterm=NONE  ctermfg=229  ctermbg=245
 
 hi  Comment         cterm=NONE  ctermfg=130  ctermbg=NONE
 hi  Constant        cterm=NONE  ctermfg=215  ctermbg=NONE
@@ -67,3 +66,7 @@ hi  Underlined      cterm=BOLD  ctermfg=229  ctermbg=NONE
 hi  TaglistTagName  cterm=BOLD  ctermfg=37   ctermbg=NONE
 
 hi  ColorColumn     ctermbg=233
+
+highlight TabLineFill ctermfg=LightGreen ctermbg=DarkGreen
+highlight TabLine ctermfg=Blue ctermbg=Yellow
+highlight TabLineSel ctermfg=Red ctermbg=Yellow
