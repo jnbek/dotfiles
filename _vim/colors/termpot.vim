@@ -39,7 +39,7 @@ hi  Folded          cterm=BOLD  ctermfg=130  ctermbg=233
 hi  FoldColumn      cterm=NONE  ctermfg=61   ctermbg=232
 
 hi  Directory       cterm=NONE  ctermfg=47   ctermbg=NONE
-hi  LineNr          cterm=BOLD  ctermfg=237  ctermbg=NONE 
+hi  LineNr          cterm=NONE  ctermfg=244  ctermbg=NONE 
 "ctermbg=233
 hi  NonText         cterm=NONE  ctermfg=52   ctermbg=NONE
 hi  SpecialKey      cterm=NONE  ctermfg=52   ctermbg=NONE
