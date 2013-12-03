@@ -21,8 +21,8 @@ hi  WarningMsg      cterm=BOLD  ctermfg=231  ctermbg=202
 hi  ModeMsg         cterm=BOLD  ctermfg=63
 hi  MoreMsg         cterm=BOLD  ctermfg=63
 hi  Question        cterm=BOLD  ctermfg=214
-hi  StatusLine      cterm=BOLD  ctermfg=244  ctermbg=235
-hi  StatusLineNC    cterm=NONE  ctermfg=244  ctermbg=235
+hi  StatusLine      cterm=BOLD  ctermfg=blue  ctermbg=yellow
+hi  StatusLineNC    cterm=NONE  ctermfg=green ctermbg=yellow
 hi  VertSplit       cterm=NONE  ctermfg=244  ctermbg=238
 hi  WildMenu        cterm=BOLD  ctermfg=214  ctermbg=232
 
