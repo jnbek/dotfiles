@@ -15,7 +15,7 @@ mrxvt.highlightTabOnBell:		False
 mrxvt.syncTabTitle:			True
 mrxvt.hideTabbar:			False
 mrxvt.autohideTabbar:			False
-mrxvt.bottomTabbar:			True
+mrxvt.bottomTabbar:			False
 mrxvt.hideButtons:			False
 mrxvt.syncTabIcon:			False
 mrxvt.veryBoldFont:			True
@@ -40,7 +40,7 @@ mrxvt.transparent:			True
 mrxvt.transparentForce:			False
 mrxvt.transparentScrollbar:		False
 mrxvt.transparentMenubar:		False
-mrxvt.transparentTabbar:		False
+mrxvt.transparentTabbar:		True
 mrxvt.tabUsePixmap:			False
 mrxvt.utmpInhibit:			False
 mrxvt.visualBell:			False
