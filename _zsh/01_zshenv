@@ -24,7 +24,8 @@ export LESS_TERMCAP_ue="${terminfo[sgr0]}"      # end underline
 export LESS_TERMCAP_us="${fg_bold[cyan]}"       # underline                       
 export LESS='MiRJw -z-5 -j15'                                                     
 
-export TZ=America/Denver  
+export TZ=America/Denver
+export LC_TIME=POSIX
 
 for pager ('more' 'most' 'less' 'vimpager');
     do [[ -x $(whence -p $pager) ]] && export PAGER=$pager;
