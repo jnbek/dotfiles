@@ -9,7 +9,7 @@ alias ogrep="grep";              # Sometimes we want the unmessedwith grep
 alias grep="grep --color=auto";  # color grep output
 
 if [ "$TERM" != "dumb" ]; then
-    if [ $UNME != "FreeBSD" ] && [ "`which dircolors`" != "" ]; then
+    if [ $UNME != "FreeBSD" ] && [ $UNME != "OpenBSD" ] && [ "`which dircolors`" != "" ]; then
         eval "`dircolors -b`";
         export LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
         alias ls='ls -LFGh --color=auto';
@@ -20,5 +20,8 @@ if [ "$TERM" != "dumb" ]; then
         export LSCOLORS;
         alias ls='ls -FGhT';
         alias console='ezjail-admin console';
+    else
+        alias ls='ls -h'
+        alias grep='/usr/bin/grep'
     fi
 fi

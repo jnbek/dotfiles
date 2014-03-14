@@ -11,10 +11,10 @@ for d in _*;
 do
     orig="${HOME}/${d/_/.}"
     if [ -f ${orig} ]; then
-        cp -v ${orig} ${BACKDIR};
+        cp ${orig} ${BACKDIR};
     fi;
     if [ -d ${orig} ]; then
-        mv -v ${orig} ${BACKDIR};
+        mv ${orig} ${BACKDIR};
     fi;
 done;
 for i in _*;
@@ -22,7 +22,7 @@ do
     source="${PWD}/$i"
     target="${HOME}/${i/_/.}"
     if [ ! -L $target ]; then
-        ln -fivs ${source} ${target};
+        ln -fs ${source} ${target};
     fi;
 done;
 echo "bin/ directory's contents: ";

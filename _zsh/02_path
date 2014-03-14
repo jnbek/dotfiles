@@ -11,7 +11,7 @@ common_paths=(
     /opt/local/bin /opt/local/sbin              # Solaris                                      
     /opt/SUNWspro/bin                           # Solaris                                      
     /usr/ccs/bin                                # Solaris - C Compilation System
-    /usr/platform/$(uname -i)/sbin              # Solaris - hardware dependent          
+    /usr/platform/${MACHTYPE}/sbin              # Solaris - hardware dependent          
     /var/qmail/bin                              # qmail
     /usr/games                                  # fun stuff
     /var/www/bin                                # Misc
