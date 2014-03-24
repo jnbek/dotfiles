@@ -1,5 +1,2 @@
 autoload colors                                       
-if [[ "${terminfo[colors]}" -ge 8 ]]                  
-    then                                              
-            colors                                    
-fi 
+[[ "${terminfo[colors]}" -ge 8 ]] && colors                                    

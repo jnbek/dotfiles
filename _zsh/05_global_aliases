@@ -9,12 +9,12 @@ alias ogrep="grep";              # Sometimes we want the unmessedwith grep
 alias grep="grep --color=auto";  # color grep output
 
 if [ "$TERM" != "dumb" ]; then
-    if [ $UNME != "FreeBSD" ] && [ $UNME != "OpenBSD" ] && [ "`which dircolors`" != "" ]; then
+    if [ ${$OSTYPE} != *bsd* ] && [ -x $(whence -p dircolors) != "" ]; then
         eval "`dircolors -b`";
         export LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
         alias ls='ls -LFGh --color=auto';
 
-    elif [ $UNME = "FreeBSD" ]; then
+    elif [ ${OSTYPE} = freebsd* ]; then
         #LSCOLORS="Exfxcxdxbxegedabagacad";
         LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
         export LSCOLORS;

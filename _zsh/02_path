@@ -30,8 +30,8 @@ do
           #test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"   
   }                                                                                            
 done
-# For FreeBSD Root User
-if [[ ${OSTYPE} == freebsd* && $UID == 0 ]]
+# For BSD Root User
+if [[ ${OSTYPE} == *bsd* && $UID == 0 ]]
     then;                                 
     export PATH=$PATH:/usr/libexec:/usr/local/libexec
 fi;
