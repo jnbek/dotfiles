@@ -1,7 +1,16 @@
+for d in ("bin" "build" "etc" "lib" "var" "tmp" "tmp/vim/bak" ".zcompcache/$HOST");
+    do 
+        if [[ ! -e "$HOME/$d" ]]; then
+            echo "mkdir -p $HOME/$d"; 
+            mkdir -p $HOME/$d;
+        fi;
+done;
+
 common_paths=(                       
-    ${path} ${=$(command -p getconf PATH)//:/ } # what the system thinks PATH should be
+    #${path} ${=$(command -p getconf PATH)//:/ } # what the system thinks PATH should be
     /bin /sbin /usr/bin /usr/sbin               # good places to look                  
     /usr/local/bin /usr/local/sbin              # FreeBSD                              
+    /usr/libexec /usr/local/libexec             # FreeBSD
     /usr/games/bin                              # Gentoo Linux/FreeBSD                            
     /usr/X11R6/bin                              # X11                          
     /usr/pkg/bin /usr/pkg/sbin                  # NetBSD                               
@@ -15,31 +24,26 @@ common_paths=(
     /var/qmail/bin                              # qmail
     /usr/games                                  # fun stuff
     /var/www/bin                                # Misc
+    $HOME/bin $HOME/wrk
+    /usr/lib/go/site/bin
+    /usr/local/lib/go/site/bin
 )           
 unset PATH_tmp                                                                          
 unsetopt NOMATCH                                                                        
-for temp_path in ${common_paths}                                                        
-do                                                                                      
-  if [[ ${OSTYPE} == solaris* ]] {                                                      
-          ## solaris may has some of these directories owned by "bin:bin" (uid 2)       
-          ## observed on: SunOS 5.10 Generic_120011-14 sparc, core install              
-          test -d "${temp_path}"(u0r^IWt,u2r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
-  } else {                                                                                     
-          test -d "${temp_path}"(u0r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"        
-          ## the next line shows how to include symlinks in the PATH                           
-          #test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"   
-  }                                                                                            
-done
-# For BSD Root User
-if [[ ${OSTYPE} == *bsd* && $UID == 0 ]]
-    then;                                 
-    export PATH=$PATH:/usr/libexec:/usr/local/libexec
-fi;
-[[ -d "$HOME/wrk" ]] && export PATH=$PATH:$HOME/wrk
-[[ -d "/usr/lib/go/site/bin" ]] && export PATH=$PATH:/usr/lib/go/site/bin
-[[ -d "/usr/local/lib/go/site/bin" ]] && export PATH=$PATH:/usr/local/lib/go/site/bin
-[[ ! -e "$HOME/tmp/vim/bak" ]] && mkdir -p $HOME/tmp/vim/bak;
-
-
-#Always add $HOME/bin no matter what.
-export PATH=$PATH:$HOME/bin    
+for temp_path in ${common_paths};
+    do                                                                                      
+      if [[ ${OSTYPE} == solaris* ]] {                                                      
+              ## solaris may has some of these directories owned by "bin:bin" (uid 2)       
+              ## observed on: SunOS 5.10 Generic_120011-14 sparc, core install              
+              test -d "${temp_path}"(u0r^IWt,u2r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
+      elif [[ ${OSTYPE} == *freebsd* && "$(/sbin/sysctl -n security.jail.jailed)" == 1 ]] {
+              ## in a bsd jail, look for symlinks, not just directories
+              test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
+      } else {                                                                                     
+              -test -d "${temp_path}"(u0r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"        
+              ## the next line shows how to include symlinks in the PATH                           
+              #test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"   
+      }                                                                                            
+done;
+export PATH=${PATH_tmp/%:/}
+unset common_paths temp_path PATH_tmp
