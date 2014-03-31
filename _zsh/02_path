@@ -1,9 +1,9 @@
 home_subdirs=( bin etc lib var tmp tmp/vim/bak .zcompcache/$HOST );
 
-for d in bin etc lib var tmp tmp/vim/bak .zcompcache/$HOST;
+for d in ${home_subdirs};
     do 
         if [[ ! -e "$HOME/$d" ]]; then
-            echo "mkdir $HOME/$d"; 
+            echo "mkdir $HOME/$d: Sucessfully Created."; 
             mkdir -p $HOME/$d;
         fi;
 done;
