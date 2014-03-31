@@ -73,23 +73,23 @@ command_title () {
     #   we'll put this back, if required, below
     unsetopt PROMPT_SUBST
     case ${TERM} {
-    xterm*)
-        print -Pn "\e]0;[xterm] ${cmnd_name}\a" # plain xterm title & icon name
-        ;;
-    screen)
-        print -Pn "\e]0;[xterm] ${cmnd_name}\e\\" # screen title
-        ;;
-    rxvt*)
-        print -Pn "\e]62;[mrxvt] ${cmnd_name}\a" # rxvt title name
-        [[ -n ${MRXVT_TABTITLE} || -n ${SSH_CONNECTION} ]] && \
-        print -Pn "\e]61;${cmnd_name}\a" # mrxvt tab name
-        ## using ssh from *rxvt, we'll assume that it's mrxvt
-        ## there's no good way to know for sure
-        ## this doesn't seem to cause any harm
-        ;;
-}
-# return PROMPT_SUBST to previous state, if it was set
-setopt LOCAL_OPTIONS
+        xterm*)
+            print -Pn "\e]0;[xterm] ${cmnd_name}\a" # plain xterm title & icon name
+            ;;
+        screen)
+            print -Pn "\e]0;[xterm] ${cmnd_name}\e\\" # screen title
+            ;;
+        rxvt*)
+            print -Pn "\e]62;[mrxvt] ${cmnd_name}\a" # rxvt title name
+            [[ -n ${MRXVT_TABTITLE} || -n ${SSH_CONNECTION} ]] && \
+            print -Pn "\e]61;${cmnd_name}\a" # mrxvt tab name
+            ## using ssh from *rxvt, we'll assume that it's mrxvt
+            ## there's no good way to know for sure
+            ## this doesn't seem to cause any harm
+            ;;
+    }
+    # return PROMPT_SUBST to previous state, if it was set
+    setopt LOCAL_OPTIONS
 }
 
 how_many_cpu () {

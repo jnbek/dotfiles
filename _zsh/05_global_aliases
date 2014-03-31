@@ -5,26 +5,29 @@ alias du="du -h"                 # humane treatment
 alias df="df -h";                # humane treatment again
 alias j="jobs";
 alias dir="ls";                  # Sometimes we want the unmessedwith ls
-alias ogrep="grep";              # Sometimes we want the unmessedwith grep
-alias grep="grep --color=auto";  # color grep output
 
 if [ "$TERM" != "dumb" ]; then
     if [[ ${OSTYPE} != *bsd* ]]; then
         if [ -x "$(whence -p dircolors)" ]; then
             eval "`dircolors -b`";
         else
-            export LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
+            export LS_COLORS="ExGxCxDxBxDxDxCxCxExEx";
         fi
-        alias ls='ls -LFGh --color=auto';
+        alias ls='ls -LpFh --color=auto';
+        alias cp='cp -v'
+        alias mv='mv -v'
+        alias mkdir='mkdir -v'
 
     elif [[ ${OSTYPE} = freebsd* ]]; then
-        #LSCOLORS="Exfxcxdxbxegedabagacad";
-        LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
-        export LSCOLORS;
-        alias ls='ls -FGhT';
+        export LS_COLORS="Exfxcxdxbxegedabagacad";
+        export CLICOLOR="YES";
+        #export LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
+        alias ls='ls -FoHGhT';
+        alias cp='cp -v'
+        alias mv='mv -v'
+        alias mkdir='mkdir -v'
         alias console='ezjail-admin console';
     else
-        alias ls='ls -h'
-        alias grep='/usr/bin/grep'
+        alias ls='ls -FGohT'
     fi
 fi

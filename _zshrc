@@ -4,7 +4,7 @@
 # http://www.gnu.org/licenses/gpl-3.0.txt
 
 if [[ -e $HOME/.zsh ]]; then
-    for file in `ls $HOME/.zsh`;
+    for file in $(ls $HOME/.zsh);
         do source $HOME/.zsh/$file;
     done;
 fi
