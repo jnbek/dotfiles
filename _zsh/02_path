@@ -29,9 +29,10 @@ common_paths=(
     $HOME/bin $HOME/wrk
     /usr/lib/go/site/bin
     /usr/local/lib/go/site/bin
+    /usr/bin/*_perl
 );           
 
-unset PATH_tmp                                                                          
+unset PATH_tmp PATH
 unsetopt NOMATCH                                                                        
 
 for temp_path in ${common_paths};
