@@ -28,6 +28,6 @@ if [ "$TERM" != "dumb" ]; then
         alias mkdir='mkdir -v'
         alias console='ezjail-admin console';
     else
-        alias ls='ls -FGohT'
+        alias ls='ls -FoHhT'
     fi
 fi

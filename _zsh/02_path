@@ -1,7 +1,9 @@
-for d in ("bin" "build" "etc" "lib" "var" "tmp" "tmp/vim/bak" ".zcompcache/$HOST");
+home_subdirs = ( bin etc lib var tmp tmp/vim/bak $HOME/.zcompcache/$HOST );
+
+for d in ${home_subdirs};
     do 
         if [[ ! -e "$HOME/$d" ]]; then
-            echo "mkdir -p $HOME/$d"; 
+            echo "mkdir $HOME/$d"; 
             mkdir -p $HOME/$d;
         fi;
 done;
@@ -27,9 +29,11 @@ common_paths=(
     $HOME/bin $HOME/wrk
     /usr/lib/go/site/bin
     /usr/local/lib/go/site/bin
-)           
+);           
+
 unset PATH_tmp                                                                          
 unsetopt NOMATCH                                                                        
+
 for temp_path in ${common_paths};
     do                                                                                      
       if [[ ${OSTYPE} == solaris* ]] {                                                      
@@ -45,5 +49,6 @@ for temp_path in ${common_paths};
               #test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"   
       }                                                                                            
 done;
+
 export PATH=${PATH_tmp/%:/}
-unset common_paths temp_path PATH_tmp
+unset common_paths temp_path PATH_tmp home_subdirs
