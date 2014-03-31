@@ -1,6 +1,6 @@
-home_subdirs = ( bin etc lib var tmp tmp/vim/bak $HOME/.zcompcache/$HOST );
+home_subdirs=( bin etc lib var tmp tmp/vim/bak .zcompcache/$HOST );
 
-for d in ${home_subdirs};
+for d in bin etc lib var tmp tmp/vim/bak .zcompcache/$HOST;
     do 
         if [[ ! -e "$HOME/$d" ]]; then
             echo "mkdir $HOME/$d"; 
@@ -36,18 +36,20 @@ unsetopt NOMATCH
 
 for temp_path in ${common_paths};
     do                                                                                      
-      if [[ ${OSTYPE} == solaris* ]] {                                                      
+      if [[ ${OSTYPE} == solaris* ]]; 
+          then                                                      
               ## solaris may has some of these directories owned by "bin:bin" (uid 2)       
               ## observed on: SunOS 5.10 Generic_120011-14 sparc, core install              
               test -d "${temp_path}"(u0r^IWt,u2r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
-      elif [[ ${OSTYPE} == *freebsd* && "$(/sbin/sysctl -n security.jail.jailed)" == 1 ]] {
+      elif [[ ${OSTYPE} == *freebsd* && "$(/sbin/sysctl -n security.jail.jailed)" == 1 ]];
+          then
               ## in a bsd jail, look for symlinks, not just directories
               test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
-      } else {                                                                                     
-              -test -d "${temp_path}"(u0r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"        
+      else 
+              test -d "${temp_path}"(u0r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"        
               ## the next line shows how to include symlinks in the PATH                           
               #test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"   
-      }                                                                                            
+      fi;                                                                                            
 done;
 
 export PATH=${PATH_tmp/%:/}
