@@ -37,7 +37,7 @@ for editor ('pico' 'nano' 'ee' 'vi' 'vim');
     do [[ -x $(whence -p $editor) ]] && export EDITOR=$editor;   
 done;                                                            
 ## if there's a `manpath` command, use it                        
-[[ -x $(whence -p manpath) ]] && export MANPATH=$(manpath -qg 2> /dev/null)
+#[[ -x $(whence -p manpath) ]] && export MANPATH=$(manpath -qg 2> /dev/null)
 
 ## old (and/or crappy) versions of `grep` choke on this - make it safe
 grep -q --color $USER /tmp/*(ND.om[1]) 2> /dev/null

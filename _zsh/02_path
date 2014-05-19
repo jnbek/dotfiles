@@ -29,7 +29,9 @@ common_paths=(
     $HOME/bin $HOME/wrk
     /usr/lib/go/site/bin
     /usr/local/lib/go/site/bin
-    /usr/bin/*_perl
+    /usr/bin/core_perl
+    /usr/bin/site_perl
+    /usr/bin/vendor_perl
 );           
 
 unset PATH_tmp PATH
