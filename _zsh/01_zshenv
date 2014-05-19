@@ -40,7 +40,7 @@ done;
 #[[ -x $(whence -p manpath) ]] && export MANPATH=$(manpath -qg 2> /dev/null)
 
 ## old (and/or crappy) versions of `grep` choke on this - make it safe
-grep -q --color $USER /tmp/*(ND.om[1]) 2> /dev/null
+grep -q --color $USER /tmp/ 2> /dev/null
 [[ $? < 2 ]] && export GREP_OPTIONS='--color'
 
 typeset -U common_paths
