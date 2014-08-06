@@ -17,7 +17,8 @@ if has('gui_running')
     colorscheme nightshade
 else
     set t_Co=256
-    colorscheme termpot
+    "colorscheme termpot
+    colorscheme marslo256
     set mouse=v
 endif
 if filereadable($HOME."/.vim_aliases")
