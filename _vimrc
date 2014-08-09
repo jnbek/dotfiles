@@ -14,7 +14,8 @@ if has('gui_running')
     imap <S-C-v> <ESC>"+gPa
     nnoremap <silent> <S-C-T> :%!perltidy -q<Enter>
     vnoremap <silent> <S-C-T> :!perltidy -q<Enter>
-    colorscheme nightshade
+    "colorscheme nightshade
+    colorscheme marslo256
 else
     set t_Co=256
     "colorscheme termpot
