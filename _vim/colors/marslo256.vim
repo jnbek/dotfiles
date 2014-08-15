@@ -50,7 +50,7 @@ hi Question             guifg=springgreen
 hi Search                 guibg=blue            guifg=wheat
 hi SpecialKey             guifg=yellowgreen
 " Status line for each split windows
-hi StatusLine             guibg=olive          guifg=blue         gui=none
+hi StatusLine             guibg=yellow          guifg=blue         gui=none
 "hi StatusLineNC         guibg=gray18          guifg=grey50        gui=none
 hi StatusLineNC         guibg=darkblue          guifg=olivedrab        gui=none
 hi User1                guibg=gray15          guifg=#9876AA
