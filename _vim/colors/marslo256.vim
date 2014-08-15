@@ -47,11 +47,12 @@ hi IncSearch              guifg=slategrey       guibg=khaki
 hi ModeMsg              guifg=goldenrod
 hi MoreMsg              guifg=SeaGreen
 hi Question             guifg=springgreen
-hi Search                 guibg=peru            guifg=wheat
+hi Search                 guibg=blue            guifg=wheat
 hi SpecialKey             guifg=yellowgreen
 " Status line for each split windows
-hi StatusLine             guibg=gray15          guifg=black         gui=none
-hi StatusLineNC         guibg=gray18          guifg=grey50        gui=none
+hi StatusLine             guibg=olive          guifg=blue         gui=none
+"hi StatusLineNC         guibg=gray18          guifg=grey50        gui=none
+hi StatusLineNC         guibg=darkblue          guifg=olivedrab        gui=none
 hi User1                guibg=gray15          guifg=#9876AA
 hi User2                guibg=gray15          guifg=#A5C25C
 " hi Title                guifg=indianred
@@ -169,17 +170,18 @@ hi SpecialKey             ctermfg=darkgreen
 hi NonText              cterm=NONE          ctermfg=239
 hi Directory              ctermfg=63
 hi ErrorMsg             cterm=NONE          ctermfg=red         ctermbg=0
-hi IncSearch              cterm=NONE          ctermfg=yellow      ctermbg=green
+hi IncSearch              cterm=NONE          ctermfg=yellow      ctermbg=darkgreen
 hi Search                 cterm=NONE          ctermfg=grey        ctermbg=blue
 hi MoreMsg              ctermfg=darkgreen
 hi ModeMsg              cterm=NONE          ctermfg=brown
 hi Question             ctermfg=green
 hi StatusLine             cterm=NONE          ctermfg=blue    ctermbg=yellow
-hi StatusLineNC         cterm=NONE
+hi StatusLineNC         cterm=NONE            ctermbg=brown
 hi VertSplit              cterm=NONE
 hi Title                  ctermfg=5
-hi Visual                 cterm=underline     ctermbg=NONE
-hi VisualNOS              cterm=underline
+"hi Visual                 cterm=underline     ctermbg=NONE
+hi Visual                 ctermfg=Yellow           ctermbg=DarkGreen     cterm=none
+hi VisualNOS              cterm=None    ctermfg=Yellow
 hi WarningMsg             ctermfg=yellow      ctermbg=black
 hi WildMenu             ctermfg=0           ctermbg=3
 hi Folded                 ctermfg=darkred    ctermbg=NONE
