@@ -8,6 +8,16 @@ vim () {
     fi  
 }
 
+gvim () {
+    VIM_EXEC=$(whence -p vim)
+    if [[ $argv[(r)-p] == '-p' ]]
+        then
+        $VIM_EXEC $argv;
+    else
+        $VIM_EXEC -p $argv;
+    fi  
+}
+
 cd () {
     ## cd to a file (cd to the directory that a file is in)
     ## this _might_ break some zsh specific features of 'cd', but none that i use
