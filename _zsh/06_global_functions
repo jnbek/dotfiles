@@ -9,7 +9,7 @@ vim () {
 }
 
 gvim () {
-    VIM_EXEC=$(whence -p vim)
+    GVIM_EXEC=$(whence -p gvim)
     if [[ $argv[(r)-p] == '-p' ]]
         then
         $VIM_EXEC $argv;
