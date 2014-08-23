@@ -12,9 +12,9 @@ gvim () {
     GVIM_EXEC=$(whence -p gvim)
     if [[ $argv[(r)-p] == '-p' ]]
         then
-        $VIM_EXEC $argv;
+        $GVIM_EXEC $argv;
     else
-        $VIM_EXEC -p $argv;
+        $GVIM_EXEC -p $argv;
     fi  
 }
 
