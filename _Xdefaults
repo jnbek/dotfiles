@@ -34,4 +34,4 @@ URxvt.font: xft:monospace:pixelsize=11, \
             xft:Kochi Gothic:antialias=false, \
             xft:Code2000:antialias=false
 XTerm.reverseVideo: true
-
+*TkTheme: clam
