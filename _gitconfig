@@ -9,6 +9,11 @@
     added = cyan
     changed = green
     untracked = red
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
 [core]
     ignorecase = false
     editor = vim
