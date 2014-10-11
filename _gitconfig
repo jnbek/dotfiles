@@ -1,0 +1,21 @@
+[user]
+	name = John D Jones III
+	email = jnbek1972@gmail.com
+[url "https://github.com/"]
+	insteadOf = git://github.com/
+[color]
+	ui = auto
+[color "status"]
+    added = cyan
+    changed = green
+    untracked = red
+[core]
+    ignorecase = false
+    editor = vim
+
+[alias]
+    # short aliases
+    stat = status 
+    co = checkout
+    ci = commit
+    ann = annotate
