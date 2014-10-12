@@ -24,3 +24,5 @@
     co = checkout
     ci = commit
     ann = annotate
+[push]
+	default = simple
