@@ -7,13 +7,20 @@ alias j="jobs";
 alias dir="ls";                  # Sometimes we want the unmessedwith ls
 
 if [ "$TERM" != "dumb" ]; then
-    if [[ ${OSTYPE} != *bsd* ]]; then
+    if [[ ${OSTYPE} = linux* ]]; then
         if [ -x "$(whence -p dircolors)" ]; then
             eval "`dircolors -b`";
         else
             export LS_COLORS="ExGxCxDxBxDxDxCxCxExEx";
         fi
         alias ls='ls -LpFh --color=auto';
+        alias cp='cp -v'
+        alias mv='mv -v'
+        alias mkdir='mkdir -v'
+
+    elif [[ ${OSTYPE} = darwin* ]]; then
+        export LS_COLORS="ExGxCxDxBxDxDxCxCxExEx";
+        alias ls='ls -LpFhG';
         alias cp='cp -v'
         alias mv='mv -v'
         alias mkdir='mkdir -v'
