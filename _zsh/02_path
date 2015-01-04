@@ -1,4 +1,4 @@
-home_subdirs=( bin etc lib var tmp tmp/vim/bak .zcompcache/$HOST );
+home_subdirs=( bin etc lib opt var tmp tmp/vim/bak .zcompcache/$HOST );
 
 for d in ${home_subdirs};
     do 
