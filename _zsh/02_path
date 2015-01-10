@@ -15,6 +15,7 @@ common_paths=(
     /usr/libexec /usr/local/libexec             # FreeBSD
     /usr/games/bin                              # Gentoo Linux/FreeBSD                            
     /usr/X11R6/bin                              # X11                          
+    /usr/X11/bin                                # X11/MacOSX
     /usr/pkg/bin /usr/pkg/sbin                  # NetBSD                               
     /usr/ucb                                    # Solaris - BSD                
     /usr/sfw/bin /usr/sfw/sbin                  # Solaris - sun free-ware              
