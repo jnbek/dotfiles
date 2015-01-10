@@ -27,8 +27,11 @@ common_paths=(
     /usr/games                                  # fun stuff
     /var/www/bin                                # Misc
     $HOME/bin $HOME/wrk
+    # Go Language
     /usr/lib/go/site/bin
+    /usr/local/go/bin
     /usr/local/lib/go/site/bin
+    # Perl
     /usr/bin/core_perl
     /usr/bin/site_perl
     /usr/bin/vendor_perl
