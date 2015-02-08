@@ -87,6 +87,7 @@ autocmd BufNewFile,BufRead *.pmc,*.ops                setf c
 autocmd BufNewFile,BufRead *.tt,*.email,*.html,*.htm  setf tt2html
 autocmd BufNewFile,BufRead *.phpt                     setf php
 autocmd BufNewFile,BufRead *.js,*.gjs                 setf javascript
+autocmd BufNewFile,BufRead *.go                       setf go
 " FileType Settings
 
 autocmd FileType perl set makeprg=perl\ -wc\ %\ $*
@@ -105,7 +106,7 @@ autocmd FileType text call TextMode()
 autocmd FileType mail call TextMode()
 autocmd FileType vim  set iskeyword+=. iskeyword+=/ iskeyword+=~
 
-autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4|set autoindent|set smartindent
+autocmd FileType html    set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4|set autoindent|set smartindent
 autocmd FileType tt2html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4|set autoindent|set smartindent
 autocmd! BufRead,BufNewFile *.json setfiletype json 
 
