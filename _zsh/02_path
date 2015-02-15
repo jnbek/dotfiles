@@ -32,6 +32,7 @@ common_paths=(
     /usr/lib/go/site/bin
     /usr/local/go/bin
     /usr/local/lib/go/site/bin
+    /opt/go/bin
     # Perl
     /usr/bin/core_perl
     /usr/bin/site_perl
