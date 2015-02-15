@@ -1,11 +1,12 @@
 home_subdirs=( bin etc lib opt var tmp tmp/vim/bak .zcompcache/$HOST );
 
 for d in ${home_subdirs};
-    do 
-        if [[ ! -e "$HOME/$d" ]]; then
-            echo "mkdir $HOME/$d: Sucessfully Created."; 
-            mkdir -p $HOME/$d;
-        fi;
+do 
+    if [[ ! -e "$HOME/$d" ]];
+    then
+        echo "mkdir $HOME/$d: Sucessfully Created."; 
+        mkdir -p $HOME/$d;
+    fi;
 done;
 
 common_paths=(                       
@@ -13,7 +14,6 @@ common_paths=(
     /bin /sbin /usr/bin /usr/sbin               # good places to look                  
     /usr/local/bin /usr/local/sbin              # FreeBSD                              
     /usr/libexec /usr/local/libexec             # FreeBSD
-    /usr/games/bin                              # Gentoo Linux/FreeBSD                            
     /usr/X11R6/bin                              # X11                          
     /usr/X11/bin                                # X11/MacOSX
     /usr/pkg/bin /usr/pkg/sbin                  # NetBSD                               
@@ -26,8 +26,10 @@ common_paths=(
     /usr/platform/${MACHTYPE}/sbin              # Solaris - hardware dependent          
     /var/qmail/bin                              # qmail
     /usr/games                                  # fun stuff
+    /usr/games/bin                              # Gentoo Linux/FreeBSD                            
     /var/www/bin                                # Misc
-    $HOME/bin $HOME/wrk
+    $HOME/bin 
+    $HOME/wrk
     # Go Language
     /usr/lib/go/site/bin
     /usr/local/go/bin
@@ -43,22 +45,37 @@ unset PATH_tmp PATH
 unsetopt NOMATCH                                                                        
 
 for temp_path in ${common_paths};
-    do                                                                                      
-      if [[ ${OSTYPE} == solaris* ]]; 
-          then                                                      
-              ## solaris may has some of these directories owned by "bin:bin" (uid 2)       
-              ## observed on: SunOS 5.10 Generic_120011-14 sparc, core install              
-              test -d "${temp_path}"(u0r^IWt,u2r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
-      elif [[ ${OSTYPE} == *freebsd* && "$(/sbin/sysctl -n security.jail.jailed)" == 1 ]];
-          then
-              ## in a bsd jail, look for symlinks, not just directories
-              test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
-      else 
-              test -d "${temp_path}"(u0r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"        
-              ## the next line shows how to include symlinks in the PATH                           
-              #test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"   
-      fi;                                                                                            
+do                                                                                      
+    if [[ ${OSTYPE} == solaris* ]]; 
+    then                                                      
+        ## solaris may has some of these directories owned by "bin:bin" (uid 2)       
+        ## observed on: SunOS 5.10 Generic_120011-14 sparc, core install              
+        test -d "${temp_path}"(u0r^IWt,u2r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
+    elif [[ ${OSTYPE} == *freebsd* && "$(/sbin/sysctl -n security.jail.jailed)" == 1 ]];
+    then
+        ## in a bsd jail, look for symlinks, not just directories
+        test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"
+    else 
+        test -d "${temp_path}"(u0r^IWt,Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"        
+        ## the next line shows how to include symlinks in the PATH                           
+        #test -e "${temp_path}"(-/u0r^IWt,-/Ur^IWt) && PATH_tmp="${PATH_tmp}${temp_path}:"   
+    fi;                                                                                            
 done;
 
 export PATH=${PATH_tmp/%:/}
+
+# Fix up the GOPATH stuff
+
+if [[ -x "$(whence -p go)" ]];
+then
+    go_dir=$HOME/var/go/pkg;
+    if [[ ! -e "$go_dir" ]];
+    then
+        mkdir -p $go_dir;
+        echo "$go_dir Successfully created";
+    fi;
+    export GOPATH=$go_dir;
+    unset go_dir
+fi;
+
 unset common_paths temp_path PATH_tmp home_subdirs
