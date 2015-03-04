@@ -2,7 +2,9 @@
 -i=4    # Indent level is 4 cols
 #-nst     # Output to STDOUT
 -se     # Errors to STDERR
-#-vt=1   # Maximal vertical tightness
+-vt=0    # Minimal vertical tightness
+-vtc=0
+-otr
 #-cti=0  # No extra indentation for closing brackets
 #-pt=2   # High parenthesis tightness
 #-bt=2   # High brace tightness
