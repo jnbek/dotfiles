@@ -25,7 +25,7 @@ package CPANPLUS::Config::User;
 
 use strict;
 
-use Env qw(HOME);
+use Env qw(HOME PATH SHELL);
 
 sub setup {
     my $conf = shift;
@@ -96,16 +96,23 @@ sub setup {
     
     ### program section    
     $conf->set_program( editor => 'vim' );    
-    $conf->set_program( make => '/usr/bin/make' );    
+    $conf->set_program( make => which('make') );    
     $conf->set_program( pager => 'less' );    
-    $conf->set_program( perlwrapper => '/usr/bin/cpanp-run-perl' );    
-    $conf->set_program( shell => '/bin/zsh' );    
-    $conf->set_program( sudo => '/usr/bin/sudo' );    
+    $conf->set_program( perlwrapper => which('cpanp-run-perl') );    
+    $conf->set_program( shell => $SHELL );    
+    $conf->set_program( sudo => which('sudo') );    
     
     
 
 
     return 1;
+}
+
+sub which {
+    my $program = shift;
+    foreach my $dir (split ':',$PATH) {
+        return "$dir/$program" if -x "$dir/$program";
+    }
 }
 
 1;
