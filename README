@@ -4,11 +4,16 @@ These are my dotfiles. Most are cobbled together from stuff I've found over the 
 Zsh 5           http://www.zsh.org/  
 Vim 7           http://vim.sf.net/
 Tmux 1          http://tmux.sourceforge.net/
-PerlTidy        http://perltidy.sourceforge.net/
 
 -- For Legacy Purposes:
 Screen 4          http://www.gnu.org/software/screen/
 Bash 3 & 4        http://www.gnu.org/software/bash/
+
+-- Perl Stuff
+CPANPLUS          https://metacpan.org/release/CPANPLUS
+Module::Starter   https://metacpan.org/pod/Module::Starter
+PerlTidy          https://metacpan.org/pod/distribution/Perl-Tidy/bin/perltidy
+
 -- Other Stuff:
 
 Colortail, Urxvt, Mrvxt, makepkg, csh, sh, ack and Xorg tweeks.
