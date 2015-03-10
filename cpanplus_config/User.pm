@@ -35,10 +35,10 @@ sub setup {
     $conf->set_conf( allow_unknown_prereqs => 1 );    
     $conf->set_conf( base => "$HOME/.cpanplus" );    
     $conf->set_conf( buildflags => '' );    
-    $conf->set_conf( cpantest => 0 );    
+    $conf->set_conf( cpantest => 1 );    
     $conf->set_conf( cpantest_mx => '' );    
     $conf->set_conf( cpantest_reporter_args => {} );    
-    $conf->set_conf( debug => 0 );    
+    $conf->set_conf( debug => 1 );    
     $conf->set_conf( dist_type => '' );    
     $conf->set_conf( email => 'jnbek@cpan.org' );    
     $conf->set_conf( enable_custom_sources => 1 );    
