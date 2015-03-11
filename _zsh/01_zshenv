@@ -23,8 +23,10 @@ NL="%{"$'\n'"%}"
 #export LESS_TERMCAP_ue="${terminfo[sgr0]}"      # end underline                   
 #export LESS_TERMCAP_us="${fg_bold[cyan]}"       # underline                       
 
+## See man terminfo for tput parameter codes
+
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
-export LESS_TERMCAP_md=$(tput bold; tput setaf 6) # cyan
+export LESS_TERMCAP_md=$(tput bold; tput setaf 3) # cyan
 export LESS_TERMCAP_me=$(tput sgr0)
 export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # yellow on blue
 export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
@@ -49,7 +51,7 @@ for pager ('more' 'most' 'less' 'vimpager');
         unset PATH_TO_PAGER;
 done;                                                      
 for browser ('links' 'lynx' 'w3m' 'elinks');               
-    do 
+    do  # TODO: Add in support for xdg-setting and X11
         PATH_TO_BROWSER=$(whence -p $browser);
         [[ -x $PATH_TO_BROWSER ]] && export BROWSER=$PATH_TO_BROWSER;
         unset PATH_TO_BROWSER;
@@ -76,4 +78,4 @@ typeset -A ACS
 [[ -e  "/etc/arch-release" ]]            && export PACKAGER='John D Jones III <jnbek1972 -_AT_- g m a i l -_Dot_- com>' 
 # Turn STDERR red if we can
 [[ -f "/usr/lib/libstderred.so" ]]       && export LD_PRELOAD="/usr/lib/libstderred.so"
-[[ -f "/usr/local/lib/libstderred.so" ]] && export LD_PRELOAD="/usr/lib/libstderred.so"
+[[ -f "/usr/local/lib/libstderred.so" ]] && export LD_PRELOAD="/usr/local/lib/libstderred.so"
