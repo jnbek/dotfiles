@@ -28,13 +28,22 @@ export TZ=America/Denver
 export LC_TIME=POSIX
 
 for pager ('more' 'most' 'less' 'vimpager');
-    do [[ -x $(whence -p $pager) ]] && export PAGER=$pager;
+    do
+        PATH_TO_PAGER=$(whence -p $pager);
+        [[ -x $PATH_TO_PAGER ]] && export PAGER=$PATH_TO_PAGER;
+        unset PATH_TO_PAGER;
 done;                                                      
 for browser ('links' 'lynx' 'w3m' 'elinks');               
-    do [[ -x $(whence -p $browser) ]] && export BROWSER=$browser;
+    do 
+        PATH_TO_BROWSER=$(whence -p $browser);
+        [[ -x $PATH_TO_BROWSER ]] && export BROWSER=$PATH_TO_BROWSER;
+        unset PATH_TO_BROWSER;
 done;                                                            
 for editor ('pico' 'nano' 'ee' 'vi' 'vim');                           
-    do [[ -x $(whence -p $editor) ]] && export EDITOR=$editor;   
+    do 
+        PATH_TO_EDITOR=$(whence -p $editor);
+        [[ -x $PATH_TO_EDITOR ]] && export EDITOR=$PATH_TO_EDITOR;   
+        unset PATH_TO_EDITOR;
 done;                                                            
 ## if there's a `manpath` command, use it                        
 #[[ -x $(whence -p manpath) ]] && export MANPATH=$(manpath -qg 2> /dev/null)
