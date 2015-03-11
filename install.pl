@@ -49,17 +49,21 @@ sub do_cpanp_conf {
     my $self = shift;
     return unless $self->which("cpanp");
     my $cwd  = $self->{'cwd'};
-    my $orig = "$HOME/.cpanplus/lib/CPANPLUS/Config/User.pm";
-    my $file = "$cwd/cpanplus_config/User.pm";
+    my $name = "User.pm";
+    my $targ = "$HOME/.cpanplus/lib/CPANPLUS/Config/$name";
+    my $orig = "$cwd/cpanplus_config/$name";
     unless ( -d "$HOME/.cpanplus/lib/CPANPLUS/Config/" ) {
         make_path( "$HOME/.cpanplus/lib/CPANPLUS/Config/", { verbose => 1 } );
     }
+    if ( -f $targ && !-l $targ ) {
+        move( $targ, $self->{'bak_path'} . "/$name" );
+    }
     if ( -l $orig ) {
-        print BOLD, YELLOW, "Skipping $file -> $orig: Symlink exists\n", RESET;
+        print BOLD, YELLOW, "Skipping $orig -> $targ: Symlink exists\n", RESET;
     }
     else {
-        print BOLD, GREEN, "Creating Symlink: $file -> $orig\n", RESET;
-        symlink $file, "$orig";
+        print BOLD, GREEN, "Creating Symlink: $orig -> $targ\n", RESET;
+        symlink $orig, $targ;
     }
     return 0;
 }
