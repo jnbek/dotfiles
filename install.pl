@@ -14,8 +14,9 @@ our $VERSION = "1.7";
 
 sub main {
     my $self = shift;
+    my $now  = time;
+    my $cwd = $self->{'cwd'} ||= do { getcwd(); };
     $self->{'bak_path'} = "$cwd/backups/$USER/$now";
-    $self->{'cwd'}      = getcwd();
     my $cpc = $self->do_cpanp_conf();
     my $cnt = map { $self->install($_) } ( glob "_*" );
     return 0;
@@ -25,7 +26,6 @@ sub install {
     my $self = shift;
     my $name = shift;
     my $cwd  = $self->{'cwd'};
-    my $now  = time;
     my $orig = $name;
     $name =~ s/^_/\./xms;
     #$name =~ s/\.sample$//xm if $name =~ m/\.sample$/mx;
