@@ -15,7 +15,7 @@ our $VERSION = "1.7";
 sub main {
     my $self = shift;
     my $now  = time;
-    my $cwd = $self->{'cwd'} ||= do { getcwd(); };
+    my $cwd  = $self->{'cwd'} ||= do { getcwd(); };
     $self->{'bak_path'} = "$cwd/backups/$USER/$now";
     my $cpc = $self->do_cpanp_conf();
     my $cnt = map { $self->install($_) } ( glob "_*" );
