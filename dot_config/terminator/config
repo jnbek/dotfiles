@@ -1,0 +1,58 @@
+[global_config]
+  enabled_plugins = InactivityWatch, ActivityWatch, TerminalShot
+  dbus = True
+  sticky = True
+[keybindings]
+  cycle_prev = <Primary>Page_Down
+  next_tab = <Shift>Right
+  split_horiz = <Primary><Shift>bar
+  prev_tab = <Shift>Left
+  cycle_next = <Primary>Page_Up
+  split_vert = <Primary><Shift>underscore
+[profiles]
+  [[default]]
+    palette = "#000000:#aa0000:#00aa00:#aa5500:#0000aa:#aa00aa:#00aaaa:#aaaaaa:#555555:#ff5555:#55ff55:#ffff55:#5555ff:#ff55ff:#55ffff:#ffffff"
+    font = Inconsolata Medium 10
+    visible_bell = True
+    background_image = None
+    background_darkness = 0.86
+    urgent_bell = True
+    background_type = transparent
+    use_system_font = False
+    login_shell = True
+    copy_on_selection = True
+    scrollback_lines = 5000
+  [[irc]]
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff"
+    visible_bell = True
+    background_image = None
+    background_darkness = 0.82
+    urgent_bell = True
+    background_type = transparent
+    use_system_font = False
+    font = Monospace 10
+    scrollback_lines = 5000
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      command = ""
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = ""
+  [[irc]]
+    [[[child0]]]
+      position = 2:46
+      type = Window
+      order = 0
+      parent = ""
+      size = 577, 378
+    [[[terminal1]]]
+      profile = irc
+      command = /usr/bin/tmux attach -d -t irc
+      type = Terminal
+      order = 0
+      parent = child0
+[plugins]

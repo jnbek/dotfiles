@@ -1,0 +1,4 @@
+#!/bin/sh
+/usr/bin/tmux new -d -s irc weechat-curses;
+sleep 2;
+/usr/bin/terminator -m -l irc -p irc
