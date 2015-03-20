@@ -54,7 +54,7 @@ sub do_cpanp_conf {
     my $cwd  = $self->{'cwd'};
     my $name = "User.pm";
     my $targ = "$HOME/.cpanplus/lib/CPANPLUS/Config/$name";
-    my $orig = "$cwd/cpanplus_config/$name";
+    my $orig = "$cwd/dot_cpanplus/$name";
     unless ( -d "$HOME/.cpanplus/lib/CPANPLUS/Config/" ) {
         make_path( "$HOME/.cpanplus/lib/CPANPLUS/Config/", { verbose => 1 } );
     }
