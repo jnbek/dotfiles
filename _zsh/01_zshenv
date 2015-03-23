@@ -75,7 +75,7 @@ typeset -A altchar
 typeset -A ACS
 
 # For Arch Linux AUR cpan2aur stuffz
-[[ -e  "/etc/arch-release" ]]            && export PACKAGER='John D Jones III <jnbek1972 -_AT_- g m a i l -_Dot_- com>' 
+[[ -e  "/etc/arch-release" ]]            && export PACKAGER='John D Jones III AKA jnbek <jnbek1972 -_AT_- g m a i l -_Dot_- com>' 
 # Turn STDERR red if we can
 [[ -f "/usr/lib/libstderred.so" ]]       && export LD_PRELOAD="/usr/lib/libstderred.so"
 [[ -f "/usr/local/lib/libstderred.so" ]] && export LD_PRELOAD="/usr/local/lib/libstderred.so"
