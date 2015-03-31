@@ -1,3 +1,4 @@
+autoload -U terminfo
 bindkey -e
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
