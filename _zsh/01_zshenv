@@ -12,32 +12,45 @@ BOLD="%{"$'\033[01;39m'"%}"
 NORM="%{"$'\033[00m'"%}"     
 NL="%{"$'\n'"%}"  
 
-#export LESS_TERMCAP_md="${terminfo[bold]}${fg_bold[white]}"     # bold/ bright
-#export LESS_TERMCAP_mh="${fg[white]}"           # dim/ half                   
-#export LESS_TERMCAP_me="${terminfo[sgr0]}"      # normal (turn off all attributes)
-#export LESS_TERMCAP_mr="${terminfo[rev]}"       # reverse                         
-#export LESS_TERMCAP_mp="${fg[white]}"           # protected                       
-#export LESS_TERMCAP_mk="${fg[white]}"           # blank/ invisible                
-#export LESS_TERMCAP_se="${terminfo[sgr0]}"      # standout end                    
-#export LESS_TERMCAP_so="${terminfo[rev]}"       # standout                        
-#export LESS_TERMCAP_ue="${terminfo[sgr0]}"      # end underline                   
-#export LESS_TERMCAP_us="${fg_bold[cyan]}"       # underline                       
+if [[ ${OSTYPE} = "openbsd*" ]]; then
+##TODO: Fix this to use OpenBSD's tput
+#tput: not enough arguments (3) for capability `setaf'
+#tput: not enough arguments (3) for capability `setaf'
+#tput: not enough arguments (3) for capability `setaf'
+#tput: not enough arguments (3) for capability `setab'
+#tput: not enough arguments (3) for capability `setaf'
+#tput: Unknown terminfo capability `dim'
+#tput: Unknown terminfo capability `ssubm'
+#tput: Unknown terminfo capability `rsubm'
+#tput: Unknown terminfo capability `ssupm'
+#tput: Unknown terminfo capability `rsupm'
 
-## See man terminfo for tput parameter codes
-
-export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
-export LESS_TERMCAP_md=$(tput bold; tput setaf 3) # cyan
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # yellow on blue
-export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7) # white
-export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_mh=$(tput dim)
-export LESS_TERMCAP_ZN=$(tput ssubm)
-export LESS_TERMCAP_ZV=$(tput rsubm)
-export LESS_TERMCAP_ZO=$(tput ssupm)
-export LESS_TERMCAP_ZW=$(tput rsupm)
+    export LESS_TERMCAP_md="${terminfo[bold]}${fg_bold[white]}"     # bold/ bright
+    export LESS_TERMCAP_mh="${fg[white]}"           # dim/ half                   
+    export LESS_TERMCAP_me="${terminfo[sgr0]}"      # normal (turn off all attributes)
+    export LESS_TERMCAP_mr="${terminfo[rev]}"       # reverse                         
+    export LESS_TERMCAP_mp="${fg[white]}"           # protected                       
+    export LESS_TERMCAP_mk="${fg[white]}"           # blank/ invisible                
+    export LESS_TERMCAP_se="${terminfo[sgr0]}"      # standout end                    
+    export LESS_TERMCAP_so="${terminfo[rev]}"       # standout                        
+    export LESS_TERMCAP_ue="${terminfo[sgr0]}"      # end underline                   
+    export LESS_TERMCAP_us="${fg_bold[cyan]}"       # underline                       
+else
+    ## See man terminfo for tput parameter codes
+    export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
+    export LESS_TERMCAP_md=$(tput bold; tput setaf 3) # cyan
+    export LESS_TERMCAP_me=$(tput sgr0)
+    export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # yellow on blue
+    export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+    export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7) # white
+    export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+    export LESS_TERMCAP_mr=$(tput rev)
+    export LESS_TERMCAP_mh=$(tput dim)
+    export LESS_TERMCAP_ZN=$(tput ssubm)
+    export LESS_TERMCAP_ZV=$(tput rsubm)
+    export LESS_TERMCAP_ZO=$(tput ssupm)
+    export LESS_TERMCAP_ZW=$(tput rsupm)
+fi;
 
 export LESS='MiRJw -z-5 -j15'                                                     
 
