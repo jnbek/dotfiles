@@ -1,15 +1,19 @@
 alias mv='nocorrect mv'         # no spelling correction on mv (zsh FAQ 3.4)
 alias cp='nocorrect cp'         # no spelling correction on cp (zsh FAQ 3.4)
 alias mkdir='nocorrect mkdir'   # no spelling correction on mkdir (zsh FAQ 3.4)
-alias du="du -h"                 # humane treatment
-alias df="df -h";                # humane treatment again
+alias du="du -h"                # humane treatment
+alias df="df -h";               # humane treatment again
 alias j="jobs";
-alias dir="ls";                  # Sometimes we want the unmessedwith ls
+alias dir="$(whence -p ls)";    # Sometimes we want the unmessedwith ls
+
+## old (and/or crappy) versions of `grep` choke on this - make it safe
+grep -q --color source $HOME/.zshrc 2> /dev/null
+[[ $? < 2 ]] && alias grep="$(whence -p grep) --color"
 
 if [ "$TERM" != "dumb" ]; then
     if [[ ${OSTYPE} = linux* ]]; then
         if [ -x "$(whence -p dircolors)" ]; then
-            eval "`dircolors -b`";
+            eval "$(dircolors -b)";
         else
             export LS_COLORS="ExGxCxDxBxDxDxCxCxExEx";
         fi

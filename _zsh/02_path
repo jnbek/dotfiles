@@ -9,6 +9,8 @@ do
     fi;
 done;
 
+typeset -U common_paths
+
 common_paths=(                       
     #${path} ${=$(command -p getconf PATH)//:/ } # what the system thinks PATH should be
     /bin /sbin /usr/bin /usr/sbin               # good places to look                  

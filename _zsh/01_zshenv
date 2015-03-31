@@ -65,15 +65,6 @@ done;
 ## if there's a `manpath` command, use it                        
 #[[ -x $(whence -p manpath) ]] && export MANPATH=$(manpath -qg 2> /dev/null)
 
-## old (and/or crappy) versions of `grep` choke on this - make it safe
-grep -q --color $USER /tmp/ 2> /dev/null
-[[ $? < 2 ]] && export GREP_OPTIONS='--color'
-
-typeset -U common_paths
-typeset -A PR_STUFF
-typeset -A altchar
-typeset -A ACS
-
 # For Arch Linux AUR cpan2aur stuffz
 [[ -e  "/etc/arch-release" ]]            && export PACKAGER='John D Jones III AKA jnbek <jnbek1972 -_AT_- g m a i l -_Dot_- com>' 
 # Turn STDERR red if we can
