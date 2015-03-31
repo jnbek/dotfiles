@@ -13,7 +13,7 @@ BOLD="%{"$'\033[01;39m'"%}"
 NORM="%{"$'\033[00m'"%}"     
 NL="%{"$'\n'"%}"  
 
-if [[ ${OSTYPE} = "openbsd*" ]]; then
+if [[ ${OSTYPE} = openbsd* ]]; then
 ##TODO: Fix this to use OpenBSD's tput
 #tput: not enough arguments (3) for capability `setaf'
 #tput: not enough arguments (3) for capability `setaf'
