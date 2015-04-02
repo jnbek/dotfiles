@@ -3,7 +3,8 @@ alias cp='nocorrect cp'         # no spelling correction on cp (zsh FAQ 3.4)
 alias mkdir='nocorrect mkdir'   # no spelling correction on mkdir (zsh FAQ 3.4)
 alias du="du -h"                # humane treatment
 alias df="df -h";               # humane treatment again
-alias j="jobs";
+alias j="jobs -dlp";
+alias jobs="jobs -dlp";
 alias dir="$(whence -p ls)";    # Sometimes we want the unmessedwith ls
 
 ## old (and/or crappy) versions of `grep` choke on this - make it safe
