@@ -9,7 +9,7 @@ use Env qw(HOME USER PATH);
 use File::Path qw(make_path);
 use Term::ANSIColor qw(:constants);
 
-our $VERSION = "1.7";
+our $VERSION = "1.7.2";
 ( bless {}, __PACKAGE__ )->main();
 
 sub main {
@@ -29,10 +29,12 @@ sub install {
     my $orig = $name;
     $name =~ s/^_/\./xms;
     #$name =~ s/\.sample$//xm if $name =~ m/\.sample$/mx;
+
+    return 0 if $orig eq '_jackdrc' && not $self->which('jackd');
     if (   ( -f "$HOME/$name" && !-l "$HOME/$name" )
         || ( -d "$HOME/$name" && !-l "$HOME/$name" ) )
     {
-        make_path( $self->{'bak_path'}, { verbose => 1 } );
+        make_path( $self->{'bak_path'}, { verbose => 1 } ) unless -e $self->{'bak_path'};
         move( "$HOME/$name", $self->{'bak_path'} . "/$name" );
     }
     if ( -l "$HOME/$name" ) {
