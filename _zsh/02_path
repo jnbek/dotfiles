@@ -70,7 +70,7 @@ export PATH=${PATH_tmp/%:/}
 
 if [[ -x "$(whence -p go)" ]];
 then
-    go_dir=$HOME/var/go/pkg;
+    go_dir=$HOME/var/go/pkgs;
     if [[ ! -e "$go_dir" ]];
     then
         mkdir -p $go_dir;
