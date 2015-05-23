@@ -32,6 +32,8 @@ common_paths=(
     /var/www/bin                                # Misc
     $HOME/bin 
     $HOME/wrk
+    # Grrr Mac 
+    /usr/local/git/bin
     # Go Language
     /usr/lib/go/site/bin
     /usr/local/go/bin
