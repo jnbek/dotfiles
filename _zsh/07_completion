@@ -67,3 +67,4 @@ compctl -g ':completion:*:complete:ssh:*:hosts' hosts $hosts
 
 compctl -j -P '%' + -s '$(ps -x | tail +2 | cut -c1-5)' + -x 's[-] p[1]' -k "($signals[1,-3])" -- kill
 
+# vim:set ft=zsh:

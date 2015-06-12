@@ -176,4 +176,4 @@ _ezjail_mostly_stopped_jails () {
 
 _ezjail "$@"
 
-# -*- mode: shell-script -*-
+# vim:set ft=zsh:

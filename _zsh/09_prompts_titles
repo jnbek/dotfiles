@@ -79,3 +79,5 @@ TRAPALRM () {
     zle || return 0
     zle reset-prompt
 }
+
+# vim:set ft=zsh:

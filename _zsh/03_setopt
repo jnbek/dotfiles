@@ -12,3 +12,5 @@ setopt PROMPT_SUBST \
     NOGLOBALRCS
 unsetopt NULL_GLOB
 [[ $ZSH_VERSION > 4.2.99 ]] && setopt PROMPT_SP    
+
+# vim:set ft=zsh:

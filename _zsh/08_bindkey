@@ -29,3 +29,5 @@ bindkey "^b" beginning-of-line
 bindkey "^w" backward-kill-word
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
+
+# vim:set ft=zsh:

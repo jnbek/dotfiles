@@ -334,3 +334,5 @@ _pacman() {
 
 # run the main dispatcher
 _pacman "$@"
+
+# vim:set ft=zsh:

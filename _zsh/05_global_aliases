@@ -43,3 +43,5 @@ if [ "$TERM" != "dumb" ]; then
         alias ls='ls -FoHhT'
     fi
 fi
+
+# vim:set ft=zsh:

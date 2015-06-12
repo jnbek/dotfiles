@@ -146,3 +146,5 @@ tmux() {
         command tmux "$@"
     fi
 }
+
+# vim:set ft=zsh:
