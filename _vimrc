@@ -45,8 +45,8 @@ let perl_extended_vars=1
 let perl_include_pod=1
 
 set tabpagemax=25
-set modelines=0
-set nomodeline
+set modelines=1
+"set nomodeline
 set ttymouse=xterm2
 set dir^=$HOME/tmp/vim//
 set bex=.vbak

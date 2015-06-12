@@ -84,3 +84,4 @@ then
 fi;
 
 unset common_paths temp_path PATH_tmp home_subdirs
+# vim:set ft=zsh:
