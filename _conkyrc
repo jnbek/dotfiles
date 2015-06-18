@@ -23,7 +23,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-alignment top_left
+#alignment top_left
 background no
 border_width 1
 cpu_avg_samples 2
@@ -36,8 +36,8 @@ draw_outline no
 draw_shades no
 use_xft yes
 xftfont DejaVu Sans Mono:size=9
-gap_x 5
-gap_y 60
+#gap_x 5
+#gap_y 60
 minimum_size 5 5
 net_avg_samples 2
 no_buffers yes
@@ -46,7 +46,7 @@ out_to_stderr no
 extra_newline no
 own_window yes
 own_window_class Conky
-own_window_type normal
+own_window_type desktop
 stippled_borders 0
 update_interval 1.0
 uppercase no
@@ -63,16 +63,20 @@ ${scroll 16 $nodename - $sysname $kernel on $machine }
 $hr
 ${color green}Uptime:$color $uptime
 ${color green}Frequency (in MHz):$color $freq
-${color green}Frequency (in GHz):$color $freq_g
+#${color green}Frequency (in GHz):$color $freq_g
 ${color green}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
 ${color green}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
 ${color green}CPU Usage:$color $cpu% ${cpubar 4}
 ${color green}Processes:$color $processes  ${color green}Running:$color $running_processes
+${color green}Load Avg:$color $loadavg  ${color green}
 $hr
 ${color green}File systems:
  / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
 ${color green}Networking:
-Up:${color yellow} ${upspeed eth0}/ ${upspeed wlan0} ${color green} - Down:${color red} ${downspeed eth0}/ ${downspeed wlan0}
+Up:${color yellow} ${upspeed eth0}/${upspeed wlan0} ${color green} - Down:${color red} ${downspeed eth0}/${downspeed wlan0}
+$hr
+${color green}Top IO: $color ${top_io name 1}
+${top_io io_perc 1}% R:${top_io io_read 1} W:${top_io io_write 1}
 $hr
 ${color green}Name              PID   CPU%   MEM%
 ${color lightgreen} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
