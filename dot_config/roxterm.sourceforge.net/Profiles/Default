@@ -1,11 +1,11 @@
 [roxterm profile]
-colour_scheme=GTK
+colour_scheme=Default
 background_type=2
-saturation=0.305136
+saturation=0.121311
 login_shell=1
-font=Monospace 8
+font=Monospace 9
 show_tab_status=1
-tab_pos=1
+tab_pos=2
 browser=/usr/bin/google-chrome-unstable
 mailer=/usr/bin/thunderbird
 cursor_blink_mode=1
@@ -14,3 +14,7 @@ scroll_on_output=0
 scroll_on_keystroke=1
 audible_bell=0
 visible_bell=1
+new_tabs_adjacent=1
+wrap_switch_tab=1
+show_tab_num=0
+cursor_shape=0
