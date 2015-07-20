@@ -45,6 +45,7 @@ function preexec() {
             #print -Pn "\ek%-3~ $a\e\\"          # set screen title.  Fix vim: ".
             ;;
         rxvt*|xterm*)
+            print -Pn "\e]1;%-3~\a"             # must (re)set xterm title
             if [[ ! -z $WINDOW ]]; then
                 print -Pn "\ek%-3~ $(echo $a | cut -c1-25)\e\\" # set screen title.  Fix vim: ".
                 #print -Pn "\ek%-3~ $a\e\\"      # set screen title.  Fix vim: ".
