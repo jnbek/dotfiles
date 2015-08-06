@@ -114,11 +114,15 @@ how_many_cpu () {
     ## or, on (linux) systems that have /proc/cpuinfo ...
     if [[ -r /proc/cpuinfo ]]
     then
-        local line_from_cpuinfo
-        while read line_from_cpuinfo
+        for i in $(cat /proc/cpuinfo | grep processor | awk '{print $3}');
         do
-            [[ -z "${line_from_cpuinfo:#*:}" ]] && cpu_count=$[${cpu_count}+1]
-        done < /proc/cpuinfo
+            cpu_count=$((${cpu_count}+1));
+        done;
+#        local line_from_cpuinfo
+#        while read line_from_cpuinfo
+#        do
+#            [[ -z "${line_from_cpuinfo:#*:}" ]] && cpu_count=$((${cpu_count}+1))
+#        done < /proc/cpuinfo
         print "Found ${cpu_count} CPUs with /proc/cpuinfo" 1>&2
         return 0
     fi
