@@ -7,11 +7,12 @@ autoload -Uz vcs_info
 if [[  $? -eq 0 ]]; then
     zstyle ':vcs_info:*' enable git cvs svn hg
     zstyle ':vcs_info:*' check-for-changes true
+    zstyle ':vcs_info:*' get-revision true
     zstyle ':vcs_info:*' actionformats \
         '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%r %b%F{3}|%F{1}%a%F{5}][%i]%f '
         #'%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%r %b%F{3}|%F{1}%a%F{5}][C:%c U: %u: M: %m]%f '
     zstyle ':vcs_info:*' formats       \
-        "%{$fg[grey]%}%s %{$reset_color%}%r/%S%{$fg[grey]%} %{$fg[blue]%}%b%{$reset_color%}%u%c%{$reset_color%}" 
+        "%{%F{5}%}(%f%s%F{5})-%{$reset_color%}<%r/%S>-[%{$fg[yellow]%}%b%{$reset_color%}][%F{6}%u%f%F{5}%c%f%a%m] " 
         #'%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%r %b%F{5}][%i]%f '
         #'%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%r %b%F{5}][C:%c U:%u M:%m]%f '
     zstyle ':vcs_info:*' branchformat '%b:%r'
