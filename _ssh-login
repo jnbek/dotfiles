@@ -1,1 +1,5 @@
-keychain --agents ssh,gpg
+KEYCHAIN="$(whence -p keychain)";
+PUBKEY="$HOME/.ssh/id_rsa.pub";
+[[ -f $PUBKEY ]] && [[ -e $KEYCHAIN ]] && $KEYCHAIN --agents ssh,gpg
+
+# vim:set ft=zsh:
