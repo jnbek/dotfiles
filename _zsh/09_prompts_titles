@@ -5,7 +5,7 @@ else
 fi
 autoload -Uz vcs_info
 if [[  $? -eq 0 ]]; then
-    zstyle ':vcs_info:*' enable git cvs svn hg
+    zstyle ':vcs_info:*' enable git cvs svn hg bzr
     zstyle ':vcs_info:*' check-for-changes true
     zstyle ':vcs_info:*' get-revision true
     zstyle ':vcs_info:*' actionformats \

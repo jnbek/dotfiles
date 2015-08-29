@@ -39,6 +39,9 @@ if [ "$TERM" != "dumb" ]; then
         alias mv='mv -v'
         alias mkdir='mkdir -v'
         alias console='ezjail-admin console';
+        if [[ !-x $(whence -p svn) ]]; then
+            alias svn=$(whence -p svnlite);
+        fi;
     else
         alias ls='ls -FoHhT'
     fi
