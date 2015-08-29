@@ -11,8 +11,6 @@ fi
 # Add some to run on login
 
 if [[ -x $(whence -p fortune) ]]; then
-  echo "Welcome to $(hostname) ${USER}"
-  $(whence -p date) +%c
   $(whence -p fortune)
 fi
 cd $HOME;
@@ -23,6 +21,9 @@ fi
 if [[ -e $HOME/.ssh-login ]]; then
     source $HOME/.ssh-login
 fi
+
 how_many_cpu;
+echo "Welcome to $(hostname) ${USER}"
+$(whence -p date) +%c
 
 # vim:set ft=zsh:
