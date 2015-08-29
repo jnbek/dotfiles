@@ -39,7 +39,8 @@ if [ "$TERM" != "dumb" ]; then
         alias mv='mv -v'
         alias mkdir='mkdir -v'
         alias console='ezjail-admin console';
-        if [[ !-x $(whence -p svn) ]]; then
+        if [[ -z "$(whence -p svn)" ]]; then
+            echo "Full svn installation not found falling back to svnlite";
             alias svn=$(whence -p svnlite);
         fi;
     else
