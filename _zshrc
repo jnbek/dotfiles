@@ -11,17 +11,19 @@ fi
 # Add some to run on login
 
 if [[ -x $(whence -p fortune) ]]; then
-  echo
-  fortune
+  $(whence -p fortune)
 fi
 cd $HOME;
 # Personal Aliases, Functions etc.
 if [[ -f $HOME/.zsh_aliases ]]; then
     source $HOME/.zsh_aliases
 fi
-if [[ -f $HOME/.ssh-login ]]; then
-#    source $HOME/.ssh-login
+if [[ -e $HOME/.ssh-login ]]; then
+    source $HOME/.ssh-login
 fi
+
 how_many_cpu;
+echo "Welcome to $(hostname) ${USER}"
+$(whence -p date) +%c
 
 # vim:set ft=zsh:
