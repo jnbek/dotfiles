@@ -16,14 +16,14 @@ if has('gui_running')
     vnoremap <silent> <S-C-T> :!perltidy -q<Enter>
     "colorscheme nightshade
     "colorscheme marslo256
-    set background=dark
-    colorscheme primary
+    "colorscheme PerfectDark
+    colorscheme kolor
 else
     set t_Co=256
     "colorscheme termpot
     "colorscheme marslo256
-    set background=dark
-    colorscheme primary
+    "colorscheme PerfectDark
+    colorscheme kolor
     set mouse=v
 endif
 if filereadable($HOME."/.vim_aliases")
