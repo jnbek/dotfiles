@@ -53,6 +53,9 @@ else
 endif
 set savehist = 5000
 
+# For experimentation
+#set prompt = "%{^[[40;35;1m%}`/bin/hostname -s`:%{^[[40;31;1m%}%/@%{^[[40;33;1m%}%B[%T]%b # "
+#set promptchars = "%#"
 
 
 setenv BLOCKSIZE "k"
