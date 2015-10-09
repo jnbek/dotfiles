@@ -1,8 +1,6 @@
 setopt PROMPT_SUBST \
     EXTENDED_GLOB \
     AUTO_CD \
-    CORRECT \
-    CORRECT_ALL \
     ZLE \
     INTERACTIVE_COMMENTS \
     HIST_IGNORE_DUPS \
@@ -12,5 +10,6 @@ setopt PROMPT_SUBST \
     NOGLOBALRCS
 unsetopt NULL_GLOB
 [[ $ZSH_VERSION > 4.2.99 ]] && setopt PROMPT_SP    
-
+unsetopt correct_all  
+setopt correct
 # vim:set ft=zsh:
