@@ -33,7 +33,7 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
 zstyle ':completion:*:expand:*' tag-order all-expansions
 
-zstyle ':completion:*:functions' ignored-patterns '_*'       
+zstyle ':completion:*:functions' ignored-patterns '_*' '.git' '.zsh' '.ssh' '.vim'       
 
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $HOME/.zcompcache/$HOST
