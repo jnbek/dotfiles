@@ -32,14 +32,14 @@
 #===============================================================================
 §%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.file-description-pl == start ==
-#!/usr/bin/perl 
+#!/usr/bin/env perl 
 #===============================================================================
 #
 #         FILE:  |FILENAME|
 #
 #        USAGE:  ./|FILENAME|  
 #
-#  DESCRIPTION:  <CURSOR>
+#  DESCRIPTION:  
 #
 #      OPTIONS:  ---
 # REQUIREMENTS:  ---
@@ -54,16 +54,24 @@
 
 use strict;
 use warnings;
+use Data::Dumper;
 
+(bless {}, __PACKAGE__)->main();
 
+sub main {
+    my $self = shift;
+    <CURSOR>
+
+    return 0;
+}
 §%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.file-description-pm == start ==
-#
+package <CURSOR>
 #===============================================================================
 #
 #         FILE:  |FILENAME|
 #
-#  DESCRIPTION:  <CURSOR>
+#  DESCRIPTION:  
 #
 #        FILES:  ---
 #         BUGS:  ---
@@ -77,7 +85,7 @@ use warnings;
 
 use strict;
 use warnings;
-
+use Data::Dumper;
 
 §%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == comment.file-description-t == start ==
