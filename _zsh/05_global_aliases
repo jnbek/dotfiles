@@ -51,7 +51,7 @@ fi
 if [[ -x "$(whence -p python)" ]]; then
     SERVE_DIR="$(whence -p python) -m SimpleHTTPServer";
     if [[ $(python -c 'import sys; print (sys.version_info.major)') == "3" ]]; then
-        SERVE_DIR="$(whence -p python) -m http.serve";
+        SERVE_DIR="$(whence -p python) -m http.server";
     fi;
     alias serve_dir=$SERVE_DIR
 fi;
