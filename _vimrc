@@ -92,6 +92,7 @@ autocmd BufNewFile,BufRead *.tt,*.email,*.html,*.htm  setf tt2html
 autocmd BufNewFile,BufRead *.phpt                     setf php
 autocmd BufNewFile,BufRead *.js,*.gjs                 setf javascript
 autocmd BufNewFile,BufRead *.go                       setf go
+autocmd BufNewFile *.html 0r ~/.vim/skel/html.skel | let IndentStyle = "html"
 " FileType Settings
 
 autocmd FileType perl set makeprg=perl\ -wc\ %\ $*
