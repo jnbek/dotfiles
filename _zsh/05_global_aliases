@@ -49,8 +49,8 @@ if [ "$TERM" != "dumb" ]; then
 fi
 
 if [[ -x "$(whence -p python)" ]]; then
-    if [[ -x "$HOME/bin/webserv" ]]; then
-        alias serve_dir=$HOME/bin/webserv
+    if [[ -x "$HOME/bin/webserv.py" ]]; then
+        alias serve_dir=$HOME/bin/webserv.py
     fi;
 fi;
 # vim:set ft=zsh:
