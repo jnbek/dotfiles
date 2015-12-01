@@ -9,10 +9,6 @@ if [[ -e $HOME/.zsh ]]; then
     done;
 fi
 # Add some to run on login
-
-if [[ -x $(whence -p fortune) ]]; then
-  $(whence -p fortune)
-fi
 cd $HOME;
 # Personal Aliases, Functions etc.
 if [[ -f $HOME/.zsh_aliases ]]; then
@@ -24,6 +20,11 @@ fi
 
 how_many_cpu;
 echo "Welcome to $(hostname) ${USER}"
+
+if [[ -x $(whence -p fortune) ]]; then
+  $(whence -p fortune)
+fi
+
 $(whence -p date) +%c
 
 # vim:set ft=zsh:
