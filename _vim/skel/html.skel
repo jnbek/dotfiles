@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
     <meta name="author" content="<jnbek> John D Jones III">
-        <meta http-equiv="Content-Security-Policy" content="default-src cdn.jsdelivr.net cdnjs.cloudflare.com www.google-analytics.com fonts.gstatic.com fonts.googleapis.com 'self'; img-src *">
+    <meta http-equiv="Content-Security-Policy" content="default-src cdn.jsdelivr.net www.google-analytics.com fonts.gstatic.com fonts.googleapis.com 'self'; img-src *">
     <!--[if lt IE 9]>
         <script src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
