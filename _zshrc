@@ -3,8 +3,10 @@
 # Released under the GNU General Public License v3.0
 # http://www.gnu.org/licenses/gpl-3.0.txt
 
+LS=$(whence -p ls)
+
 if [[ -e $HOME/.zsh ]]; then
-    for file in $(ls $HOME/.zsh);
+    for file in $($LS $HOME/.zsh);
         do source $HOME/.zsh/$file;
     done;
 fi
