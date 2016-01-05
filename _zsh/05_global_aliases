@@ -30,6 +30,12 @@ if [ "$TERM" != "dumb" ]; then
         alias mv='mv -v'
         alias mkdir='mkdir -v'
 
+    elif [[ ${OSTYPE} = solaris* ]]; then
+        export LS_COLORS="Exfxcxdxbxegedabagacad";
+        export CLICOLOR="YES";
+        #export LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
+        alias ls='ls -FoHGhT';
+        
     elif [[ ${OSTYPE} = freebsd* ]]; then
         export LS_COLORS="Exfxcxdxbxegedabagacad";
         export CLICOLOR="YES";
