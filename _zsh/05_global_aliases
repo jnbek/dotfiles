@@ -34,7 +34,7 @@ if [ "$TERM" != "dumb" ]; then
         export LS_COLORS="Exfxcxdxbxegedabagacad";
         export CLICOLOR="YES";
         #export LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
-        alias ls='ls -FoHGhT';
+        alias ls='ls -FoHh';
         
     elif [[ ${OSTYPE} = freebsd* ]]; then
         export LS_COLORS="Exfxcxdxbxegedabagacad";
