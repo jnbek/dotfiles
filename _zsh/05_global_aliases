@@ -31,10 +31,14 @@ if [ "$TERM" != "dumb" ]; then
         alias mkdir='mkdir -v'
 
     elif [[ ${OSTYPE} = solaris* ]]; then
-        export LS_COLORS="Exfxcxdxbxegedabagacad";
         export CLICOLOR="YES";
-        #export LSCOLORS="ExGxCxDxBxDxDxCxCxExEx";
-        alias ls='ls -FoHh';
+        if [ -x "$(whence -p dircolors)" ]; then
+            eval "$(dircolors -b)";
+        else
+            export LS_COLORS="ExGxCxDxBxDxDxCxCxExEx";
+        fi
+        #export LS_COLORS="Exfxcxdxbxegedabagacad";
+        alias ls='ls -FLHh';
         PSKILLARGS="-Alco pid,user,comm"
         
     elif [[ ${OSTYPE} = freebsd* ]]; then
