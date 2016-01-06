@@ -74,7 +74,7 @@ if [ -x "`which fortune`" ]; then
   fortune
 fi
 
-[ ! -e "$HOME/tmp/vim/bak" ] && mkdir -pv $HOME/tmp/vim/bak;
+[ ! -e "$HOME/tmp/vim/bak" ] && echo "Creating $HOME/tmp/vim/bak directory" && mkdir -p $HOME/tmp/vim/bak;
 
 export PATH=$PATH:$HOME/bin
 export EDITOR=vim
