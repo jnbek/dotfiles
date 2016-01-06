@@ -40,6 +40,7 @@ if [ "$TERM" != "dumb" ]; then
         #export LS_COLORS="Exfxcxdxbxegedabagacad";
         alias ls='ls -FLHh';
         PSKILLARGS="-Alco pid,user,comm"
+        [[ -z ${USER} ]] && [[ -n ${LOGNAME} ]] && export USER=${LOGNAME}
         
     elif [[ ${OSTYPE} = freebsd* ]]; then
         export LS_COLORS="Exfxcxdxbxegedabagacad";
