@@ -45,7 +45,7 @@ zstyle ':completion:*:complete:-command-::commands' ignored-patterns '*\~'
 
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.(o|c~|old|pro|zwc)'
 
-zstyle ':completion:*:*:kill:*:processes' command $(ps -axco pid,user,command)
+zstyle ':completion:*:*:kill:*:processes' command $(ps $PSKILLARGS)
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 compctl -g '*(-/)' cd pushd

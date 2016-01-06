@@ -19,6 +19,7 @@ def main():
 
     try:
         from SocketServer import TCPServer as HTTPServer
+#         from BaseHTTPServer import HTTPServer
     except ImportError:
         from http.server import HTTPServer
 
@@ -31,6 +32,7 @@ def main():
         server_port = default_port()
 
     httpd = HTTPServer(("", server_port), SimpleHTTPRequestHandler)
+    #httpd.header.send_header("Access-Control-Allow-Origin", "*")
     print("serving at port {0}".format(server_port))
     httpd.serve_forever()
 

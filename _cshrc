@@ -11,6 +11,7 @@ alias HEAD "/usr/local/bin/lwp-request"
 alias POST "/usr/local/bin/lwp-request"
 alias GET "/usr/local/bin/lwp-request"
 
+if (`uname` != "SunOS") then 
 complete sudo       p/1/c/
 complete which      p/1/c/
 complete set        'c/*=/f/' 'p/1/s/=' 'n/=/f/'
@@ -32,6 +33,7 @@ complete hg 'p/1/(add addremove annotate blame archive backout bisect branch bra
         tip unbundle update up checkout co verify version)/'
 complete git 'p/1/(add bisect branch checkout clone commit diff fetch grep init log merge mv pull push rebase reset rm show status tag cherry-pick revert)/'
 complete apachectl  'c/*/(start stop restart fullstatus status graceful configtest help)/'
+endif
 
 set autoexpand
 set autolist
@@ -67,7 +69,7 @@ setenv LSCOLORS "gxfxcxdxbxegedabagacad"
 setenv PAGER "/usr/bin/less"
 
 
-if ( $OSTYPE == FreeBSD ) then
+if ( `uname` == "FreeBSD" ) then
   alias colorls "/bin/ls -FGg"
   alias ls "ls-F -FGg"
   alias n "/usr/sbin/nslookup"
