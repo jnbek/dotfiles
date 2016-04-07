@@ -1,8 +1,8 @@
 " Vim indent file
 " Language:         Shell Script
 " Maintainer:       Clavelito <maromomo@hotmail.com>
-" Id:               $Date: 2016-01-18 20:17:02+09 $
-"                   $Revision: 4.13 $
+" Id:               $Date: 2016-03-28 19:00:22+09 $
+"                   $Revision: 4.21 $
 "
 " Description:      Set the following line if you do not want automatic
 "                   indentation in the case labels.
@@ -62,7 +62,8 @@ function GetShIndent()
       let lnum = s:SkipItemsLines(v:lnum, s:sh_here_doc)
       let ind = s:InsideHereDocIndent(lnum, cline)
       return ind
-    elseif cname =~ s:test_d_or_s_quote && cline =~# '^\s*\%(then\|do\)\>'
+    elseif cname =~ s:test_d_or_s_quote
+          \ && s:EndOfTestQuotes(line, lnum, s:test_d_or_s_quote)
       break
     elseif cname =~ s:d_or_s_quote
       return indent(v:lnum)
@@ -74,7 +75,7 @@ function GetShIndent()
   for lid in reverse(synstack(lnum, 1))
     let lname = synIDattr(lid, 'name')
     if lname =~ s:sh_here_doc_eof
-      let lnum = s:SkipItemsLines(lnum, s:sh_here_doc)
+      let lnum = s:SkipItemsLines(lnum, s:sh_here_doc. '\|'. s:sh_here_doc_eof)
       let line = s:GetNextContinueLine(getline(lnum), lnum)
       break
     elseif lname =~ s:d_or_s_quote. '\|'. s:sh_quote
@@ -90,9 +91,8 @@ function GetShIndent()
   let ind = s:BackQuoteIndent(lnum, ind)
   let [pline, pnum] = s:SkipCommentLine(line, lnum, 1)
   let [pline, ind] = s:MorePrevLineIndent(pline, pnum, line, ind)
-  let ind = s:InsideCaseLabelIndent(pline, line, ind)
-  let line = s:HideCaseLabelLine(line, pline)
-  let ind = s:PrevLineIndent(line, lnum, pline, ind)
+  let [line, ind] = s:InsideCaseLabelIndent(pline, line, ind)
+  let ind = s:PrevLineIndent(line, pline, ind)
   let ind = s:CurrentLineIndent(line, cline, ind)
 
   return ind
@@ -101,19 +101,19 @@ endfunction
 function s:MorePrevLineIndent(pline, pnum, line, ind)
   let ind = a:ind
   let pline = a:pline
-  if a:pline =~ '\\$' && a:line =~ '\\$'
+  if a:pline =~ '\\\@<!\%(\\\\\)*\%(\\$\|\%(&&\|||\)\s*$\)'
+        \ && a:line =~ '\\\@<!\%(\\\\\)*\%(\\$\|\%(&&\|||\)\s*$\)'
     let pline = s:GetPrevContinueLine(a:pline, a:pnum)
-  elseif a:pline !~ '\\$' && a:line =~ '\\$'
-        \ && a:pline !~# '\%(^\|[|&`()]\)\s*case\>\%(.*;;\s*\<esac\>\)\@!'
-        \ && a:pline !~ ';;\s*$'
+  elseif a:pline !~ '\\\@<!\%(\\\\\)*\%(\\$\|\%(&&\|||\)\s*$\)'
+        \ && a:line =~ '\\\@<!\%(\\\\\)*\%(\\$\|\%(&&\|||\)\s*$\)'
+        \ && a:pline !~# '\%(^\|[|&`()]\)\s*case\>\%(.*;[;&]\s*\<esac\>\)\@!'
+        \ && a:pline !~ ';[;&]\s*$'
     let ind = ind + &sw
-  elseif a:pline =~ '\\$' && a:line !~ '\\$'
+  elseif a:pline =~ '\\\@<!\%(\\\\\)*\%(\\$\|\%(&&\|||\)\s*$\)'
+        \ && a:line !~ '\\\@<!\%(\\\\\)*\%(\\$\|\%(&&\|||\)\s*$\)'
     let pline = s:GetPrevContinueLine(a:pline, a:pnum)
-    if pline !~# '\%(^\|[|&`()]\)\s*case\>\%(.*;;\s*\<esac\>\)\@!'
-          \ && pline !~ ';;\s*$'
-          \ || (pline =~# '\%(^\|[|&`()]\)\s*case\>\%(.*;;\s*\<esac\>\)\@!'
-          \ || pline =~ ';;\s*$')
-          \ && a:line =~ ';;\s*$'
+    if pline !~# '\%(^\|[|&`()]\)\s*case\>\%(.*;[;&]\s*\<esac\>\)\@!'
+          \ && pline !~ ';[;&]\s*$'
       let ind = ind - &sw
     endif
   endif
@@ -123,36 +123,42 @@ endfunction
 
 function s:InsideCaseLabelIndent(pline, line, ind)
   let ind = a:ind
-  if a:line =~# '^\s*esac\>\s*;;\s*$' && a:pline =~ ';;\s*$'
+  let line = a:line
+  if a:line =~# '^\s*esac\>\s*;[;&]\s*$' && a:pline =~ ';[;&]\s*$'
     let ind = ind - &sw
-  elseif a:line =~ ';;\s*$'
-        \ && a:pline !~# '\%(^\|[|&`()]\)\s*case\>\%(.*;;\s*\<esac\>\)\@!'
-        \ && a:pline !~ ';;\s*$'
+  elseif a:line =~ ';[;&]\s*$'
+        \ && a:pline !~# '\%(^\|[|&`()]\)\s*case\>\%(.*;[;&]\s*\<esac\>\)\@!'
+        \ && a:pline !~ ';[;&]\s*$'
     let ind = ind - &sw
-  elseif a:line =~ '^\s*[^(].\{-})' && a:line !~ ';;\s*$'
-        \ && a:line !~# '^\s*case\>'
-        \ && (a:pline =~# '\%(^\|[|&`()]\)\s*case\>\%(.*;;\s*\<esac\>\)\@!'
-        \ || a:pline =~ ';;\s*$')
-    let ind = ind + &sw
+  elseif a:line =~ ')' && a:line !~# '^\s*case\>'
+        \ && (a:pline =~# '\%(^\|[|&`()]\)\s*case\>\%(.*;[;&]\s*\<esac\>\)\@!'
+        \ || a:pline =~ ';[;&]\s*$')
+    let [line, ind] = s:CaseLabelLineIndent(line, ind)
+  elseif a:line =~ ';[;&]\s*$'
+        \ && (a:pline =~# '\%(^\|[|&`()]\)\s*case\>\%(.*;[;&]\s*\<esac\>\)\@!'
+        \ || a:pline =~ ';[;&]\s*$')
+    let ind = ind - &sw
+  elseif a:line =~ '\\\@<!\%(\\\\\)*\\$'
+        \ && (a:pline =~# '\%(^\|[|&`()]\)\s*case\>\%(.*;[;&]\s*\<esac\>\)\@!'
+        \ || a:pline =~ ';[;&]\s*$')
+    let line = ""
   endif
 
-  return ind
+  return [line, ind]
 endfunction
 
-function s:PrevLineIndent(line, lnum, pline, ind)
+function s:PrevLineIndent(line, pline, ind)
   let ind = a:ind
   if a:line =~# '^\s*\%(\h\w*\s*(\s*)\s*\)\=[{(]\s*$'
         \. '\|^\s*function\s\+\S\+\%(\s\+{\|\s*(\s*)\s*[{(]\)\s*$'
     let ind = ind + &sw
   else
-    let line = s:HideAnyItemLine(a:line, a:lnum)
-    if line =~ '[({]'
-      let ind = ind + &sw * (len(split(line, '[({]', 1)) - 1)
-    endif
+    let line = s:HideAnyItemLine(a:line)
+    let ind = s:ParenBraceIndent(line, ind)
     let ind = s:CloseParenIndent(a:line, a:pline, line, ind)
     let ind = s:CloseBraceIndnnt(a:line, line, ind)
-    if line =~ '[|&`(]'
-      for line in split(line, '[|&`(]')
+    if line =~# '[|`(]'
+      for line in split(line, '[|`(]')
         let ind = s:PrevLineIndent2(line, ind)
       endfor
     else
@@ -166,12 +172,12 @@ endfunction
 function s:PrevLineIndent2(line, ind)
   let ind = a:ind
   if a:line =~# '^\s*\%(if\|then\|else\|elif\)\>'
-        \ && a:line !~# ';\s*\<fi\>'
-        \ || a:line =~# '^\s*\%(do\|while\|until\|for\)\>'
-        \ && a:line !~# ';\s*\<done\>'
+        \ && a:line !~# '[;&]\s*\<fi\>'
+        \ || a:line =~# '^\s*\%(do\|while\|until\|for\|select\)\>'
+        \ && a:line !~# '[;&]\s*\<done\>'
     let ind = ind + &sw
   elseif a:line =~# '^\s*case\>'
-        \ && a:line !~# ';;\s*\<esac\>' && g:sh_indent_case_labels
+        \ && a:line !~# ';[;&]\s*\<esac\>' && g:sh_indent_case_labels
     let ind = ind + &sw / g:sh_indent_case_labels
   endif
 
@@ -186,7 +192,7 @@ function s:CurrentLineIndent(line, cline, ind)
   elseif a:cline =~# '^\s*esac\>' && g:sh_indent_case_labels
     let ind = ind - &sw / g:sh_indent_case_labels
   endif
-  if a:cline =~# '^\s*esac\>' && a:line !~ ';;\s*$'
+  if a:cline =~# '^\s*esac\>' && a:line !~ ';[;&]\s*$'
     let ind = ind - &sw
   endif
 
@@ -197,8 +203,8 @@ function s:CloseParenIndent(line, pline, nline, ind)
   let ind = a:ind
   if a:nline =~ ')'
         \ && a:nline !~# '^\s*case\>'
-        \ && a:pline !~# '\%(^\|[|&`()]\)\s*case\>\%(.*;;\s*\<esac\>\)\@!'
-        \ && a:pline !~ ';;\s*$'
+        \ && a:pline !~# '\%(^\|[|&`()]\)\s*case\>\%(.*;[;&]\s*\<esac\>\)\@!'
+        \ && a:pline !~ ';[;&]\s*$'
     if a:line =~ '^\s*)'
       let ind = ind + &sw
     endif
@@ -210,11 +216,22 @@ endfunction
 
 function s:CloseBraceIndnnt(line, nline, ind)
   let ind = a:ind
-  if a:nline =~ '}'
+  if a:nline =~# '[;&]\%(\s*\%(done\|fi\|esac\)\)\=\s*}\|^\s\+}'
     if a:line =~ '^\s*}'
       let ind = ind + &sw
     endif
-    let ind = ind - &sw * (len(split(a:nline, '}', 1)) - 1)
+    let ind = ind - &sw * (len(split(a:nline,
+          \ '\\\@<!\%(\\\\\)*[;&]\%(\C\s*\%(done\|fi\|esac\)\)\=\s*}'
+          \. '\|^\s\+}', 1)) - 1)
+  endif
+
+  return ind
+endfunction
+
+function s:ParenBraceIndent(line, ind)
+  let ind = a:ind
+  if a:line =~ '(\|\%(^\|&&\||\)\s*{'
+    let ind = ind + &sw * (len(split(a:line, '(\|\%(^\|&&\||\)\s*{', 1)) - 1)
   endif
 
   return ind
@@ -226,8 +243,11 @@ function s:SkipCommentLine(line, lnum, prev)
   if a:prev && s:GetPrevNonBlank(lnum)
     let lnum = s:prev_lnum
     let line = getline(lnum)
+  elseif a:prev
+    let line = ""
+    let lnum = 0
   endif
-  while line =~ '^\s*#' && s:GetPrevNonBlank(lnum)
+  while lnum && line =~ '^\s*#' && s:GetPrevNonBlank(lnum)
         \ && synIDattr(synID(lnum, indent(lnum) + 1, 1), "name") =~ s:sh_comment
     let lnum = s:prev_lnum
     let line = getline(lnum)
@@ -242,7 +262,8 @@ function s:GetPrevContinueLine(line, lnum)
   let line = a:line
   let lnum = a:lnum
   let line = s:HideCommentStr(line, lnum)
-  while line =~ '\\$' && s:GetPrevNonBlank(lnum)
+  while line =~ '\\\@<!\%(\\\\\)*\%(\\$\|\%(&&\|||\)\s*$\)'
+        \ && s:GetPrevNonBlank(lnum)
     let lnum = s:prev_lnum
     let line = getline(lnum)
     let [line, lnum] = s:SkipCommentLine(line, lnum, 0)
@@ -255,7 +276,8 @@ endfunction
 function s:GetNextContinueLine(line, lnum)
   let line = a:line
   let lnum = a:lnum
-  while line =~ '\\$' && s:GetNextNonBlank(lnum)
+  while line =~ '\\\@<!\%(\\\\\)*\%(\\$\|\%(&&\|||\)\s*$\)'
+        \ && s:GetNextNonBlank(lnum)
     let lnum = s:next_lnum
     let line = getline(lnum)
   endwhile
@@ -276,49 +298,40 @@ function s:GetNextNonBlank(lnum)
   return s:next_lnum
 endfunction
 
-function s:HideCaseLabelLine(line, pline)
+function s:CaseLabelLineIndent(line, ind)
   let line = a:line
-  if a:line =~ '^\s*[^(].\{-})' && a:line !~ ';;\s*$'
-        \ && a:line !~# '^\s*case\>'
-        \ && (a:pline =~# '\%(^\|[|&`()]\)\s*case\>\%(.*;;\s*\<esac\>\)\@!'
-        \ || a:pline =~ ';;\s*$')
-    let line = substitute(line, '\\\@<!\%(\\\\\)*\\)', '', 'g')
-    let line = substitute(line, '\(\\\@<!\\*"\).\{-}\\\@<!\%(\\\\\)*\1'
-          \. '\|\%o47.\{-}\%o47', '', 'g')
-    let sum = matchend(line, ')', 0)
-    if sum > -1
-      let line = strpart(line, sum)
-    endif
-  elseif a:line =~ '\\$'
-        \ && (a:pline =~# '^\s*case\>' && a:pline !~# ';;\s*esac\s*$'
-        \ || a:pline =~ ';;\s*$')
-    let line = ""
+  let ind = a:ind
+  let line = substitute(line, '\\\@<!\%(\%(\\\\\)*\\\%((\|)\|"\|\%o47\)\)', '', 'g')
+  let line = substitute(line, '\(\%o47\|"\).\{-}\\\@<!\%(\\\\\)*\1', '', 'g')
+  if line =~ ')' && line =~ '^\s*('
+    let line = substitute(line, '([^()]*)', '', '')
+    let ind = ind + &sw
+  elseif line =~ ')'
+    let line = strpart(line, matchend(line, ')', 0))
+    let ind = ind + &sw
+  endif
+  if line =~ ';[;&]\s*$'
+    let ind = ind - &sw
   endif
 
-  return line
+  return [line, ind]
 endfunction
 
-function s:HideAnyItemLine(line, lnum)
+function s:HideAnyItemLine(line)
   let line = a:line
   if line =~ '"\|\%o47' && line =~ '[|&`(){}]'
-    let line = substitute(line, '"\$\((\)\@!.\{-}"', '', 'g')
-    let line = substitute(line, '\(\\\@<!\\*"\).\{-}\\\@<!\%(\\\\\)*\1'
-          \. '\|\%o47.\{-}\%o47', '', 'g')
+    let line = substitute(line, '\\\@<!\%(\\\\\)*\\\%("\|\%o47\)'
+          \. '\|\(\\\@<!"\|\\\@<!\%o47\).\{-}\\\@<!\%(\\\\\)*\1', '', 'g')
   endif
   if line =~ '\\[|&()`{}]'
     let line = substitute(line, '\\\@<!\%(\\\\\)*\\[|&()`{}]', '', 'g')
   endif
   if line =~ '[()`]'
-    let line = substitute(line, '\$\=([^()]*\\\@<!\%(\\\\\)*)'
-          \. '\|\(\\\@<!`\).\{-}\\\@<!\%(\\\\\)*\1', '', 'g')
-    let len = strlen(line)
-    while 1
-      let line = substitute(line, '\$\=([^()]*\\\@<!\%(\\\\\)*)', '', 'g')
-      if len == strlen(line)
-        break
-      else
-        let len = strlen(line)
-      endif
+    let line = substitute(line,'\(\\\@<!`\).\{-}\\\@<!\%(\\\\\)*\1', '', 'g')
+    let len = 0
+    while len != strlen(line)
+      let len = strlen(line)
+      let line = substitute(line, '[$=]\=([^()]*\\\@<!\%(\\\\\)*)', '', 'g')
     endwhile
   endif
 
@@ -386,7 +399,7 @@ endfunction
 
 function s:HideCommentStr(line, lnum)
   let line = a:line
-  if line =~ '\%(\${\%(\h\w*\|\d\+\)#\=\|\${\=\)\@<!#'
+  if a:lnum && line =~ '\%(\${\%(\h\w*\|\d\+\)#\=\|\${\=\)\@<!#'
     let sum = match(line, '#', 0)
     while sum > -1
       if synIDattr(synID(a:lnum, sum + 1, 1), "name") =~ s:sh_comment
@@ -472,6 +485,12 @@ function s:BackQuoteIndent(lnum, ind)
   endif
 
   return ind
+endfunction
+
+function s:EndOfTestQuotes(line, lnum, item)
+  return a:line =~ '^\%("\|\%o47\)$'
+        \ || a:line =~ '\\\@<!\%(\\\\\)*\%("\|\%o47\)$'
+        \ && synIDattr(synID(a:lnum, strlen(a:line) - 1, 1), "name") =~ a:item
 endfunction
 
 let &cpo = s:cpo_save
