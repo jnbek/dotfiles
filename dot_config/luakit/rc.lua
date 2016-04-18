@@ -168,7 +168,7 @@ if unique then
     end)
 end
 all_urls = {
-    'http://subsonic.zoelife4u.org/subsonic/index.view",
+    'http://subsonic.zoelife4u.org/subsonic/index.view',
 }
 for i, url in ipairs(urls) do
     window.new(url)
