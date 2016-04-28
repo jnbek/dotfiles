@@ -77,7 +77,7 @@ sub setup {
     $conf->set_conf( timeout            => 300 );
     $conf->set_conf( verbose            => 1 );
     $conf->set_conf( write_install_logs => 1 );
-    if ($ENV{'AUR_BUILD_SERVER'} eq "TRUE") {
+    if (($ENV{'AUR_BUILD_SERVER'} || "") eq "TRUE") {
         $conf->set_conf( 'dist_type' => 'CPANPLUS::Dist::Arch' );
     }
 
