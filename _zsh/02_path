@@ -83,6 +83,18 @@ then
     unset go_dir
 fi;
 
+# Fix Node/NPM Paths
+if [[ -x "$(whence -p npm)" ]];
+then
+    npm_dir=$HOME/var/npm/pkgs;
+    if [[ ! -e "$npm_dir" ]];
+    then
+        mkdir -p $npm_dir;
+        echo "$npm_dir Successfully created";
+    fi;
+    unset npm_dir
+fi;
+
 unset common_paths temp_path PATH_tmp home_subdirs
 
 # vim:set ft=zsh:
