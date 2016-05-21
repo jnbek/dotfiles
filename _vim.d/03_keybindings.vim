@@ -43,7 +43,7 @@ nmap _VC :VCSCommit<Enter>
 nmap _VA :VCSAnn<Enter>
 nmap _VS :VCSStat<Enter>
 nmap _VL :VCSLog<Enter>
-nmap _VD :VCSDiff -r
+nmap _VD :VCSDiff -u
 nmap _VU :VCSUpdate<Enter>
 " Shortcuts
 nmap _sub :call Perl_InsertTemplate("idioms.subroutine")<CR>
