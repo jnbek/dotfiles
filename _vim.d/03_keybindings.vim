@@ -48,6 +48,7 @@ nmap _VU :VCSUpdate<Enter>
 " Shortcuts
 nmap _sub :call Perl_InsertTemplate("idioms.subroutine")<CR>
 imap _self <ESC>^i    my $self = shift;<cr>
+imap _slurp <ESC>^i my $text = do { local( @ARGV, $/ ) = $file ; <> } ;<cr>
 imap _new <ESC>^isub new {<cr><ESC>^i    my $proto = shift;<cr><ESC>^i    my $class = ref($proto) \|\| $proto;<cr><ESC>^i    my $self = {};<cr><ESC>^i    bless $self, $class;<cr><ESC>^i    return $self;<cr><ESC>^i}<cr>
 
 " Misc Mappings
