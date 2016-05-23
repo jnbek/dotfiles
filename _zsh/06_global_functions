@@ -1,7 +1,20 @@
-vim () {
-    VIM_EXEC=$(whence -p vim)
-    if [[ $argv[(r)-p] == '-p' ]]
+if [[ -x $(whence -p tmux) ]];
+then
+    tmux() {
+        if [ "$#" -ge 1 ] && [ "$1" = -z ];
         then
+            shift
+            command tmux detach 2>/dev/null
+            command tmux attach "$@" || command tmux new-session "$@"
+        else
+            command tmux "$@"
+        fi
+    }
+fi;
+vim () {
+    VIM_EXEC=$(whence -p vim);
+    if [[ $argv[(r)-p] == '-p' ]];
+    then
         $VIM_EXEC $argv;
     else
         $VIM_EXEC -p $argv;
@@ -9,9 +22,9 @@ vim () {
 }
 
 gvim () {
-    GVIM_EXEC=$(whence -p gvim)
-    if [[ $argv[(r)-p] == '-p' ]]
-        then
+    GVIM_EXEC=$(whence -p gvim);
+    if [[ $argv[(r)-p] == '-p' ]];
+    then
         $GVIM_EXEC $argv;
     else
         $GVIM_EXEC -p $argv;
@@ -22,10 +35,10 @@ cd () {
     ## cd to a file (cd to the directory that a file is in)
     ## this _might_ break some zsh specific features of 'cd', but none that i use
     ## as of 23 oct 2007 i can't see that it breaks anything
-    if [[ 1 == "${#}" && '-' != "${1}" && ! -d "${1}" && -d "${1:h}" && "${1}" != (+|-)<-> ]]
+    if [[ 1 == "${#}" && '-' != "${1}" && ! -d "${1}" && -d "${1:h}" && "${1}" != (+|-)<-> ]];
     then
-        print "correcting \"${1}\" to \"${1:h}\"" >&2
-        builtin cd "${1:h}"
+        print "correcting \"${1}\" to \"${1:h}\"" >&2;
+        builtin cd "${1:h}";
     else
         [[ "${*}" == '-' ]]
         builtin cd "${@}"
@@ -45,9 +58,49 @@ shellname () {
     ## with no arguments the name returns to normal (dynamic) operation
     SHELL_NAME="${*}"
 }
+
 shellprefix () {
     ## like shellname, but just a prefix
     SHELL_PREFIX="${*}"
+}
+
+how_many_cpu () {
+    ## try to figure out how many CPUs are in the system
+    local cpu_count=0
+    ## sysctl; freeBSD...
+    if sysctl -n hw.ncpu 2> /dev/null | read cpu_count
+    then
+        print "Found ${cpu_count} CPUs with sysctl" 1>&2
+        return 0
+    fi
+    ## or, on (linux) systems that have /proc/cpuinfo ...
+    if [[ -r /proc/cpuinfo ]]
+    then
+        for i in $(cat /proc/cpuinfo | grep processor | awk '{print $3}');
+        do
+            cpu_count=$((${cpu_count}+1));
+        done;
+#        local line_from_cpuinfo
+#        while read line_from_cpuinfo
+#        do
+#            [[ -z "${line_from_cpuinfo:#*:}" ]] && cpu_count=$((${cpu_count}+1))
+#        done < /proc/cpuinfo
+        print "Found ${cpu_count} CPUs with /proc/cpuinfo" 1>&2
+        return 0
+    fi
+    ## solaris...
+    if [[ -x $(whence -p psrinfo) ]]
+    then
+        local psrinfo_count
+        psrinfo | while read psrinfo_count
+        do
+            [[ -z "${psrinfo_count##*on-line*}" ]] && cpu_count=$[${cpu_count}+1]
+        done
+        print "Found ${cpu_count} \"on-line\" CPUs with psrinfo" 1>&2
+        return 0
+    fi
+## if all else fails, assume 1 CPU
+    print 'Assuming 1 CPU' 1>&2
 }
 
 #command_title () {
@@ -101,54 +154,5 @@ shellprefix () {
 #    # return PROMPT_SUBST to previous state, if it was set
 #    setopt LOCAL_OPTIONS
 #}
-
-how_many_cpu () {
-    ## try to figure out how many CPUs are in the system
-    local cpu_count=0
-    ## sysctl; freeBSD...
-    if sysctl -n hw.ncpu 2> /dev/null | read cpu_count
-    then
-        print "Found ${cpu_count} CPUs with sysctl" 1>&2
-        return 0
-    fi
-    ## or, on (linux) systems that have /proc/cpuinfo ...
-    if [[ -r /proc/cpuinfo ]]
-    then
-        for i in $(cat /proc/cpuinfo | grep processor | awk '{print $3}');
-        do
-            cpu_count=$((${cpu_count}+1));
-        done;
-#        local line_from_cpuinfo
-#        while read line_from_cpuinfo
-#        do
-#            [[ -z "${line_from_cpuinfo:#*:}" ]] && cpu_count=$((${cpu_count}+1))
-#        done < /proc/cpuinfo
-        print "Found ${cpu_count} CPUs with /proc/cpuinfo" 1>&2
-        return 0
-    fi
-    ## solaris...
-    if [[ -x $(whence -p psrinfo) ]]
-    then
-        local psrinfo_count
-        psrinfo | while read psrinfo_count
-    do
-        [[ -z "${psrinfo_count##*on-line*}" ]] && cpu_count=$[${cpu_count}+1]
-    done
-    print "Found ${cpu_count} \"on-line\" CPUs with psrinfo" 1>&2
-    return 0
-fi
-## if all else fails, assume 1 CPU
-print 'Assuming 1 CPU' 1>&2
-}
-
-tmux() {
-    if [ "$#" -ge 1 ] && [ "$1" = -z ]; then
-        shift
-        command tmux detach 2>/dev/null
-        command tmux attach "$@" || command tmux new-session "$@"
-    else
-        command tmux "$@"
-    fi
-}
 
 # vim:set ft=zsh:
