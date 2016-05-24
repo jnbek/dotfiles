@@ -22,7 +22,7 @@ set tabpagemax=25
 set modelines=1
 "set nomodeline
 set ttymouse=xterm2
-set dir^=$HOME/tmp/vim//
+set dir^=$HOME/tmp/vim/
 set bex=.vbak
 set bdir=$HOME/tmp/vim/bak
 set backupcopy=auto
