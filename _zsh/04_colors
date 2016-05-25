@@ -1,4 +1,4 @@
 autoload colors                                       
 [[ "${terminfo[colors]}" -ge 8 ]] && colors                                    
-export STDERRED_ESC_CODE=$(echo -e '\e[;41m')
+export STDERRED_ESC_CODE=$(echo -e '\e[;96m')
 # vim:set ft=zsh:
