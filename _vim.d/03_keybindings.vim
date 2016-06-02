@@ -15,11 +15,13 @@ map // :tabnew<Enter>
 map ?? :tabnew<Enter>:e .<cr>
 map ]] :tabnext<Enter>
 map [[ :tabprev<Enter>
+map <C-W><C-U> :UndotreeToggle<Enter>
 map <C-W><C-H> :help<Enter>
 map <C-W><C-F> <Esc>:TagbarToggle<Enter>
 map <C-W><C-N> :set number!<Enter>
-map <C-W><C-T> :TMToggle<cr>
-nmap <C-W><C-B> :VSBufExplorer<cr>
+"https://github.com/kien/tabman.vim
+"map <C-W><C-T> :TMToggle<cr>
+nmap <C-W><C-B> :NERDTreeToggle<cr>
 map <C-W><C-M> :emenu <C-Z>
 nnoremap K i<CR><Esc>
 " comment/uncomment blocks of code (in vmode)
