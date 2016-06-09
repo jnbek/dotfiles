@@ -1,12 +1,10 @@
 if has('gui_running')
-    map <S-C-a> ggVG
-    map <S-C-c> "+y 
-    map <S-C-v> "+gP
-    imap <S-C-a> <ESC>ggVG
-    imap <C-S-c> <ESC>"+ya
-    imap <S-C-v> <ESC>"+gPa
-    nnoremap <silent> <S-C-T> :%!perltidy -q<Enter>
-    vnoremap <silent> <S-C-T> :!perltidy -q<Enter>
+    noremap <S-C-A> ggVG
+    noremap <S-C-C> "+y 
+    noremap <S-C-V> "+gP
+    inoremap <S-C-A> <ESC>ggVG
+    inoremap <C-S-C> <ESC>"+ya
+    inoremap <S-C-V> <ESC>"+gPa
 else
     set mouse=v
 endif
@@ -27,8 +25,6 @@ nnoremap K i<CR><Esc>
 " comment/uncomment blocks of code (in vmode)
 vmap _c :s/^/#/gi<Enter>
 vmap _C :s/^#//gi<Enter>
-nmap _HT :call HTMLind()<CR>
-nmap _JT :call g:Jsbeautify()<cr><Enter>
 " CVS it
 nmap _VC :VCSCommit<Enter>
 nmap _VA :VCSAnn<Enter>
@@ -36,6 +32,8 @@ nmap _VS :VCSStat<Enter>
 nmap _VL :VCSLog<Enter>
 nmap _VD :VCSDiff -u
 nmap _VU :VCSUpdate<Enter>
+nmap _PT ggVG=
+vmap _PT =
 
 " Misc Mappings
 inoremap <INS> <ESC>a

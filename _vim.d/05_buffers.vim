@@ -23,8 +23,9 @@ autocmd FileType perl   call PerlKeys()
 autocmd FileType python call PythonKeys()
 autocmd FileType ruby   call RubyKeys()
 autocmd FileType go   call GoLangKeys()
+autocmd FileType javascript call JScriptKeys()
 
-autocmd FileType javascript set makeprg=gjs\ %\ $*
+"autocmd FileType javascript set makeprg=gjs\ %\ $*
 autocmd FileType text call TextMode()
 autocmd FileType mail call TextMode()
 autocmd FileType vim  set iskeyword+=. iskeyword+=/ iskeyword+=~

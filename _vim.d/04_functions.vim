@@ -78,8 +78,6 @@ function! PerlKeys()
     nmap _e :!perl -w %<Enter>
     nmap _E :!perl -wc %<Enter>
     " Tidy selected lines (or entire file) with _t:
-    nnoremap <silent> _pt :%!perltidy -q<Enter>
-    vnoremap <silent> _pt :!perltidy -q<Enter>
     nnoremap <silent> _PT :%!perltidy -q<Enter>
     vnoremap <silent> _PT :!perltidy -q<Enter>
     " Criticize It !!
@@ -105,4 +103,8 @@ endfunction
 function! GoLangKeys()
     nmap _e go run %
     nmap _E gofmt -e %
+endfunction
+
+function! JScriptKeys()
+    nnoremap _PT :call g:Jsbeautify()<cr><Enter>
 endfunction
