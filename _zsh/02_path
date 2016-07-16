@@ -35,7 +35,7 @@ common_paths=(
     # Grrr Mac 
     /usr/local/git/bin
     $HOME/scala/bin
-    $HOME/sbt/bin
+    $HOME/scala-sbt/bin
     # Go Language
     /usr/lib/go/site/bin
     /usr/local/go/bin
