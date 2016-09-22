@@ -4,16 +4,16 @@
 #
 # Executed by startx (run your window manager from here)
 
-[ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap
+[ -e ~/.Xmodmap ] && xmodmap ~/.Xmodmap
 
 # setup background
-xsetroot -solid '#056'
+#xsetroot -solid '#056'
 
 # setup mouse acceleration
-xset m 7 2
+#xset m 7 2
 
 # Here Xfce is kept as default
-session=${1:-cinnamon}
+session=${1:-i3wm}
 
 case $session in
     awesome           ) exec awesome;;
