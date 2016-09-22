@@ -6,31 +6,37 @@
 
 [ -f ~/.Xmodmap ] && xmodmap ~/.Xmodmap
 
-#if [ -d /etc/X11/xinit/xinitrc.d ]; then
-#  for f in /etc/X11/xinit/xinitrc.d/*; do
-#    [ -x "$f" ] && . "$f"
-#  done
-#  unset f
-#fi
-
-
-# run profile to set $PATH and other env vars correctly
-. $HOME/.bash_profile
-
 # setup background
 xsetroot -solid '#056'
 
 # setup mouse acceleration
 xset m 7 2
 
-# run initial programs
-#xterm &
+# Here Xfce is kept as default
+session=${1:-cinnamon}
 
-# start icewm, and run xterm if it crashes (just to be safe)
-exec icewm || exec xterm -fg red
-
-#exec dbus-launch mate-session
-# exec gnome-session
-# exec startkde
-# exec startxfce4
-# ...or the Window Manager of your choice
+case $session in
+    awesome           ) exec awesome;;
+    bspwm             ) exec bspwm;;
+    catwm             ) exec catwm;;
+    cinnamon          ) exec cinnamon-session;;
+    dwm               ) exec dwm;;
+    enlightenment     ) exec enlightenment_start;;
+    ede               ) exec startede;;
+    fluxbox           ) exec startfluxbox;;
+    gnome             ) exec gnome-session;;
+    gnome-classic     ) exec gnome-session --session=gnome-classic;;
+    i3|i3wm           ) exec i3;;
+    icewm             ) exec icewm-session;;
+    jwm               ) exec jwm;;
+    kde               ) exec startkde;;
+    mate              ) exec mate-session;;
+    monster|monsterwm ) exec monsterwm;;
+    notion            ) exec notion;;
+    openbox           ) exec openbox-session;;
+    unity             ) exec unity;;
+    xfce|xfce4        ) exec startxfce4;;
+    xmonad            ) exec xmonad;;
+    # No known session, try to run it as command
+    *) exec $1;;
+esac
