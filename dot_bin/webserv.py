@@ -7,6 +7,7 @@ Works on both Python 2 and 3
 """
 
 import sys
+import signal
 
 def default_port():
     return 4000
@@ -34,6 +35,14 @@ def main():
     httpd = HTTPServer(("", server_port), SimpleHTTPRequestHandler)
     #httpd.header.send_header("Access-Control-Allow-Origin", "*")
     print("serving at port {0}".format(server_port))
+
+    # Let's cleanup after ourselves
+    def signal_handler(signal,frame):
+        print("\nCleaning up\n")
+        httpd.shutdown
+        sys.exit(0)
+
+    signal.signal(signal.SIGINT, signal_handler)
     httpd.serve_forever()
 
 if __name__ == '__main__':
