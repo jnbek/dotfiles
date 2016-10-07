@@ -38,9 +38,9 @@ function preexec() {
     local b=${a##*\/}                           # get the command basename
     a="${b}${1#$a}"                             # add back the parameters
     a=${a//\%/\%\%}                             # escape print specials
-    a=$(print -Pn "$a" | tr -d "\t\n\v\f\r")    # remove fancy whitespace
+    a=$(echo $a | cut -c1-45)
+    a=$(print -Pn $a | tr -d "\t\n\v\f\r")    # remove fancy whitespace
     a=${(V)a//\%/\%\%}                          # escape non-visibles and print specials
-    #a=$(echo $a | cut -c2-15)
     case "$TERM" in
         screen|screen*) # See screen(1) "TITLES (naming windows)","\ek" and "\e\" are the delimiters for screen(1) window titles
             print -Pn "\ek%-3~ $(echo $a | cut -c1-25)\e\\" # set screen title.  Fix vim: ".
@@ -49,10 +49,10 @@ function preexec() {
         rxvt*|xterm*)
             print -Pn "\e]1;%-3~\a"             # must (re)set xterm title
             if [[ ! -z $WINDOW ]]; then
-                print -Pn "\ek%-3~ $(echo $a | cut -c1-25)\e\\" # set screen title.  Fix vim: ".
+                print -Pn "\ek%-3~ $(echo "$a" | cut -c1-25)\e\\" # set screen title.  Fix vim: ".
                 #print -Pn "\ek%-3~ $a\e\\"      # set screen title.  Fix vim: ".
             else
-                print -Pn "\e]2;%m:%-3~ $a\a"
+                print -Pn "\e]2;%m:%-3~ $a\e\\"
             fi;
             ;;
     esac
