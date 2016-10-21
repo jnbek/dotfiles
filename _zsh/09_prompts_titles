@@ -77,7 +77,7 @@ TRAPWINCH () {
 ## update the prompt automagically
 ## update ~about~ every 30 seconds
 ## this can be invoked manually with a "kill -ALRM" to the shell (from another process)
-TMOUT=$[(${RANDOM}%15)+25]
+TMOUT=$[(${RANDOM}%15)+3600]
 TRAPALRM () {
     zle || return 0
     zle reset-prompt
