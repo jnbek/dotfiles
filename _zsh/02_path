@@ -71,6 +71,9 @@ done;
 
 export PATH=${PATH_tmp/%:/}
 
+# Brew futzes this up...
+[[ -e /usr/local/bin/brew ]] && export PATH=${PATH}:/usr/local/bin
+
 # Fix up the GOPATH stuff
 
 if [[ -x "$(whence -p go)" ]];
