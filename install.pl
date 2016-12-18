@@ -57,7 +57,7 @@ sub install {
     if($^O eq 'freebsd') {
         my $sysctl = $self->which('sysctl');
         my $is_jailed = qx{ $sysctl security.jail.jailed };
-        return 0 if ($is_jailed =~ 1 && $self->no_brick_bsd($orig);
+        return 0 if ($is_jailed =~ 1 && $self->no_brick_bsd($orig));
     }
     $name =~ s/^_/\./xms;
 
