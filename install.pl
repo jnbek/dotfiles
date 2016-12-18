@@ -29,6 +29,15 @@ sub opt_confs {
         jackd     => '_jackdrc',
     };
 }
+sub no_brick_bsd { 
+    my $self = shift;
+    my $key  = shift;
+    my $files = {
+        "_cshrc"   => 1,
+        "_profile" => 1,
+    };
+    return $files->{$key};
+}
 
 sub main {
     my $self = shift;
@@ -45,6 +54,11 @@ sub install {
     my $name = shift;
     my $cwd  = $self->{'cwd'};
     my $orig = $name;
+    if($^O eq 'freebsd') {
+        my $sysctl = $self->which('sysctl');
+        my $is_jailed = qx{ $sysctl security.jail.jailed };
+        return 0 if ($is_jailed =~ 1 && $self->no_brick_bsd($orig);
+    }
     $name =~ s/^_/\./xms;
 
     #$name =~ s/\.sample$//xm if $name =~ m/\.sample$/mx;
