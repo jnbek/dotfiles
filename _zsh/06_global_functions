@@ -103,6 +103,14 @@ how_many_cpu () {
     print 'Assuming 1 CPU' 1>&2
 }
 
+if [[ -x "$(whence -p pacman)" ]]; then 
+    find_perl_orphans () {
+        for i in $(perl -E'say join q{ }, @INC'); 
+        do 
+            find $i -type f -exec pacman -Qo {} \; ; 
+        done | grep 'No Package';
+    }
+fi
 #command_title () {
 #    ### this function sets the current command name in title bars, tabs, and screen lists
 #    ## inspired by: http://www.semicomplete.com/blog/2006/Jun/29
