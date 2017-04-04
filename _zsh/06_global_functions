@@ -106,7 +106,7 @@ how_many_cpu () {
 if [[ -x "$(whence -p pacman)" ]]; then 
     function find_perl_orphans () {
         PACMAN=$(whence -p pacman);
-        for i in $(perl -E'say join q{ }, @INC'); 
+        for i in $(perl -E'say join q{ }, grep {!/^\.\.?$/ } @INC;'); 
         do 
             find $i -type f -exec ${PACMAN} -Qo {} \; ; 
         done | grep 'No Package';
