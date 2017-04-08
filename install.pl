@@ -5,16 +5,18 @@ use warnings;
 
 use Cwd;
 use File::Copy;
-use Env qw(HOME USER PATH DISPLAY);
-use File::Path qw(make_path);
-use Term::ANSIColor qw(:constants);
 use Data::Dumper;
-our $VERSION = "1.7.2";
+use File::Path qw(make_path);
+use Env qw(HOME USER PATH DISPLAY);
+use Term::ANSIColor qw(:constants);
+
+our $VERSION = "1.8.0";
+
 ( bless {}, __PACKAGE__ )->main();
 
 sub x11_confs {
     {
-        conky     => '_conkyrc',
+        conky => '_conkyrc',
         mrxvt => '_mrxvt',
         urxvt => '_urxvt',
         xinit => [ '_xinitrc', '_Xdefaults', '_Xmodmap' ],
@@ -27,11 +29,13 @@ sub opt_confs {
         colortail => '_colortailrc',
         sqlite3   => '_sqliterc',
         jackd     => '_jackdrc',
+        clang     => '_clang-format',
     };
 }
-sub no_brick_bsd { 
-    my $self = shift;
-    my $key  = shift;
+
+sub no_brick_bsd {
+    my $self  = shift;
+    my $key   = shift;
     my $files = {
         "_cshrc"   => 1,
         "_profile" => 1,
@@ -54,16 +58,18 @@ sub install {
     my $name = shift;
     my $cwd  = $self->{'cwd'};
     my $orig = $name;
-    if($^O eq 'freebsd') {
-        my $sysctl = $self->which('sysctl');
+    if ( $^O eq 'freebsd' ) {
+        my $sysctl    = $self->which('sysctl');
         my $is_jailed = qx{ $sysctl security.jail.jailed };
-        return 0 if ($is_jailed =~ 1 && $self->no_brick_bsd($orig));
+        return 0 if ( $is_jailed =~ 1 && $self->no_brick_bsd($orig) );
     }
     $name =~ s/^_/\./xms;
 
     #$name =~ s/\.sample$//xm if $name =~ m/\.sample$/mx;
-
-    return 0 if $orig eq '_jackdrc' && not $self->which('jackd');
+    my $opt_confs = $self->opt_confs;
+    foreach my $opt ( keys %{$opt_confs} ) {
+        return 0 if $orig eq $opt_confs->{$opt} && not $self->which($opt);
+    }
     if (   ( -f "$HOME/$name" && !-l "$HOME/$name" )
         || ( -d "$HOME/$name" && !-l "$HOME/$name" ) )
     {
@@ -72,8 +78,7 @@ sub install {
         move( "$HOME/$name", $self->{'bak_path'} . "/$name" );
     }
     if ( -l "$HOME/$name" ) {
-        print BOLD, YELLOW, "Skipping $orig -> $HOME/$name: Symlink exists\n",
-          RESET;
+        print BOLD, YELLOW, "Skipping $orig -> $HOME/$name: Symlink exists\n", RESET;
     }
     else {
         print BOLD, GREEN, "Creating Symlink: $orig -> $HOME/$name\n", RESET;
@@ -84,10 +89,8 @@ sub install {
 
 sub do_cpanp_conf {
     my $self = shift;
-    unless ( $self->which("cpanp") )
-    {    #Sniff $PATH for cpanp and bail if not present
-        print RED, "Skipping cpanplus configuration: cpanp not found!!\n",
-          RESET;
+    unless ( $self->which("cpanp") ) {    #Sniff $PATH for cpanp and bail if not present
+        print RED, "Skipping cpanplus configuration: cpanp not found!!\n", RESET;
         return;
     }
     my $cwd  = $self->{'cwd'};
