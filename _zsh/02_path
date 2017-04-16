@@ -96,8 +96,8 @@ then
     then
         mkdir -p $npm_dir;
         echo "$npm_dir Successfully created";
-        export PATH=${PATH}:${npm_dir}/bin;
     fi;
+    export PATH=${PATH}:${npm_dir}/bin;
     unset npm_dir
 fi;
 
