@@ -22,7 +22,7 @@ sub setup {
     $conf->set_conf( allow_unknown_prereqs     => 1 );
     $conf->set_conf( base                      => "$HOME/.cpanplus" );
     $conf->set_conf( buildflags                => '' );
-    $conf->set_conf( cpantest                  => 1 );
+    $conf->set_conf( cpantest                  => 0 );
     $conf->set_conf( cpantest_mx               => '' );
     $conf->set_conf( cpantest_reporter_args    => {} );
     $conf->set_conf( debug                     => 1 );

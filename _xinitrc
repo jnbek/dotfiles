@@ -12,8 +12,8 @@
 # setup mouse acceleration
 #xset m 7 2
 
-# Here Xfce is kept as default
-session=${1:-i3wm}
+# Here MATE is kept as default
+session=${1:-mate}
 
 case $session in
     awesome           ) exec awesome;;

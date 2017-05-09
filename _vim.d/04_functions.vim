@@ -101,10 +101,19 @@ function! RubyKeys()
 endfunction
 
 function! GoLangKeys()
-    nmap _e go run %
-    nmap _E gofmt -e %
+    nmap _e :!go run %
+    nmap _E :!gofmt -e %
 endfunction
 
 function! JScriptKeys()
-    nnoremap _PT :call g:Jsbeautify()<cr><Enter>
+    if filereadable($HOME."/.clang-format")
+        nnoremap _PT :!clang-format -style=webkit -i %<Enter>
+    else
+        nnoremap _PT :call g:Jsbeautify()<cr><Enter>
+    endif
+endfunction
+function! CKeys()
+    if filereadable($HOME."/.clang-format")
+        nnoremap _PT :!clang-format -style=webkit -i %<Enter>
+    endif
 endfunction

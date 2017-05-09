@@ -19,11 +19,14 @@ autocmd FileType perl match ErrorMsg /\%>80v.\+/
 
 " make tabs and trailing spaces errors
 autocmd FileType perl match ErrorMsg /[\t]\|^\s\+$\|\S\s\+$/
-autocmd FileType perl   call PerlKeys()
-autocmd FileType python call PythonKeys()
-autocmd FileType ruby   call RubyKeys()
-autocmd FileType go   call GoLangKeys()
+" autocmds for specific shortcuts based on language
+autocmd FileType perl       call PerlKeys()
+autocmd FileType python     call PythonKeys()
+autocmd FileType ruby       call RubyKeys()
+autocmd FileType go         call GoLangKeys()
 autocmd FileType javascript call JScriptKeys()
+autocmd FileType cpp        call CKeys()
+autocmd FileType c          call CKeys()
 
 "autocmd FileType javascript set makeprg=gjs\ %\ $*
 autocmd FileType text call TextMode()
