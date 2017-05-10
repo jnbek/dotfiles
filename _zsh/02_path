@@ -46,6 +46,8 @@ common_paths=(
     /usr/bin/site_perl
     /usr/bin/vendor_perl
     /opt/perl6/bin
+    #Conscript/Giter8
+    /opt/conscript/bin
 );           
 
 unset PATH_tmp PATH

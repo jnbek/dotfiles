@@ -81,3 +81,4 @@ export EDITOR=vim
 if [ -f $HOME/.ssh-login ]; then
     source $HOME/.ssh-login
 fi
+PATH="$PATH:/opt/conscript/bin"
