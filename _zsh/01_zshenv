@@ -86,4 +86,7 @@ done;
 [[ -f "/usr/lib/libstderred.so" ]]       && export LD_PRELOAD="/usr/lib/libstderred.so"
 [[ -f "/usr/local/lib/libstderred.so" ]] && export LD_PRELOAD="/usr/local/lib/libstderred.so"
 
+# Scala/SBT Installed? 
+[[ -n $(whence -p sbt) ]] && export CONSCRIPT_HOME=/opt/conscript
+[[ -n $CONSCRIPT_HOME ]] && [[ -e /opt/conscript ]] || echo "Run sudo mkdir -v ${CONSCRIPT_HOME}"
 # vim:set ft=zsh:
