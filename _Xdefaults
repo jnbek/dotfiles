@@ -35,3 +35,5 @@ URxvt.font: xft:monospace:pixelsize=11, \
             xft:Code2000:antialias=false
 XTerm.reverseVideo: true
 *TkTheme: clam
+
+Xcursor.theme: mate
