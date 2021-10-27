@@ -56,7 +56,7 @@ fi;
 
 export LESS='MiRJw -z-5 -j15'                                                     
 
-export TZ=America/Denver
+export TZ=America/Chicago
 export LC_TIME=POSIX
 
 for pager ('more' 'most' 'less' 'vimpager');
