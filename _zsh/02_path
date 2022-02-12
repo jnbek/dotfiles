@@ -1,4 +1,4 @@
-home_subdirs=( bin etc lib opt var tmp local perl5 tmp/vim/bak .zcompcache/$HOST );
+home_subdirs=( src bin etc lib opt var tmp local perl5 tmp/vim/bak .zcompcache/$HOST );
 
 for d in ${home_subdirs};
 do 
@@ -45,9 +45,6 @@ common_paths=(
     /usr/bin/core_perl
     /usr/bin/site_perl
     /usr/bin/vendor_perl
-    /opt/perl6/bin
-    #Conscript/Giter8
-    /opt/conscript/bin
 );           
 
 unset PATH_tmp PATH
