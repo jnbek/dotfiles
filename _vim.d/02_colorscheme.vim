@@ -8,7 +8,7 @@ if has('gui_running')
     "colorscheme nightshade
     "colorscheme marslo256
     "colorscheme PerfectDark
-    colorscheme kolor
+    colorscheme morning
 else
     set t_Co=256
     "colorscheme termpot
