@@ -45,6 +45,8 @@ common_paths=(
     /usr/bin/core_perl
     /usr/bin/site_perl
     /usr/bin/vendor_perl
+    # Rust
+    $HOME/.cargo/bin
 );           
 
 unset PATH_tmp PATH
