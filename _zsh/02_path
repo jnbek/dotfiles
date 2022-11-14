@@ -13,7 +13,9 @@ typeset -U common_paths
 
 common_paths=(                       
     #${path} ${=$(command -p getconf PATH)//:/ } # what the system thinks PATH should be
-    /bin /sbin /usr/bin /usr/sbin               # good places to look                  
+    /bin /sbin                                  # good places to look
+    $HOME/.cargo/bin                            # Rust
+    /usr/bin /usr/sbin                          # more good places to look                  
     /usr/local/bin /usr/local/sbin              # FreeBSD                              
     /usr/libexec /usr/local/libexec             # FreeBSD
     /usr/X11R6/bin                              # X11                          
@@ -29,13 +31,11 @@ common_paths=(
     /var/qmail/bin                              # qmail
     /usr/games                                  # fun stuff
     /usr/games/bin                              # Gentoo Linux/FreeBSD                            
-    /var/www/bin                                # Misc
+    # Misc
     $HOME/bin 
     $HOME/wrk
     # Grrr Mac 
     /usr/local/git/bin
-    $HOME/scala/bin
-    $HOME/scala-sbt/bin
     # Go Language
     /usr/lib/go/site/bin
     /usr/local/go/bin
@@ -45,8 +45,7 @@ common_paths=(
     /usr/bin/core_perl
     /usr/bin/site_perl
     /usr/bin/vendor_perl
-    # Rust
-    $HOME/.cargo/bin
+
 );           
 
 unset PATH_tmp PATH
