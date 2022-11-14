@@ -14,7 +14,7 @@ else
     "colorscheme termpot
     "colorscheme marslo256
     "colorscheme PerfectDark
-    colorscheme kolor
+    colorscheme evening
 endif
 "Highlights
 "highlight StatusLine ctermfg=8 ctermbg=3
