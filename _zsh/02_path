@@ -14,7 +14,6 @@ typeset -U common_paths
 common_paths=(                       
     #${path} ${=$(command -p getconf PATH)//:/ } # what the system thinks PATH should be
     /bin /sbin                                  # good places to look
-    $HOME/.cargo/bin                            # Rust
     /usr/bin /usr/sbin                          # more good places to look                  
     /usr/local/bin /usr/local/sbin              # FreeBSD                              
     /usr/libexec /usr/local/libexec             # FreeBSD
@@ -32,6 +31,8 @@ common_paths=(
     /usr/games                                  # fun stuff
     /usr/games/bin                              # Gentoo Linux/FreeBSD                            
     # Misc
+    $HOME/.cargo/bin                            # Rust
+    $HOME/.julia/bin                            # Julia
     $HOME/bin 
     $HOME/wrk
     # Grrr Mac 
