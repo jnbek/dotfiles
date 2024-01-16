@@ -1,7 +1,7 @@
 if has('gui_running')
     if has("win32") || has("win16") || has("win64")
         behave mswin
-        set guifont=DejaVu_Sans_Mono:h8:cANSI
+        set guifont=Consolas:h9:cANSI:qDRAFT
     else
         set guifont=Monospace\ 9
     endif
