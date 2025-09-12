@@ -85,5 +85,5 @@ done;
 # Turn STDERR red if we can
 [[ -f "/usr/lib/libstderred.so" ]]       && export LD_PRELOAD="/usr/lib/libstderred.so"
 [[ -f "/usr/local/lib/libstderred.so" ]] && export LD_PRELOAD="/usr/local/lib/libstderred.so"
-
+[[ -d "$HOME/perl5/lib/perl5" ]] && export PERL5LIB="$HOME/perl5/lib/perl5"
 # vim:set ft=zsh:
