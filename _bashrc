@@ -81,4 +81,5 @@ export EDITOR=vim
 if [ -f $HOME/.ssh-login ]; then
     source $HOME/.ssh-login
 fi
-PATH="$PATH:/opt/conscript/bin"
+
+[[ -d "$HOME/perl5/lib/perl5" ]] && export PERL5LIB="$HOME/perl5/lib/perl5"
