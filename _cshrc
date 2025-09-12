@@ -67,6 +67,9 @@ setenv LESS "-EmrSw"
 setenv LESSCHARDEF "8bcccbcc18b95.."
 setenv LSCOLORS "gxfxcxdxbxegedabagacad"
 setenv PAGER "/usr/bin/less"
+if ( -d $HOME/perl5/lib/perl5 ) then 
+  setenv PERL5LIB "$HOME/perl5/lib/perl5"
+endif
 
 
 if ( `uname` == "FreeBSD" ) then
