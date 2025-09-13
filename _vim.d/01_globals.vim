@@ -31,6 +31,7 @@ set cpoptions-=<
 set pastetoggle=<C-p><C-p>
 set wildcharm=<C-Z>
 set matchpairs+=<:>
+set expandtab
 set tabstop=4
 set shiftwidth=4
 set backspace=2
@@ -38,7 +39,6 @@ set errorformat=%m\ in\ %f\ on\ line\ %l
 set maxfuncdepth=1000   " Need more depth for sub names
 set showmode
 set backup
-set expandtab
 set wildmenu
 set showcmd!
 set autoindent
