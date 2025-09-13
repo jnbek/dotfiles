@@ -5,10 +5,10 @@ function! TextMode()
     set nosmartindent           " nosi:  don't "smart" indent, either
     set autoindent              " ai:  indent to match previous line
     set noshowmatch             " nosm:  don't show matches on parens, brackets, etc.
-    set comments=n:>,n:#,fn:-   " com: list of things to be treated as comments
+    "set comments=n:>,n:#,fn:-   " com: list of things to be treated as comments
     "set textwidth=72            " tw:  wrap at 72 characters
     set formatoptions=tcrq      " fo:  word wrap, format comments
-    set dictionary+=/usr/local/dict/*  " dict:  dict for word completion
+    "set dictionary+=/usr/local/dict/*  " dict:  dict for word completion
     set complete=.,w,b,u,t,i,k  " cpt:  complete words
 endfunction
 
