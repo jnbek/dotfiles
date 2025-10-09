@@ -93,7 +93,7 @@ fi;
 # Fix Node/NPM Paths
 if [[ -x "$(whence -p npm)" ]];
 then
-    npm_dir=$HOME/var/npm/pkgs;
+    npm_dir=$HOME/.node_modules;
     if [[ ! -e "$npm_dir" ]];
     then
         mkdir -p $npm_dir;
