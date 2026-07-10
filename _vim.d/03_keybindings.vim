@@ -5,6 +5,9 @@ if has('gui_running')
     inoremap <S-C-A> <ESC>ggVG
     inoremap <C-S-C> <ESC>"+ya
     inoremap <S-C-V> <ESC>"+gPa
+    vnoremap <S-C-A> ggVG
+    vnoremap <S-C-C> "+y
+    vnoremap <S-C-V> "+gP
 else
     set mouse=v
 endif
