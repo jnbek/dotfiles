@@ -47,7 +47,7 @@ common_paths=(
     /usr/bin/core_perl
     /usr/bin/site_perl
     /usr/bin/vendor_perl
-
+    $HOME/perl5/bin
 );           
 
 unset PATH_tmp PATH
