@@ -35,7 +35,6 @@ common_paths=(
     $HOME/.julia/bin                            # Julia
     $HOME/.local/bin                            #Jupyter on Linux?!
     $HOME/bin 
-    $HOME/wrk
     # Grrr Mac 
     /usr/local/git/bin
     # Go Language
