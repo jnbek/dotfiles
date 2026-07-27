@@ -2,4 +2,4 @@ author: John D Jones III
 email: jnbek@cpan.org
 verbose: 1
 builder: ExtUtils::MakeMaker
-minperl: 5.10.1
+minperl: 5.26
