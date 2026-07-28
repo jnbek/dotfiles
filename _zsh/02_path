@@ -33,7 +33,8 @@ common_paths=(
     # Misc
     $HOME/.cargo/bin                            # Rust
     $HOME/.julia/bin                            # Julia
-    $HOME/.local/bin                            #Jupyter on Linux?!
+    $HOME/.local/bin                            # Jupyter on Linux?!
+    $HOME/opt/*/bin                             # Anything in a per user opt tree
     $HOME/bin 
     # Grrr Mac 
     /usr/local/git/bin
