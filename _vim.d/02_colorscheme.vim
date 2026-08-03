@@ -15,6 +15,10 @@ else
     "colorscheme termpot
     "colorscheme marslo256
     "colorscheme PerfectDark
+    "let xterm16_brightness="high"
+    "let xterm16_colormap='allblue'
+    let xterm16_brightness = 'high'     " Change if needed
+    let xterm16_colormap = 'standard'
     colorscheme xterm16
 endif
 "Highlights
