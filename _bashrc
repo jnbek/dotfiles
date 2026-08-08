@@ -25,10 +25,6 @@ PS1='\[\033[01;32m\][\d][\t][\j]\n[\u@\h]\[\033[00m\]:\[\033[01;34m\][\w]\[\033[
 # ~/.bash_aliases, instead of adding them here directly.          
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.   
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases          
-fi                             
-
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then                         
     if [ "`which dircolors`" != "" ]; then             
@@ -76,10 +72,21 @@ fi
 
 [ ! -e "$HOME/tmp/vim/bak" ] && echo "Creating $HOME/tmp/vim/bak directory" && mkdir -p $HOME/tmp/vim/bak;
 
-export PATH=$PATH:$HOME/bin
 export EDITOR=vim
 if [ -f $HOME/.ssh-login ]; then
     source $HOME/.ssh-login
 fi
 
+#Custon PATH mangling
 [[ -d "$HOME/perl5/lib/perl5" ]] && export PERL5LIB="$HOME/perl5/lib/perl5"
+for DIR in $HOME/bin $HOME/perl5/bin; 
+do 
+    [[ -e $DIR ]] && 
+    [[ -z $( echo $PATH | grep $DIR )  ]] && 
+    export PATH=$PATH:$DIR; 
+done
+
+# Pull in any custom aliases, etc
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases          
+fi
