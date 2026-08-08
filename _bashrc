@@ -9,6 +9,13 @@
 export HISTCONTROL=ignoredups                                           
 # ... and ignore same sucessive entries.                                
 export HISTCONTROL=ignoreboth                                           
+# Append (rather than overwrite) history and immediately.
+#
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
+export HISTSIZE=20000
+export HISTFILESIZE=50000
+export HISTTIMEFORMAT='%F %T - '
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.                    
