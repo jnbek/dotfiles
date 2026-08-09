@@ -14,9 +14,9 @@ let s:NERD_tree_version = '4.1.0'
 
 " SECTION: Script init stuff {{{1
 "============================================================
-if exists("loaded_nerd_tree")
+"if exists("loaded_nerd_tree")
     finish
-endif
+"endif
 if v:version < 700
     echoerr "NERDTree: this plugin requires vim >= 7. DOWNLOAD IT! You'll thank me later!"
     finish
