@@ -1,6 +1,6 @@
-if filereadable($VIMRUNTIME."/menu.vim")
-    source $VIMRUNTIME/menu.vim
-endif
+"if filereadable($VIMRUNTIME."/menu.vim")
+"    source $VIMRUNTIME/menu.vim
+"endif
 syntax on
 filetype on
 filetype plugin on
