@@ -5,9 +5,9 @@
 " License: BSD
 
 " Avoid installing twice.
-if exists('g:loaded_undotree')
+"if exists('g:loaded_undotree')
     finish
-endif
+"endif
 let g:loaded_undotree = 0
 
 " At least version 7.3 with 005 patch is needed for undo branches.
