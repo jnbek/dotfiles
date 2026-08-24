@@ -87,6 +87,32 @@ sub install {
     return 0;
 }
 
+sub do_helix_conf {
+    my $self = shift;
+    unless ( $self->which("hx") ) {    #Sniff $PATH for hx and bail if not present
+        print RED, "Skipping Helix Editor configuration: hx not found!!\n", RESET;
+        return;
+    }
+    my $cwd  = $self->{'cwd'};
+    my $name = "config.toml";
+    my $orig = "$cwd/dot_config/helix/$name";
+    my $targ = "$HOME/.config/helix/$name";
+    unless ( -d "$HOME/.config/helix/" ) {
+        make_path( "$HOME/.config/helix/", { verbose => 1 } );
+    }
+    if ( -f $targ && !-l $targ ) {
+        move( $targ, $self->{'bak_path'} . "/$name" );
+    }
+    if ( -l $targ ) {
+        print BOLD, YELLOW, "Skipping $orig -> $targ: Symlink exists\n", RESET;
+    }
+    else {
+        print BOLD, GREEN, "Creating Symlink: $orig -> $targ\n", RESET;
+        symlink $orig, $targ;
+    }
+    return 0;
+}
+
 sub do_cpanp_conf {
     my $self = shift;
     unless ( $self->which("cpanp") ) {    #Sniff $PATH for cpanp and bail if not present
