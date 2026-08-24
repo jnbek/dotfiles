@@ -1,7 +1,0 @@
---group
---color
---column
---color-filename=bold yellow
---color-match=black on_red
---sort-files
-#--pager=less -R
