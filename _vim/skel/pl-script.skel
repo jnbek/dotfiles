@@ -1,0 +1,17 @@
+#!/usr/bin/env perl 
+
+# Author: John D Jones III <jnbek@cpan.org>
+
+use strict;
+use warnings;
+use Data::Dumper;
+
+(bless {}, __PACKAGE__)->main();
+
+sub main {
+    my $self = shift;
+    
+
+    return 0;
+}
+

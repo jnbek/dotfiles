@@ -1,0 +1,18 @@
+package ;
+
+# Author: John D Jones III <jnbek@cpan.org>
+
+use strict;
+use warnings;
+use Data::Dumper;
+
+sub new {
+    my $proto = shift;
+    my $class = ref($proto) || $proto;
+    my $self = {};
+    bless $self, $class;
+    return $self;
+}
+
+1;
+
