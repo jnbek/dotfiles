@@ -49,6 +49,7 @@ sub main {
     my $cwd  = $self->{'cwd'} ||= do { getcwd(); };
     $self->{'bak_path'} = "$cwd/backups/$USER/$now";
     my $cpc = $self->do_cpanp_conf();
+    my $hlx = $self->do_helix_conf();
     my $cnt = map { $self->install($_) } ( glob "_*" );
     return 0;
 }
