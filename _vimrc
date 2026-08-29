@@ -51,7 +51,7 @@ set smartindent
 set modelines=1
 set shiftwidth=4
 set laststatus=2
-colorscheme zellner
+colorscheme zaibatsu
 set statusline=%(%y\ [%f%M%R]%)\ %=\ %(%l/%L,%c%V\ %P\ [%o][0x%02.2B][%{&ff}]%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}\ [%{strftime(\"%c\",getftime(expand(\"%:p\")))}]\ %)
 
 highlight MatchParen cterm=NONE ctermbg=brown ctermfg=yellow
