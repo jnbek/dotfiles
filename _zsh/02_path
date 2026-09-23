@@ -102,6 +102,7 @@ then
     [[ -d "${npm_dir}/bin" ]] && export PATH=${PATH}:${npm_dir}/bin;
     unset npm_dir
 fi;
+[[ -n $(ls $HOME/opt) ]] && export PATH=$HOME/opt/*/bin:${PATH};
 
 unset common_paths temp_path PATH_tmp home_subdirs
 
