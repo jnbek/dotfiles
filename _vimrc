@@ -57,6 +57,12 @@ set statusline=%(%y\ [%f%M%R]%)\ %=\ %(%l/%L,%c%V\ %P\ [%o][0x%02.2B][%{&ff}]%{\
 highlight MatchParen cterm=NONE ctermbg=brown ctermfg=yellow
 highlight Search cterm=NONE ctermbg=brown ctermfg=yellow
 
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 25
+nnoremap <C-b><C-b> :Lexplore<CR>
+set pastetoggle=<C-p><C-p>
 
 if has('gui_running')
     noremap <S-C-A> ggVG
